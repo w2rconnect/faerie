@@ -1,0 +1,251 @@
+@media (max-width: 1180px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ia-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ia-card-brand {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+}
+@media (max-width: 1080px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-hamburger {
+    display: flex;
+  }
+}
+@media (max-width: 1023px) {
+  .story {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .story-visual {
+    display: none;
+  }
+  .story-step {
+    min-height: 0;
+    opacity: 1;
+    padding: 30px 0;
+  }
+  .story-step-screen {
+    display: block;
+    margin-top: 22px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+  }
+  .story-step-screen img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .story-more {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ia-console {
+    position: static;
+    width: 100%;
+    margin-top: 18px;
+  }
+  .stat-chip {
+    top: 52px;
+    right: 12px;
+    padding: 10px 14px;
+  }
+  .stat-chip .val {
+    font-size: 18px;
+  }
+}
+@media (max-width: 860px) {
+  section {
+    padding: 80px 5%;
+  }
+  .hero {
+    padding: 130px 5% 60px;
+  }
+  .hero-sub-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .how-steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+    text-align: left;
+  }
+  .how-line {
+    top: 0;
+    bottom: 0;
+    left: 31px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+  .how-line-fill {
+    transform: scaleY(var(--p, 0));
+    transform-origin: top center;
+  }
+  .how-step {
+    display: flex;
+    gap: 20px;
+    text-align: left;
+    padding: 18px 0;
+    align-items: flex-start;
+  }
+  .how-num {
+    margin: 0;
+    flex-shrink: 0;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .pain-grid {
+    grid-template-columns: 1fr;
+  }
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+  .plan {
+    padding: 32px 26px;
+  }
+  .plan-val {
+    font-size: 64px;
+  }
+  .story-more {
+    grid-template-columns: 1fr;
+  }
+  .ia-cards {
+    grid-template-columns: 1fr;
+  }
+  .cta-stats {
+    gap: 20px;
+    padding: 20px 24px;
+  }
+  .cta-stat-div {
+    display: none;
+  }
+  .marquee-item {
+    font-size: 14px;
+    padding: 16px 20px 16px 0;
+  }
+  .circuit-hero {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .video-placeholder {
+    aspect-ratio: auto;
+  }
+  .video-placeholder-inner {
+    padding: 40px 20px;
+    gap: 18px;
+  }
+  .video-features {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 22px;
+  }
+  .video-feature-sep {
+    display: none;
+  }
+  nav {
+    padding: 10px 5%;
+  }
+  nav.scrolled {
+    padding: 8px 5%;
+  }
+  .nav-logo img {
+    height: 34px;
+  }
+  nav.scrolled .nav-logo img {
+    height: 30px;
+  }
+  .nav-hamburger {
+    padding: 9px 8px;
+    gap: 4px;
+  }
+  .nav-hamburger span {
+    width: 19px;
+  }
+  .nav-mobile-menu {
+    padding: 80px 7% 40px;
+  }
+  .nav-mobile-menu a {
+    font-size: clamp(19px, 5.5vw, 24px);
+    padding: 12px 0;
+    gap: 12px;
+  }
+  .nav-mobile-menu a .idx {
+    font-size: 10.5px;
+  }
+  .mob-btn-row {
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .mob-btn-row a {
+    font-size: 14.5px !important;
+    padding: 13px !important;
+  }
+  .promo-countdown {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+    border-radius: 14px;
+    padding: 14px 22px;
+    margin-bottom: 40px;
+  }
+  .countdown-sep {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .hero-title {
+    margin-bottom: 24px;
+  }
+  .btn {
+    width: 100%;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+  .cta-actions .btn {
+    width: 100%;
+  }
+  .screen-topbar .addr {
+    display: none;
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #19d97f;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .preloader {
+    display: none !important;
+  }
+}

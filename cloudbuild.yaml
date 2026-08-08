@@ -1,0 +1,44 @@
+steps:
+  # Build da imagem Docker
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/faerie:latest'
+      - '.'
+
+  # Push da imagem para Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/faerie:latest'
+
+  # Deploy no Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'faerie'
+      - '--image=${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/faerie:latest'
+      - '--region=${_REGION}'
+      - '--platform=managed'
+      - '--port=8080'
+      - '--memory=256Mi'
+      - '--cpu=1'
+      - '--timeout=300'
+      - '--concurrency=80'
+      - '--min-instances=0'
+      - '--max-instances=2'
+      - '--allow-unauthenticated'
+
+# Substituições
+substitutions:
+  _REGION: 'us-central1'
+  _REPOSITORY: 'cloud-run-source-deploy'
+
+# Opções necessárias
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+# Timeout
+timeout: '1200s'

@@ -1,0 +1,102 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink: #080c14;
+  --ink-2: #0d1320;
+  --ink-3: #121a2a;
+  --paper: #f1efe9;
+  --paper-2: #fbfaf7;
+  --btn: #19d97f;
+  --btn-hover: #10c572;
+  --btn-ink: #07130c;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-flip: cubic-bezier(0.76, 0, 0.24, 1);
+}
+.t-dark {
+  --bg: var(--ink);
+  --bg-2: var(--ink-2);
+  --card: var(--ink-2);
+  --card-2: var(--ink-3);
+  --text: #f1f5fb;
+  --text-2: #9aa8bf;
+  --muted: #64748e;
+  --line: rgba(241, 245, 251, 0.08);
+  --line-strong: rgba(241, 245, 251, 0.16);
+  --accent: #2be38b;
+  --accent-soft: rgba(43, 227, 139, 0.1);
+  --accent-line: rgba(43, 227, 139, 0.28);
+  --glow: rgba(43, 227, 139, 0.35);
+  background: var(--bg);
+  color: var(--text);
+}
+.t-light {
+  --bg: var(--paper);
+  --bg-2: var(--paper-2);
+  --card: var(--paper-2);
+  --card-2: #ffffff;
+  --text: #10161f;
+  --text-2: #4d5866;
+  --muted: #8a94a3;
+  --line: rgba(16, 22, 31, 0.12);
+  --line-strong: rgba(16, 22, 31, 0.22);
+  --accent: #0b7b50;
+  --accent-soft: rgba(11, 123, 80, 0.08);
+  --accent-line: rgba(11, 123, 80, 0.3);
+  --glow: rgba(11, 123, 80, 0.25);
+  background: var(--bg);
+  color: var(--text);
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+html:not(.js-anim) {
+  scroll-behavior: smooth;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--ink);
+  color: #f1f5fb;
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img {
+  max-width: 100%;
+}
+::selection {
+  background: #19d97f;
+  color: #07130c;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}

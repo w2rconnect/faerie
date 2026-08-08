@@ -1,0 +1,34 @@
+footer {
+  border-top: 1px solid var(--line);
+  padding: 56px 4% 40px;
+  text-align: center;
+}
+.footer-logo img {
+  height: 60px;
+  width: auto;
+  margin-bottom: 18px;
+}
+.footer-text {
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer-links {
+  margin-top: 14px;
+  display: flex;
+  gap: 26px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--text);
+}
+
+.gsap-line {
+  will-change: transform;
+}

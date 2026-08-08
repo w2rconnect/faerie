@@ -1,0 +1,1646 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>W2R Connect | CRM com IA para Correspondentes Bancários</title>
+    <meta
+      name="description"
+      content="CRM com IA para correspondentes bancários: leia matrículas, preencha cadastros, gere documentos e envie dados aos sistemas bancários automaticamente."
+    />
+    <meta name="theme-color" content="#080C14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="W2R Connect" />
+    <meta
+      property="og:title"
+      content="W2R Connect | CRM com IA para Correspondentes Bancários"
+    />
+    <meta
+      property="og:description"
+      content="Menos cadastro, mais contratos fechados. IA que lê matrículas, gera documentos e preenche sistemas bancários automaticamente."
+    />
+    <meta
+      property="og:image"
+      content="https://w2rconnect.com.br/assets/og-image.png"
+    />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/screen-hero.webp"
+      fetchpriority="high"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/conversion.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <script>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-anim');
+      }
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/lenis@1.3.8/dist/lenis.min.js"
+    ></script>
+    <script defer src="js/main.js"></script>
+  </head>
+  <body class="t-dark">
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <img
+        class="pre-logo"
+        src="assets/logo.png"
+        alt=""
+        width="127"
+        height="120"
+      />
+      <div class="pre-line"><span id="preFill"></span></div>
+      <div class="pre-count">
+        <span>carregando sistema</span><strong id="preCount">0%</strong>
+      </div>
+    </div>
+
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <nav id="nav">
+      <a class="nav-logo" href="#top" aria-label="W2R Connect — início"
+        ><img src="assets/logo.png" alt="W2R Connect" width="127" height="120"
+      /></a>
+      <ul class="nav-links">
+        <li><a href="#produto">Produto</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#funcionalidades">Funcionalidades</a></li>
+        <li><a href="#planos">Planos</a></li>
+        <li class="nav-sep" aria-hidden="true"></li>
+        <li><a href="mailto:suporte@w2rconnect.com.br">Suporte</a></li>
+        <li>
+          <a href="https://w2rconnect.app/login" class="nav-entrar">Entrar</a>
+        </li>
+        <li>
+          <a href="https://w2rconnect.app/register" class="nav-cta"
+            >Testar grátis</a
+          >
+        </li>
+      </ul>
+      <button
+        class="nav-hamburger"
+        id="hamburger"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div
+      class="nav-mobile-menu"
+      id="mobileMenu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu de navegação"
+    >
+      <a href="#produto"><span class="idx">01</span>Produto</a>
+      <a href="#como-funciona"><span class="idx">02</span>Como Funciona</a>
+      <a href="#funcionalidades"><span class="idx">03</span>Funcionalidades</a>
+      <a href="#planos"><span class="idx">04</span>Planos</a>
+      <a href="mailto:suporte@w2rconnect.com.br"
+        ><span class="idx">05</span>Suporte</a
+      >
+      <div class="mob-btn-row">
+        <a href="https://w2rconnect.app/login" class="mob-btn-entrar"
+          >Entrar</a
+        >
+        <a href="https://w2rconnect.app/register" class="mob-btn-cta"
+          >Testar grátis</a
+        >
+      </div>
+    </div>
+
+    <section class="hero t-dark" id="top">
+      <div class="hero-float-layer" aria-hidden="true">
+        <div class="hero-chip">
+          <span class="ok">✓</span> matricula_45123.pdf analisada
+        </div>
+        <div class="hero-chip">
+          <span class="ok">✓</span> R1 + averbações extraídas
+        </div>
+        <div class="hero-chip">
+          <span class="ok">✓</span> contrato gerado em 4s
+        </div>
+        <div class="hero-chip">
+          <span class="ok">✓</span> 2 proprietários qualificados
+        </div>
+        <div class="hero-chip">
+          <span class="ok">✓</span> dados enviados à Caixa
+        </div>
+      </div>
+      <svg
+        class="circuit circuit-hero"
+        viewBox="0 0 300 220"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          class="draw"
+          d="M10 210 L10 120 Q10 110 20 110 L90 110 Q100 110 100 100 L100 30 Q100 20 110 20 L200 20"
+          stroke-width="1.2"
+        />
+        <path
+          class="draw"
+          d="M60 210 L60 160 Q60 150 70 150 L150 150 Q160 150 160 140 L160 70 Q160 60 170 60 L260 60"
+          stroke-width="1.2"
+        />
+        <circle class="node" cx="200" cy="20" r="4" />
+        <circle class="node" cx="260" cy="60" r="4" />
+        <circle class="node" cx="10" cy="210" r="4" />
+        <circle class="node" cx="60" cy="210" r="4" />
+      </svg>
+      <div class="hero-inner">
+        <div class="hero-eyebrow" data-intro>
+          <span class="dot"></span>IA para correspondentes bancários
+        </div>
+        <h1 class="hero-title">
+          Menos cadastro.<br /><em>Mais contratos fechados.</em>
+        </h1>
+        <div class="hero-sub-row">
+          <p class="hero-subtitle">
+            O W2R Connect usa <strong>inteligência artificial</strong> para ler
+            matrículas, preencher cadastros, gerar documentos e enviar dados aos
+            sistemas bancários automaticamente.
+          </p>
+          <div class="hero-actions" data-intro>
+            <a href="https://w2rconnect.app/register" class="btn btn-primary"
+              ><span class="btn-flip"
+                ><span>Começar grátis por 7 dias</span
+                ><span aria-hidden="true">Começar grátis por 7 dias</span></span
+              ></a
+            >
+            <a href="#produto" class="btn btn-ghost"
+              ><span class="btn-flip"
+                ><span>Ver o sistema</span
+                ><span aria-hidden="true">Ver o sistema</span></span
+              ><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></a>
+          </div>
+        </div>
+        <div class="hero-trust" data-intro>
+          <div class="trust-badge">
+            <span class="sq"></span>Criado por correspondentes bancários
+          </div>
+          <div class="trust-badge">
+            <span class="sq"></span>IA integrada em todo o fluxo
+          </div>
+          <div class="trust-badge">
+            <span class="sq"></span>7 dias grátis, sem cartão
+          </div>
+        </div>
+        <div class="hero-visual" data-intro-visual>
+          <div class="screen-overlay-wrap">
+            <div class="screen-frame" data-parallax>
+              <div class="screen-topbar" data-gsap-ignore>
+                <span class="mark">W2R<em>·</em>Connect</span>
+                <span class="addr">app.w2rconnect.com.br/processos</span>
+                <span class="live"><i></i>IA ativa</span>
+              </div>
+              <img
+                src="assets/screen-hero.webp"
+                alt="Tela de processos do W2R Connect"
+                width="1600"
+                height="728"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+            <div class="stat-chip" data-gsap-ignore>
+              <div class="lbl">Tempo economizado</div>
+              <div class="val js-counter">-80%</div>
+            </div>
+            <div class="ia-console" aria-hidden="true" data-gsap-ignore>
+              <div class="ia-console-head"><i></i>Assistente IA · ao vivo</div>
+              <div class="ia-console-body" id="iaConsoleBody"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee t-dark" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <div class="marquee-item">
+            <span class="sq"></span>IA lê matrículas em segundos
+          </div>
+          <div class="marquee-item">
+            <span class="sq"></span>Zero redigitação
+          </div>
+          <div class="marquee-item">
+            <span class="sq"></span>Contratos gerados em 1 clique
+          </div>
+          <div class="marquee-item">
+            <span class="sq"></span>Extensão para sistemas Caixa
+          </div>
+          <div class="marquee-item">
+            <span class="sq"></span>7 dias grátis sem cartão
+          </div>
+        </div>
+        <div class="marquee-group">
+          <div class="marquee-item">
+            <span class="sq"></span>IA lê matrículas em segundos
+          </div>
+          <div class="marquee-item">
+            <span class="sq"></span>Zero redigitação
+          </div>
+          <div class="marquee-item">
+            <span class="sq"></span>Contratos gerados em 1 clique
+          </div>
+          <div class="marquee-item">
+            <span class="sq"></span>Extensão para sistemas Caixa
+          </div>
+          <div class="marquee-item">
+            <span class="sq"></span>7 dias grátis sem cartão
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="t-light" id="ia">
+      <div class="section-inner">
+        <header class="sec-head center">
+          <div class="sec-eyebrow">
+            <span class="idx">01</span><span class="sq"></span>powered by
+            inteligência artificial
+          </div>
+          <h2 class="sec-title">
+            A IA que trabalha<br /><em>enquanto você fecha contratos</em>
+          </h2>
+          <p class="sec-desc">
+            O W2R Connect não é só um CRM. É um sistema com inteligência
+            artificial integrada em cada etapa do financiamento imobiliário.
+          </p>
+        </header>
+        <div class="ia-cards">
+          <div class="card" data-reveal>
+            <div class="card-icon">
+              <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+                <rect
+                  x="3"
+                  y="3"
+                  width="30"
+                  height="30"
+                  rx="6"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-dasharray="3 2"
+                />
+                <path
+                  d="M9 18h18M18 9v18"
+                  style="stroke: var(--accent)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="4"
+                  style="stroke: var(--accent)"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </div>
+            <div class="card-tag">IA · Leitura automática</div>
+            <h3>Leitura da Matrícula do Imóvel</h3>
+            <p>
+              Envie o PDF e a IA entrega em segundos: histórico cronológico,
+              ônus, alienação, hipotecas, proprietários qualificados e área do
+              imóvel — tudo estruturado e pronto para o processo.
+            </p>
+            <div class="ia-stats" data-gsap-ignore>
+              <div>
+                <div class="ia-stat-num js-counter">-90%</div>
+                <div class="ia-stat-label">tempo de análise</div>
+              </div>
+              <div class="ia-stat-div"></div>
+              <div>
+                <div class="ia-stat-num js-counter">100%</div>
+                <div class="ia-stat-label">automático</div>
+              </div>
+            </div>
+          </div>
+          <div class="card ia-card-brand" data-reveal>
+            <div class="card-icon">
+              <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="13"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="7"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-dasharray="2 2"
+                />
+                <circle cx="18" cy="18" r="3" style="fill: #2be38b" />
+                <path
+                  d="M18 5v3M18 28v3M5 18h3M28 18h3"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="card-tag">IA · Core do sistema</div>
+            <h3>Inteligência Artificial em Todo o Fluxo</h3>
+            <p>
+              Da coleta ao registro, a IA está presente em cada etapa: lê
+              documentos, preenche formulários, gera contratos, responde dúvidas
+              no chat e organiza todo o processo automaticamente.
+            </p>
+            <div class="ia-stats" data-gsap-ignore>
+              <div>
+                <div class="ia-stat-num js-counter">8</div>
+                <div class="ia-stat-label">etapas automatizadas</div>
+              </div>
+              <div class="ia-stat-div"></div>
+              <div>
+                <div class="ia-stat-num">Chat</div>
+                <div class="ia-stat-label">assistente IA</div>
+              </div>
+            </div>
+          </div>
+          <div class="card" data-reveal>
+            <div class="card-icon">
+              <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+                <rect
+                  x="5"
+                  y="3"
+                  width="22"
+                  height="28"
+                  rx="3"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                />
+                <path
+                  d="M10 10h12M10 15h8M10 20h10M10 25h6"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+                <circle
+                  cx="28"
+                  cy="28"
+                  r="7"
+                  style="stroke: var(--accent)"
+                  fill="var(--card)"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M25 28l2 2 4-4"
+                  style="stroke: var(--accent)"
+                  stroke-width="1.3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="card-tag">IA · Geração automática</div>
+            <h3>Geração Automática de Documentos</h3>
+            <p>
+              Requerimentos, declarações e contratos gerados com os dados já
+              cadastrados no processo. A IA preenche, formata e entrega — você
+              só revisa e assina.
+            </p>
+            <div class="ia-stats" data-gsap-ignore>
+              <div>
+                <div class="ia-stat-num" style="font-size: 20px">segundos</div>
+                <div class="ia-stat-label">para gerar</div>
+              </div>
+              <div class="ia-stat-div"></div>
+              <div>
+                <div class="ia-stat-num" style="font-size: 20px">zero</div>
+                <div class="ia-stat-label">redigitação</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ia-strip" data-reveal>
+          <div class="ia-strip-item">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M2 8l4 4 8-8"
+                style="stroke: var(--accent)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >IA treinada para o mercado imobiliário brasileiro
+          </div>
+          <div class="ia-strip-sep"></div>
+          <div class="ia-strip-item">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M2 8l4 4 8-8"
+                style="stroke: var(--accent)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Funciona com PDFs reais de cartório
+          </div>
+          <div class="ia-strip-sep"></div>
+          <div class="ia-strip-item">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M2 8l4 4 8-8"
+                style="stroke: var(--accent)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Assistente disponível em qualquer tela
+          </div>
+          <div class="ia-strip-sep"></div>
+          <div class="ia-strip-item">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M2 8l4 4 8-8"
+                style="stroke: var(--accent)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Sem necessidade de treinamento técnico
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-light" style="padding-top: 0">
+      <div class="section-inner">
+        <header class="sec-head">
+          <div class="sec-eyebrow">
+            <span class="idx">02</span><span class="sq"></span>o problema atual
+          </div>
+          <h2 class="sec-title">
+            Quanto tempo você perde<br />nessas tarefas toda semana?
+          </h2>
+        </header>
+        <div class="pain-grid">
+          <div class="card" data-reveal>
+            <span class="pain-num">/01</span>
+            <h3>Matrícula página por página</h3>
+            <p>
+              Horas lendo para identificar ônus, alienação, proprietários e
+              histórico. Tudo manual, tudo lento.
+            </p>
+          </div>
+          <div class="card" data-reveal>
+            <span class="pain-num">/02</span>
+            <h3>Redigitação nos sistemas bancários</h3>
+            <p>
+              Os mesmos dados digitados várias vezes. Um erro na Caixa pode
+              consumir aprovações do cliente.
+            </p>
+          </div>
+          <div class="card" data-reveal>
+            <span class="pain-num">/03</span>
+            <h3>Documentos espalhados</h3>
+            <p>
+              CNH no WhatsApp, matrícula no e-mail, contrato no drive. Cada
+              processo vira caça ao tesouro.
+            </p>
+          </div>
+          <div class="card" data-reveal>
+            <span class="pain-num">/04</span>
+            <h3>Prazos perdidos</h3>
+            <p>
+              Aprovação vencida, protocolo atrasado. Sem controle centralizado,
+              algo sempre escapa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-dark" id="produto">
+      <div class="section-inner">
+        <header class="sec-head center">
+          <div class="sec-eyebrow">
+            <span class="idx">03</span><span class="sq"></span>o sistema
+          </div>
+          <h2 class="sec-title">Veja o W2R Connect <em>em ação</em></h2>
+          <p class="sec-desc">
+            Interface limpa, fluxo guiado e IA integrada em cada etapa do
+            financiamento.
+          </p>
+        </header>
+        <div class="story">
+          <div class="story-steps" data-gsap-ignore>
+            <div
+              class="story-step is-active"
+              data-url="Coleta → Análise do Imóvel (IA)"
+            >
+              <div class="story-step-num">01 / 05</div>
+              <h3>IA analisa a matrícula e preenche tudo sozinha</h3>
+              <p>
+                Envie o PDF da matrícula. Em segundos, a IA entrega histórico,
+                ônus, alienação, proprietários e qualificação completa.
+              </p>
+              <ul class="feature-list">
+                <li>Análise de R1 e averbações</li>
+                <li>Qualificação automática dos proprietários</li>
+                <li>Ônus, hipotecas e restrições identificados</li>
+                <li>Compradores vinculados via CNH lida pela IA</li>
+              </ul>
+              <div class="story-step-screen">
+                <img
+                  src="assets/screen-processos.webp"
+                  alt="Coleta de dados com IA"
+                  width="1600"
+                  height="739"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div class="story-step" data-url="Assistente IA">
+              <div class="story-step-num">02 / 05</div>
+              <h3>Assistente IA em qualquer tela</h3>
+              <p>
+                Mande documentos por chat e ele cria processos, vincula
+                compradores e inicia a análise automaticamente.
+              </p>
+              <ul class="feature-list">
+                <li>Crie processos por conversa</li>
+                <li>Envie PDFs direto no chat</li>
+                <li>Extração e vinculação automática</li>
+                <li>Histórico de conversas persistido</li>
+              </ul>
+              <div class="story-step-screen">
+                <img
+                  src="assets/screen-assistente.webp"
+                  alt="Assistente IA por chat"
+                  width="1600"
+                  height="722"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div class="story-step" data-url="Contrato Caixa">
+              <div class="story-step-num">03 / 05</div>
+              <h3>Contrato da Caixa preenchido automaticamente</h3>
+              <p>
+                Qualificação das partes já preenchida com os dados do processo.
+                Revise, ajuste e exporte sem redigitar nada.
+              </p>
+              <ul class="feature-list">
+                <li>Geração com 1 clique</li>
+                <li>Qualificação das partes automática</li>
+                <li>Templates por escritório</li>
+                <li>Formulários por etapa</li>
+              </ul>
+              <div class="story-step-screen">
+                <img
+                  src="assets/screen-contrato.webp"
+                  alt="Contrato Caixa preenchido automaticamente"
+                  width="1600"
+                  height="731"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div class="story-step" data-url="Diagrama da Operação">
+              <div class="story-step-num">04 / 05</div>
+              <h3>Diagrama visual de cada operação</h3>
+              <p>
+                Visualize graficamente as conexões entre imóvel, compradores,
+                vendedores, corretores e documentos.
+              </p>
+              <ul class="feature-list">
+                <li>Imóvel, comprador, vendedor e corretor conectados</li>
+                <li>Templates vinculados a cada participante</li>
+                <li>Exportável e editável</li>
+              </ul>
+              <div class="story-step-screen">
+                <img
+                  src="assets/screen-diagrama.webp"
+                  alt="Diagrama visual da operação"
+                  width="1600"
+                  height="722"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div class="story-step" data-url="app.w2rconnect.com.br">
+              <div class="story-step-num">05 / 05</div>
+              <h3>Dashboard limpo e intuitivo</h3>
+              <p>
+                Tela inicial com navegação clara e acesso rápido a todas as
+                funcionalidades. Assistente IA sempre disponível.
+              </p>
+              <ul class="feature-list">
+                <li>Acesso rápido a Processos e Requerimentos</li>
+                <li>Status do período de teste sempre visível</li>
+                <li>Interface dark moderna e responsiva</li>
+                <li>Assistente IA disponível em qualquer tela</li>
+              </ul>
+              <div class="story-step-screen">
+                <img
+                  src="assets/screen-home.webp"
+                  alt="Dashboard do W2R Connect"
+                  width="1600"
+                  height="734"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="story-visual" aria-hidden="true">
+            <div class="story-frame">
+              <div class="screen-topbar" data-gsap-ignore>
+                <span class="mark">W2R<em>·</em>Connect</span>
+                <span class="addr" id="storyUrl"
+                  >Coleta → Análise do Imóvel (IA)</span
+                >
+                <span class="live"><i></i>IA ativa</span>
+              </div>
+              <div class="story-imgs">
+                <img
+                  class="story-img is-active"
+                  src="assets/screen-processos.webp"
+                  alt=""
+                  width="1600"
+                  height="739"
+                  decoding="async"
+                />
+                <img
+                  class="story-img"
+                  src="assets/screen-assistente.webp"
+                  alt=""
+                  width="1600"
+                  height="722"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  class="story-img"
+                  src="assets/screen-contrato.webp"
+                  alt=""
+                  width="1600"
+                  height="731"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  class="story-img"
+                  src="assets/screen-diagrama.webp"
+                  alt=""
+                  width="1600"
+                  height="722"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  class="story-img"
+                  src="assets/screen-home.webp"
+                  alt=""
+                  width="1600"
+                  height="734"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story-more-label">e o processo inteiro acompanhado</div>
+        <div class="story-more">
+          <div class="card" data-reveal>
+            <h4>Reserva sob controle</h4>
+            <p>
+              Datas de reserva e validade registradas, com alertas automáticos
+              de vencimento.
+            </p>
+          </div>
+          <div class="card" data-reveal>
+            <h4>Registro rastreado</h4>
+            <p>
+              Protocolo, senha e dados do cartório consolidados até a conclusão.
+            </p>
+          </div>
+          <div class="card" data-reveal>
+            <h4>Resumo do processo</h4>
+            <p>Imóvel, partes, corretores e datas em uma visão única.</p>
+          </div>
+          <div class="card" data-reveal>
+            <h4>Hierarquia de equipe</h4>
+            <p>
+              Distribua processos entre colaboradores sem perder o controle.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-dark" style="padding-top: 0">
+      <div class="section-inner">
+        <header class="sec-head center">
+          <div class="sec-eyebrow">
+            <span class="idx">04</span><span class="sq"></span>demonstração
+          </div>
+          <h2 class="sec-title">
+            Veja o sistema funcionando<br /><em>na prática</em>
+          </h2>
+          <p class="sec-desc">
+            Assista ao W2R Connect gerenciando documentos por etapas do processo
+            — do início ao registro.
+          </p>
+        </header>
+        <div class="video-wrapper" data-reveal>
+          <div class="video-placeholder">
+            <div class="video-placeholder-inner">
+              <div class="video-play-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r="30"
+                    stroke="#2BE38B"
+                    stroke-width="1.5"
+                    opacity="0.4"
+                  />
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r="22"
+                    stroke="#2BE38B"
+                    stroke-width="1"
+                    opacity="0.2"
+                  />
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r="30"
+                    stroke="#2BE38B"
+                    stroke-width="1.5"
+                    stroke-dasharray="4 3"
+                    opacity="0.3"
+                    class="spin-circle"
+                  />
+                  <polygon points="26,20 50,32 26,44" fill="#2BE38B" />
+                </svg>
+              </div>
+              <div>
+                <span class="video-badge">Em breve</span>
+                <div class="video-title">
+                  Gerenciar documentos por etapas do processo
+                </div>
+                <div class="video-subtitle">
+                  Vídeo demonstrativo interativo — disponível após publicação
+                </div>
+              </div>
+            </div>
+            <div class="video-bg-grid" aria-hidden="true"></div>
+          </div>
+          <div class="video-features" data-gsap-ignore>
+            <div class="video-feature">
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                <circle
+                  cx="9"
+                  cy="9"
+                  r="7"
+                  stroke="#2BE38B"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M6 9l2 2 4-4"
+                  stroke="#2BE38B"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >Gestão de documentos por etapa
+            </div>
+            <div class="video-feature-sep"></div>
+            <div class="video-feature">
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                <circle
+                  cx="9"
+                  cy="9"
+                  r="7"
+                  stroke="#2BE38B"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M6 9l2 2 4-4"
+                  stroke="#2BE38B"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >Fluxo completo do processo
+            </div>
+            <div class="video-feature-sep"></div>
+            <div class="video-feature">
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                <circle
+                  cx="9"
+                  cy="9"
+                  r="7"
+                  stroke="#2BE38B"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M6 9l2 2 4-4"
+                  stroke="#2BE38B"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >Interface intuitiva e rápida
+            </div>
+            <div class="video-feature-sep"></div>
+            <div class="video-feature">
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                <circle
+                  cx="9"
+                  cy="9"
+                  r="7"
+                  stroke="#2BE38B"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M6 9l2 2 4-4"
+                  stroke="#2BE38B"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >Sem necessidade de treinamento
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-light" id="como-funciona">
+      <div class="section-inner">
+        <header class="sec-head">
+          <div class="sec-eyebrow">
+            <span class="idx">05</span><span class="sq"></span>fluxo do processo
+          </div>
+          <h2 class="sec-title">
+            Do documento ao registro,<br />em um único sistema
+          </h2>
+        </header>
+        <div class="how-steps" id="howSteps">
+          <div class="how-line" aria-hidden="true">
+            <div class="how-line-fill"></div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">01</div>
+            <div>
+              <h3>Crie o processo</h3>
+              <p>Abra e envie os documentos. A IA começa a analisar na hora.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">02</div>
+            <div>
+              <h3>IA preenche tudo</h3>
+              <p>CNH, matrícula, imóvel. Dados cadastrados automaticamente.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">03</div>
+            <div>
+              <h3>Documentos gerados</h3>
+              <p>Requerimentos e contratos prontos para revisão em segundos.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">04</div>
+            <div>
+              <h3>Envio ao banco</h3>
+              <p>Extensão preenche os sistemas bancários. Sem redigitar.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">05</div>
+            <div>
+              <h3>Imóvel registrado</h3>
+              <p>Protocolos, prazos e registro consolidados no sistema.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-light" id="funcionalidades" style="padding-top: 0">
+      <div class="section-inner">
+        <header class="sec-head">
+          <div class="sec-eyebrow">
+            <span class="idx">06</span><span class="sq"></span>funcionalidades
+          </div>
+          <h2 class="sec-title">Tudo que o correspondente precisa</h2>
+        </header>
+        <div class="features-grid">
+          <div class="card" data-reveal>
+            <div class="card-tag">IA</div>
+            <h3>Leitura automática de matrícula</h3>
+            <p>
+              A IA analisa o PDF completo e entrega resumo estruturado com
+              histórico, ônus, proprietários, área e metragem.
+            </p>
+            <ul>
+              <li>R1 e averbações detalhados</li>
+              <li>Ônus e restrições identificados</li>
+              <li>Qualificação dos proprietários</li>
+            </ul>
+          </div>
+          <div class="card" data-reveal>
+            <div class="card-tag">Automação</div>
+            <h3>Geração automática de documentos</h3>
+            <p>
+              Requerimentos, declarações e contratos gerados com os dados já
+              cadastrados. Revisão em segundos.
+            </p>
+            <ul>
+              <li>Contrato Caixa pré-preenchido</li>
+              <li>Templates por escritório</li>
+              <li>Exportação direta</li>
+            </ul>
+          </div>
+          <div class="card" data-reveal>
+            <div class="card-tag">Extensão</div>
+            <h3>Preenchimento nos sistemas bancários</h3>
+            <p>
+              A extensão transfere os dados para os sistemas da Caixa. Zero
+              redigitação, zero erros.
+            </p>
+            <ul>
+              <li>Integração com sistemas Caixa</li>
+              <li>Sem redigitar dados</li>
+              <li>Evita aprovações perdidas</li>
+            </ul>
+          </div>
+          <div class="card" data-reveal>
+            <div class="card-tag">Chat IA</div>
+            <h3>Assistente IA por conversa</h3>
+            <p>
+              Mande os documentos no chat e o assistente cria o processo,
+              vincula participantes e inicia a análise.
+            </p>
+            <ul>
+              <li>Cria processos via chat</li>
+              <li>Lê PDFs enviados direto</li>
+              <li>Histórico persistido</li>
+            </ul>
+          </div>
+          <div class="card" data-reveal>
+            <div class="card-tag">Gestão</div>
+            <h3>Controle de prazos e etapas</h3>
+            <p>
+              Coleta ao Registro — cada etapa rastreada com alertas e histórico
+              completo.
+            </p>
+            <ul>
+              <li>Progresso visual por etapa</li>
+              <li>Alertas de vencimento</li>
+              <li>Histórico completo</li>
+            </ul>
+          </div>
+          <div class="card" data-reveal>
+            <div class="card-tag">Equipe</div>
+            <h3>Hierarquia e distribuição</h3>
+            <p>
+              Distribua processos para a equipe com controle de acesso por
+              nível.
+            </p>
+            <ul>
+              <li>Master + colaboradores</li>
+              <li>Sem perda de contexto</li>
+              <li>Diagrama visual</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-dark">
+      <div class="section-inner">
+        <header class="sec-head center">
+          <div class="sec-eyebrow">
+            <span class="idx">07</span><span class="sq"></span>quem usa
+          </div>
+          <h2 class="sec-title">
+            Quem vive o processo,<br /><em>aprova o resultado</em>
+          </h2>
+        </header>
+        <div class="proof-grid">
+          <div class="card proof-card" data-reveal>
+            <div class="proof-stars" aria-label="5 de 5 estrelas">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                />
+              </svg>
+            </div>
+            <p class="proof-quote">
+              "Antes eu levava uma tarde inteira para montar a pasta de um
+              financiamento. Hoje a IA lê a matrícula e o contrato sai em
+              minutos."
+            </p>
+            <div class="proof-person">
+              <div class="proof-avatar">MS</div>
+              <div>
+                <div class="proof-name">M. S.</div>
+                <div class="proof-role">Correspondente bancária · SP</div>
+              </div>
+            </div>
+          </div>
+          <div class="card proof-card" data-reveal>
+            <div class="proof-stars" aria-label="5 de 5 estrelas">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                />
+              </svg>
+            </div>
+            <p class="proof-quote">
+              "A extensão que preenche o sistema da Caixa sozinha já pagou a
+              assinatura no primeiro mês. Zero redigitação."
+            </p>
+            <div class="proof-person">
+              <div class="proof-avatar">RA</div>
+              <div>
+                <div class="proof-name">R. A.</div>
+                <div class="proof-role">
+                  Escritório de crédito imobiliário · MG
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card proof-card" data-reveal>
+            <div class="proof-stars" aria-label="5 de 5 estrelas">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                />
+              </svg>
+            </div>
+            <p class="proof-quote">
+              "Distribuo os processos para a equipe e acompanho tudo pelo
+              diagrama. Ninguém mais perde prazo de reserva."
+            </p>
+            <div class="proof-person">
+              <div class="proof-avatar">CF</div>
+              <div>
+                <div class="proof-name">C. F.</div>
+                <div class="proof-role">Gestor de equipe · PR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-dark" id="planos" style="padding-top: 0">
+      <div class="section-inner">
+        <header class="sec-head center">
+          <div class="sec-eyebrow">
+            <span class="idx">08</span><span class="sq"></span>planos
+          </div>
+          <h2 class="sec-title">
+            Escolha o seu plano<br />e <em>comece hoje</em>
+          </h2>
+          <p class="sec-desc">
+            Preços de lançamento por tempo limitado. Teste 7 dias grátis sem
+            cartão.
+          </p>
+        </header>
+        <div
+          class="promo-countdown"
+          data-deadline="2026-07-31T23:59:59-03:00"
+          data-gsap-ignore
+        >
+          <div class="countdown-label">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="#2BE38B" stroke-width="1.2" />
+              <path
+                d="M7 4v3l2 2"
+                stroke="#2BE38B"
+                stroke-width="1.2"
+                stroke-linecap="round"
+              /></svg
+            >Promoção de lançamento ativa
+          </div>
+          <div class="countdown-sep">·</div>
+          <div class="countdown-label">
+            termina em&nbsp;<strong id="promoTimer">—</strong>
+          </div>
+        </div>
+        <div class="pricing-grid">
+          <div class="card plan" data-reveal data-gsap-ignore>
+            <div class="plan-name-row">
+              <div><div class="plan-name">Pessoal</div></div>
+            </div>
+            <div class="plan-top-label">Para autônomos</div>
+            <div class="plan-from">de <s>R$ 129,90</s> por apenas</div>
+            <div class="plan-price-row">
+              <span class="plan-cur">R$</span><span class="plan-val">79</span
+              ><span class="plan-dec">,90</span>
+            </div>
+            <div class="plan-per">/mês · sem fidelidade</div>
+            <div class="plan-divider"></div>
+            <div class="plan-trial">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M2 7l3.5 3.5L12 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >7 dias grátis · sem cartão
+            </div>
+            <div class="plan-section-label">Incluído no plano</div>
+            <ul class="plan-list">
+              <li>1 usuário</li>
+              <li>Leitura de matrícula com IA</li>
+              <li>Geração de documentos e contratos</li>
+              <li>Extensão para sistemas bancários</li>
+              <li>Assistente IA por chat</li>
+              <li>Alertas de vencimento automáticos</li>
+              <li>Organização em nuvem</li>
+            </ul>
+            <a href="https://w2rconnect.app/register" class="btn btn-ghost"
+              ><span class="btn-flip"
+                ><span>Começar grátis</span
+                ><span aria-hidden="true">Começar grátis</span></span
+              ></a
+            >
+            <div class="plan-note">Sem compromisso. Cancele quando quiser.</div>
+          </div>
+          <div class="card plan plan-featured" data-reveal data-gsap-ignore>
+            <div class="plan-popular-badge">
+              <span class="dot"></span>Mais escolhido pelos escritórios
+            </div>
+            <div class="plan-name-row">
+              <div><div class="plan-name">Empresarial</div></div>
+            </div>
+            <div class="plan-top-label" style="color: rgba(43, 227, 139, 0.7)">
+              Para escritórios com equipe
+            </div>
+            <div class="plan-from">de <s>R$ 199,90</s> por apenas</div>
+            <div class="plan-price-row">
+              <span class="plan-cur">R$</span><span class="plan-val">120</span
+              ><span class="plan-dec">,00</span>
+            </div>
+            <div class="plan-per">/mês · sem fidelidade</div>
+            <div class="plan-saving">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M7 2l1.5 3.5L12 6l-2.5 2.5.5 3.5L7 10.5 4 12l.5-3.5L2 6l3.5-.5z"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                /></svg
+              >Você economiza R$ 79,90/mês no lançamento
+            </div>
+            <div class="plan-divider"></div>
+            <div class="plan-trial">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M2 7l3.5 3.5L12 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >7 dias grátis · sem cartão · acesso total
+            </div>
+            <div class="plan-section-label">Exclusivo neste plano</div>
+            <ul class="plan-list">
+              <li class="plan-li-highlight">
+                Master + 3 colaboradores inclusos
+                <span class="excl-tag">Exclusivo</span>
+              </li>
+              <li class="plan-li-highlight">
+                Distribuição de processos na equipe
+                <span class="excl-tag">Exclusivo</span>
+              </li>
+              <li class="plan-li-highlight">
+                Licenças adicionais disponíveis
+                <span class="excl-tag">Exclusivo</span>
+              </li>
+            </ul>
+            <div class="plan-section-label">Tudo do plano Pessoal, mais</div>
+            <ul class="plan-list">
+              <li>Leitura de matrícula com IA</li>
+              <li>Geração de documentos e contratos</li>
+              <li>Extensão para sistemas bancários</li>
+              <li>Assistente IA por chat</li>
+              <li>Alertas de vencimento automáticos</li>
+            </ul>
+            <a href="https://w2rconnect.app/register" class="btn btn-primary"
+              ><span class="btn-flip"
+                ><span>Começar grátis agora</span
+                ><span aria-hidden="true">Começar grátis agora</span></span
+              ><svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M3 9h12M10 4l5 5-5 5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></a>
+            <div class="plan-note">Acesso imediato. Cancele quando quiser.</div>
+          </div>
+        </div>
+        <div class="pricing-compare">
+          <div class="compare-item">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M3 9l4 4 8-8"
+                stroke="#2BE38B"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Sem contrato de fidelidade
+          </div>
+          <div class="compare-sep"></div>
+          <div class="compare-item">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M3 9l4 4 8-8"
+                stroke="#2BE38B"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Pagamento via cartão (Stripe)
+          </div>
+          <div class="compare-sep"></div>
+          <div class="compare-item">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M3 9l4 4 8-8"
+                stroke="#2BE38B"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Suporte incluso nos dois planos
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-light" id="faq">
+      <div class="section-inner">
+        <header class="sec-head center">
+          <div class="sec-eyebrow">
+            <span class="idx">09</span><span class="sq"></span>perguntas
+            frequentes
+          </div>
+          <h2 class="sec-title">Ficou alguma dúvida?</h2>
+        </header>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>
+              Como funciona o teste grátis de 7 dias?<svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M8 3v10M3 8h10"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </summary>
+            <div class="faq-a">
+              Você cria a conta e usa o sistema completo por 7 dias, sem
+              informar cartão de crédito. Ao final do período, escolhe o plano
+              que faz sentido — ou simplesmente não continua, sem cobrança
+              nenhuma.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Preciso instalar alguma coisa?<svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M8 3v10M3 8h10"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </summary>
+            <div class="faq-a">
+              Não. O W2R Connect roda 100% no navegador, com seus dados
+              organizados em nuvem. Apenas o preenchimento automático dos
+              sistemas bancários usa uma extensão de navegador, instalada em um
+              clique.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>
+              A IA funciona com qualquer matrícula?<svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M8 3v10M3 8h10"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </summary>
+            <div class="faq-a">
+              A IA foi treinada com PDFs reais de cartórios brasileiros. Ela
+              extrai R1, averbações, ônus, alienação fiduciária, proprietários
+              qualificados e dados do imóvel — e entrega tudo estruturado no
+              processo.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Qual a diferença entre o plano Pessoal e o Empresarial?<svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M8 3v10M3 8h10"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </summary>
+            <div class="faq-a">
+              O Pessoal atende um usuário com todos os recursos de IA e
+              automação. O Empresarial adiciona o acesso master com 3
+              colaboradores inclusos, distribuição de processos entre a equipe e
+              licenças adicionais sob demanda.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Existe contrato de fidelidade ou multa de cancelamento?<svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M8 3v10M3 8h10"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </summary>
+            <div class="faq-a">
+              Não. A assinatura é mensal, paga via cartão (Stripe), e pode ser
+              cancelada a qualquer momento direto no sistema — sem multa, sem
+              burocracia, sem ligação para retenção.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section t-dark">
+      <svg
+        class="circuit circuit-cta"
+        viewBox="0 0 380 260"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          class="draw"
+          d="M10 250 L10 140 Q10 130 20 130 L120 130 Q130 130 130 120 L130 40 Q130 30 140 30 L260 30"
+          stroke-width="1.2"
+        />
+        <path
+          class="draw"
+          d="M70 250 L70 190 Q70 180 80 180 L190 180 Q200 180 200 170 L200 90 Q200 80 210 80 L330 80"
+          stroke-width="1.2"
+        />
+        <circle class="node" cx="260" cy="30" r="4" />
+        <circle class="node" cx="330" cy="80" r="4" />
+      </svg>
+      <div class="cta-inner">
+        <div class="cta-eyebrow" data-gsap-ignore>
+          <span class="dot"></span>Comece hoje — é grátis
+        </div>
+        <h2 class="cta-title">
+          Feche mais financiamentos.<br /><em>Com muito menos trabalho.</em>
+        </h2>
+        <p class="cta-desc">
+          Mais de uma hora salva por processo. Zero redigitação.<br />Documentos
+          gerados em segundos. Teste e veja.
+        </p>
+        <div class="cta-stats" data-reveal data-gsap-ignore>
+          <div>
+            <div class="cta-stat-value js-counter">-80%</div>
+            <div class="cta-stat-label">tempo de cadastro</div>
+          </div>
+          <div class="cta-stat-div"></div>
+          <div>
+            <div class="cta-stat-value">7 dias</div>
+            <div class="cta-stat-label">grátis, sem cartão</div>
+          </div>
+          <div class="cta-stat-div"></div>
+          <div>
+            <div class="cta-stat-value js-counter">100%</div>
+            <div class="cta-stat-label">focado no correspondente</div>
+          </div>
+        </div>
+        <div class="cta-actions" data-gsap-ignore>
+          <a href="https://w2rconnect.app/register" class="btn btn-primary"
+            ><span class="btn-flip"
+              ><span>Criar conta grátis</span
+              ><span aria-hidden="true">Criar conta grátis</span></span
+            ><svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M3 9h12M10 4l5 5-5 5"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+          ></a>
+          <a href="#produto" class="btn btn-ghost"
+            ><span class="btn-flip"
+              ><span>Ver o sistema</span
+              ><span aria-hidden="true">Ver o sistema</span></span
+            ></a
+          >
+        </div>
+        <div class="cta-trust" data-gsap-ignore>
+          <div class="cta-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M2 7l3.5 3.5L12 4"
+                stroke="#2BE38B"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Acesso imediato
+          </div>
+          <div class="cta-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M2 7l3.5 3.5L12 4"
+                stroke="#2BE38B"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Sem cartão de crédito
+          </div>
+          <div class="cta-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M2 7l3.5 3.5L12 4"
+                stroke="#2BE38B"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            >Cancele quando quiser
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="t-dark">
+      <div class="footer-logo">
+        <img
+          src="assets/logo.png"
+          alt="W2R Connect"
+          width="127"
+          height="120"
+          loading="lazy"
+        />
+      </div>
+      <div class="footer-text">
+        W2R Connect — Sistema de Gestão de Documentos para Correspondentes
+        Bancários
+      </div>
+      <div class="footer-links">
+        <a href="#">Termos de uso</a
+        ><a href="politica-de-privacidade.html">Política de privacidade</a
+        ><a href="mailto:suporte@w2rconnect.com.br">Suporte</a>
+      </div>
+    </footer>
+  </body>
+</html>

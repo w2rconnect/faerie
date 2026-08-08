@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade — W2R Connect Transferência de Dados</title>
+  <meta name="theme-color" content="#080C14">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #080c14;
+      --text: #f1f5fb;
+      --text-2: #9aa8bf;
+      --muted: #64748e;
+      --line: rgba(241, 245, 251, 0.08);
+      --card: #0d1320;
+      --accent: #2be38b;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      line-height: 1.7;
+      background: var(--ink);
+      color: var(--text-2);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 24px 72px;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2.4rem 0 0.6rem;
+    }
+    p, li { font-size: 0.97rem; }
+    strong { color: var(--text); font-weight: 600; }
+    ul { padding-left: 1.15rem; }
+    li { margin-bottom: 0.5rem; }
+    li::marker { color: var(--accent); }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 5px;
+    }
+    a { color: var(--accent); }
+    .updated { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
+    .lead { margin-top: 1.8rem; }
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    ::selection { background: var(--accent); color: #07130c; }
+    * { scrollbar-width: thin; scrollbar-color: rgba(241,245,251,.18) transparent; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-thumb { background: rgba(241,245,251,.18); border-radius: 99px; border: 3px solid transparent; background-clip: content-box; }
+  </style>
+</head>
+<body>
+  <h1>Política de Privacidade</h1>
+  <p class="updated">Extensão: <strong>W2R Connect — Transferência de Dados</strong> · Última atualização: 24/07/2026</p>
+
+  <p class="lead">Esta extensão foi criada para agilizar o preenchimento de formulários, transferindo dados do aplicativo <strong>w2rconnect.app</strong> para o formulário de cadastro do <strong>Caixa Aqui</strong> (caixaaqui.caixa.gov.br). Esta política explica quais dados a extensão manipula e como.</p>
+
+  <h2>Quais dados a extensão manipula</h2>
+  <p>Para preencher o formulário de destino, a extensão manipula os dados de cadastro que o próprio usuário seleciona no aplicativo w2rconnect.app, que podem incluir:</p>
+  <ul>
+    <li><strong>Informações de identificação pessoal</strong>: nome, e‑mail, data de nascimento, filiação, endereço e números de documentos (CPF, RG, CNH), inclusive dados de cônjuge quando aplicável.</li>
+    <li><strong>Informações financeiras</strong>: dados de renda e da fonte pagadora (por exemplo, valores de renda e CNPJ/CPF da fonte).</li>
+  </ul>
+
+  <h2>Como os dados são usados</h2>
+  <ul>
+    <li>Os dados são obtidos do aplicativo w2rconnect.app apenas quando o usuário aciona a transferência, e são usados exclusivamente para <strong>preencher automaticamente os campos do formulário de destino</strong>.</li>
+    <li>Os dados são armazenados <strong>somente no dispositivo do usuário</strong>, de forma temporária, usando o armazenamento local do navegador (<code>chrome.storage.local</code>), apenas para manter o preenchimento consistente entre os recarregamentos de página do formulário.</li>
+    <li>Os dados <strong>expiram automaticamente</strong> após um curto período e podem ser apagados pelo usuário a qualquer momento.</li>
+  </ul>
+
+  <h2>O que a extensão NÃO faz</h2>
+  <ul>
+    <li><strong>Não envia</strong> os dados para servidores próprios da extensão nem para qualquer serviço externo. Os dados trafegam apenas do aplicativo de origem para o formulário de destino, no navegador do próprio usuário.</li>
+    <li><strong>Não vende</strong> nem compartilha os dados com terceiros.</li>
+    <li><strong>Não usa</strong> os dados para finalidades diferentes do preenchimento de formulários, nem para determinar crédito ou capacidade de empréstimo.</li>
+    <li><strong>Não coleta</strong> credenciais de login, histórico de navegação, localização ou atividade do usuário.</li>
+  </ul>
+
+  <h2>Permissões e por quê</h2>
+  <ul>
+    <li><strong>Acesso a w2rconnect.app</strong>: para exibir o aplicativo de origem no painel lateral e obter os dados que o usuário escolher transferir.</li>
+    <li><strong>Acesso a caixaaqui.caixa.gov.br</strong>: para preencher automaticamente os campos do formulário de destino.</li>
+    <li><strong>activeTab / scripting / tabs</strong>: para preencher a aba de formulário correta quando o usuário aciona a transferência.</li>
+    <li><strong>storage</strong>: para guardar os dados temporariamente no dispositivo, conforme descrito acima.</li>
+    <li><strong>sidePanel</strong>: para exibir o painel lateral com o aplicativo de origem.</li>
+  </ul>
+
+  <h2>Controle do usuário</h2>
+  <p>O usuário controla quando os dados são transferidos (a ação é sempre iniciada por ele) e pode limpar os dados armazenados a qualquer momento pela própria extensão. A remoção da extensão apaga qualquer dado local remanescente.</p>
+
+  <h2>Contato</h2>
+  <p>Em caso de dúvidas sobre esta política, entre em contato pelo e‑mail: <a href="mailto:suporte@w2rconnect.com.br">suporte@w2rconnect.com.br</a>.</p>
+
+  <footer>
+    <span>W2R Connect — Transferência de Dados. Esta política pode ser atualizada; a data no topo indica a versão mais recente.</span>
+    <a href="index.html">← Voltar ao site</a>
+  </footer>
+</body>
+</html>
