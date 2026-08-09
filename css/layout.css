@@ -12,10 +12,33 @@
 .js-anim .preloader {
   display: flex;
 }
+/* home.svg traz o símbolo dentro do motivo de circuito — só legível grande */
 .pre-logo {
-  height: 88px;
+  height: 104px;
   width: auto;
   opacity: 0.95;
+}
+
+/* Só aparece no foco por teclado; primeiro tab da página. */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 400;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: var(--ink-3);
+  border: 1px solid var(--action);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.22s var(--ease-out);
+}
+/* :focus, não :focus-visible — só teclado alcança este link mesmo */
+.skip-link:focus {
+  transform: translateY(0);
 }
 .pre-line {
   width: min(320px, 60vw);
@@ -27,7 +50,7 @@
   display: block;
   height: 100%;
   width: 100%;
-  background: #2be38b;
+  background: var(--brand-grad);
   transform: scaleX(0);
   transform-origin: 0 50%;
 }
@@ -56,11 +79,13 @@
   right: 0;
   height: 2px;
   z-index: 301;
-  background: linear-gradient(90deg, #19d97f, #7debb8);
+  background: var(--brand-grad);
   transform-origin: 0 50%;
   transform: scaleX(0);
   pointer-events: none;
 }
+/* Altura fixa: o shrink antigo animava height e padding, causando reflow por
+   frame. O aperto no scroll agora vem do scale do logo, que roda na GPU. */
 nav {
   position: fixed;
   top: 0;
@@ -69,32 +94,76 @@ nav {
   z-index: 300;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 4%;
+  height: 72px;
+  padding: 0 4%;
   transition:
     background 0.3s ease,
     box-shadow 0.3s ease,
-    padding 0.3s ease;
+    transform 0.35s var(--ease-out);
+}
+/* Mesmo container das seções (section-inner), senão o logo e a CTA ficam
+   ~22px fora do alinhamento do conteúdo em telas largas. */
+.nav-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* Sai de cena descendo, volta subindo — libera a tela durante a leitura. */
+nav.nav-hidden {
+  transform: translateY(-100%);
+}
+/* :focus-visible, não :focus-within — um clique de mouse num link da nav
+   deixava o foco preso nela e a nav nunca mais escondia ao rolar. A
+   escapatória existe para teclado, e :focus-visible só casa com teclado. */
+nav:has(:focus-visible),
+.menu-open nav {
+  transform: none;
 }
 nav.scrolled {
   background: rgba(8, 12, 20, 0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 1px 0 rgba(241, 245, 251, 0.08);
-  padding: 8px 4%;
+  box-shadow: 0 1px 0 var(--line);
 }
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 11px;
+  text-decoration: none;
+}
+/* Lockup do app: símbolo + nome + tagline empilhados */
+.nav-lockup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.1;
+}
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+.nav-tagline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  white-space: nowrap;
 }
 .nav-logo img {
-  height: 44px;
+  height: 26px;
   width: auto;
   display: block;
-  transition: height 0.3s ease;
+  transform-origin: left center;
+  transition: transform 0.3s var(--ease-out);
 }
 nav.scrolled .nav-logo img {
-  height: 36px;
+  transform: scale(0.9);
 }
 .nav-links {
   display: flex;
@@ -104,7 +173,7 @@ nav.scrolled .nav-logo img {
 }
 .nav-links a {
   font-size: 13.5px;
-  color: #9aa8bf;
+  color: var(--text-2);
   text-decoration: none;
   font-weight: 500;
   padding: 8px 14px;
@@ -120,14 +189,14 @@ nav.scrolled .nav-logo img {
   right: 14px;
   bottom: 4px;
   height: 1px;
-  background: #2be38b;
+  background: var(--action);
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition: transform 0.35s var(--ease-flip);
 }
 .nav-links a:hover,
 .nav-links a.active {
-  color: #f1f5fb;
+  color: var(--text);
 }
 .nav-links a:hover::after,
 .nav-links a.active::after {
@@ -136,24 +205,27 @@ nav.scrolled .nav-logo img {
 .nav-sep {
   width: 1px;
   height: 18px;
-  background: rgba(241, 245, 251, 0.12);
+  background: var(--line-strong);
   margin: 0 8px;
 }
 .nav-links a.nav-entrar {
   border: 1px solid rgba(241, 245, 251, 0.18);
-  color: #f1f5fb;
+  color: var(--text);
   padding: 8px 18px;
 }
 .nav-links a.nav-entrar::after {
   display: none;
 }
+/* Verde no hover para fechar com a ponta verde do gradiente da CTA ao lado —
+   é também o que o app faz nos links secundários do tema escuro. */
 .nav-links a.nav-entrar:hover {
-  border-color: #2be38b;
-  color: #2be38b;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 .nav-links a.nav-cta {
-  background: var(--btn);
+  background: var(--btn-grad);
   color: var(--btn-ink);
+  transition: filter 0.25s;
   font-family: var(--font-display);
   font-weight: 700;
   padding: 9px 20px;
@@ -163,25 +235,30 @@ nav.scrolled .nav-logo img {
   display: none;
 }
 .nav-links a.nav-cta:hover {
-  background: var(--btn-hover);
+  filter: brightness(0.92);
   color: var(--btn-ink);
 }
 
 .nav-hamburger {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   cursor: pointer;
-  padding: 11px 10px;
+  /* 44x44 é o alvo de toque mínimo — antes media 37x34 no mobile */
+  width: 44px;
+  height: 44px;
+  padding: 0;
   background: rgba(241, 245, 251, 0.06);
   border-radius: 10px;
-  border: 1px solid rgba(241, 245, 251, 0.12);
+  border: 1px solid var(--line-strong);
 }
 .nav-hamburger span {
   display: block;
-  width: 22px;
+  width: 20px;
   height: 2px;
-  background: #f1f5fb;
+  background: var(--text);
   border-radius: 2px;
   transition:
     transform 0.3s,
@@ -207,7 +284,8 @@ nav.scrolled .nav-logo img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 90px 8% 48px;
+  /* 5% = mesmo recuo da nav no mobile, senão o logo e os itens desalinham */
+  padding: 90px 5% 48px;
   visibility: hidden;
   opacity: 0;
   transition:
@@ -256,12 +334,12 @@ nav.scrolled .nav-logo img {
   transition-delay: 0.25s;
 }
 .nav-mobile-menu a:hover {
-  color: #2be38b;
+  color: var(--action);
 }
 .nav-mobile-menu a .idx {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: #2be38b;
+  color: var(--action);
   font-weight: 400;
 }
 .mob-btn-row {
@@ -286,7 +364,7 @@ nav.scrolled .nav-logo img {
   border: 1px solid rgba(241, 245, 251, 0.2) !important;
 }
 .mob-btn-cta {
-  background: var(--btn);
+  background: var(--btn-grad);
   color: var(--btn-ink) !important;
 }
 
@@ -306,6 +384,7 @@ nav.scrolled .nav-logo img {
     background 0.25s,
     border-color 0.25s,
     color 0.25s,
+    filter 0.25s,
     box-shadow 0.25s;
 }
 .btn-flip {
@@ -329,13 +408,15 @@ nav.scrolled .nav-logo img {
   transform: translateY(0);
 }
 .btn-primary {
-  background: var(--btn);
+  background: var(--btn-grad);
   color: var(--btn-ink);
-  box-shadow: 0 0 0 0 rgba(25, 217, 127, 0);
+  box-shadow: 0 0 0 0 rgba(53, 96, 224, 0);
 }
+/* gradiente não interpola em transition: o hover escurece por filtro, o que
+   também sobe o contraste do texto em vez de derrubá-lo */
 .btn-primary:hover {
-  background: var(--btn-hover);
-  box-shadow: 0 8px 32px rgba(25, 217, 127, 0.3);
+  filter: brightness(0.92);
+  box-shadow: 0 8px 32px rgba(53, 96, 224, 0.32);
 }
 .btn-ghost {
   border: 1px solid var(--line-strong);

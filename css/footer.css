@@ -3,14 +3,24 @@ footer {
   padding: 56px 4% 40px;
   text-align: center;
 }
+/* home.svg é a marca completa (símbolo + circuito): precisa de altura para
+   o motivo ler — abaixo de ~80px vira ruído. */
 .footer-logo img {
-  height: 60px;
+  height: 92px;
   width: auto;
-  margin-bottom: 18px;
+  margin-bottom: 6px;
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  margin-bottom: 7px;
 }
 .footer-text {
   font-size: 13px;
-  color: var(--muted);
+  /* --muted da 4.01:1 aqui e reprova em 13px */
+  color: var(--text-2);
 }
 .footer-links {
   margin-top: 14px;

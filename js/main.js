@@ -28,12 +28,27 @@ document.addEventListener('DOMContentLoaded', function () {
   var lenis = null;
   var progress = document.querySelector('.scroll-progress');
   var nav = document.getElementById('nav');
+  var lastY = 0;
+  // Some assim que o scroll passa a própria altura da nav (72 desktop / 62
+  // mobile). Medido, não fixo, para acompanhar o breakpoint.
+  var navH = 72;
+  function measureNav() {
+    if (nav) navH = nav.offsetHeight || 72;
+  }
+  measureNav();
+  window.addEventListener('resize', measureNav);
   function onScrollFrame(y) {
     var max = docEl.scrollHeight - window.innerHeight;
     if (progress)
       progress.style.transform =
         'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
-    if (nav) nav.classList.toggle('scrolled', y > 40);
+    if (!nav) return;
+    nav.classList.toggle('scrolled', y > 40);
+    // Folga de 8px para não tremer com micro-oscilação do scroll suave.
+    if (Math.abs(y - lastY) > 8) {
+      nav.classList.toggle('nav-hidden', y > lastY && y > navH);
+      lastY = y;
+    }
   }
   if (hasLenis && animOn) {
     lenis = new Lenis({ duration: 1.1 });
@@ -82,7 +97,19 @@ document.addEventListener('DOMContentLoaded', function () {
     var menu = document.getElementById('mobileMenu');
     if (!hamburger || !menu) return;
     var open = false;
-    function setMenu(state) {
+    // inert tira o resto da página do tab order e dos leitores de tela
+    // enquanto o menu está aberto — o dialog se diz aria-modal, então precisa.
+    var behind = Array.prototype.filter.call(
+      document.body.children,
+      function (el) {
+        return el !== menu && el !== nav;
+      }
+    );
+    // A nav inteira não pode ser inert (o hambúrguer vira o X de fechar), mas
+    // o logo sim: com aria-modal o leitor de tela ignora tudo fora do dialog.
+    var navLogo = nav && nav.querySelector('.nav-logo');
+    if (navLogo) behind.push(navLogo);
+    function setMenu(state, returnFocus) {
       open = state;
       document.body.classList.toggle('menu-open', open);
       hamburger.setAttribute('aria-expanded', String(open));
@@ -90,13 +117,25 @@ document.addEventListener('DOMContentLoaded', function () {
         'aria-label',
         open ? 'Fechar menu' : 'Abrir menu'
       );
+      behind.forEach(function (el) {
+        el.toggleAttribute('inert', open);
+      });
       if (lenis) {
         open ? lenis.stop() : lenis.start();
       }
       document.body.style.overflow = open ? 'hidden' : '';
+      // Dois frames: o <button> reassume o foco depois do handler de click, e
+      // um rAF só ainda perde a corrida. Verificado no navegador.
+      if (open)
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            menu.querySelector('a').focus();
+          });
+        });
+      else if (returnFocus) hamburger.focus();
     }
     hamburger.addEventListener('click', function () {
-      setMenu(!open);
+      setMenu(!open, true);
     });
     menu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
@@ -104,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && open) setMenu(false);
+      if (e.key === 'Escape' && open) setMenu(false, true);
     });
   })();
 
@@ -126,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
       initIntroBits();
       initParallax();
       initHowLine();
-      initFloatChips();
+      initTrail();
       initCircuits();
       ScrollTrigger.refresh();
     });
@@ -194,6 +233,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function splitAndReveal(el, dur, stag) {
     gsap.set(el, { autoAlpha: 1 });
+    // O hero anima só na entrada da página, nunca no scroll. inViewport() é
+    // um retrato do momento e autoSplit reexecuta onSplit a cada resize
+    // (barra de URL no mobile, carga de fonte): se isso rodar já com scroll,
+    // nasce um ScrollTrigger com reverse e o texto reverte ao voltar ao topo.
+    var introOnly = !!el.closest('.hero') || inViewport(el);
     SplitText.create(el, {
       type: 'lines',
       mask: 'lines',
@@ -205,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
           duration: dur,
           stagger: stag,
           ease: 'power3.out',
-          scrollTrigger: inViewport(el)
+          scrollTrigger: introOnly
             ? null
             : {
                 trigger: el,
@@ -333,49 +377,71 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function initFloatChips() {
-    if (window.innerWidth < 768) return;
-    var layer = document.querySelector('.hero-float-layer');
-    if (!layer) return;
-    var chips = Array.prototype.slice.call(
-      layer.querySelectorAll('.hero-chip')
+  // Trilha do documento: o traço desenha em azul (sistema) e fecha em
+  // verde (resultado) — mesmo motivo de circuito do logo.
+  function initTrail() {
+    var trail = document.querySelector('.hero-trail');
+    if (!trail) return;
+    var traces = Array.prototype.slice.call(
+      trail.querySelectorAll('.trace')
     );
-    var vh = window.innerHeight;
-    var cfg = { dur: [14, 19], rot: [-10, 10], stagger: 2.6 };
-    function rand(min, max) {
-      return min + Math.random() * (max - min);
+    var lit = trail.querySelector('[data-node="2"]');
+    var next = trail.querySelector('[data-node="3"]');
+    if (!traces.length || !lit || !next) return;
+    var facts2 = lit.querySelectorAll('.trail-fact');
+    var facts3 = next.querySelectorAll('.trail-fact');
+
+    var lens = traces.map(function (p) {
+      return p.getTotalLength() || 1;
+    });
+    traces.forEach(function (p, i) {
+      gsap.set(p, { strokeDasharray: lens[i] });
+    });
+
+    function reset() {
+      lit.classList.remove('is-lit');
+      next.classList.remove('is-lit');
+      gsap.set([facts2, facts3], { autoAlpha: 0, y: 6 });
     }
-    chips.forEach(function (chip, i) {
-      var zone = i % 2 === 0 ? [56, 68] : [74, 86];
-      function launch(delay) {
-        var x = rand(zone[0], zone[1]);
-        var dur = rand(cfg.dur[0], cfg.dur[1]);
-        gsap.set(chip, {
-          left: x + 'vw',
-          top: vh + 60,
-          opacity: 0,
-          rotation: rand(cfg.rot[0], cfg.rot[1]),
-        });
-        gsap.to(chip, {
-          top: -80,
-          duration: dur,
-          delay: delay,
-          ease: 'none',
-          onUpdate: function () {
-            var p = this.progress();
-            var o = p < 0.12 ? p / 0.12 : p > 0.8 ? (1 - p) / 0.2 : 1;
-            gsap.set(chip, { opacity: o * 0.6 });
-          },
-          onComplete: function () {
-            launch(0);
-          },
-        });
-      }
-      launch(i * cfg.stagger);
+    reset();
+
+    var tl = gsap.timeline({
+      repeat: -1,
+      repeatDelay: 3.4,
+      delay: 0.6,
+      onRepeat: reset,
     });
-    window.addEventListener('resize', function () {
-      vh = window.innerHeight;
-    });
+    tl.fromTo(
+      traces[0],
+      { strokeDashoffset: lens[0] },
+      { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' }
+    )
+      .call(function () {
+        lit.classList.add('is-lit');
+      })
+      .to(facts2, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.4,
+        stagger: 0.16,
+        ease: 'power2.out',
+      })
+      .fromTo(
+        traces[1],
+        { strokeDashoffset: lens[1] },
+        { strokeDashoffset: 0, duration: 1, ease: 'power2.inOut' },
+        '+=0.2'
+      )
+      .call(function () {
+        next.classList.add('is-lit');
+      })
+      .to(facts3, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.4,
+        stagger: 0.16,
+        ease: 'power2.out',
+      });
   }
 
   function initCircuits() {
@@ -488,8 +554,10 @@ document.addEventListener('DOMContentLoaded', function () {
           if (!entry.isIntersecting) return;
           Object.keys(links).forEach(function (id) {
             links[id].classList.remove('active');
+            links[id].removeAttribute('aria-current');
           });
           links[entry.target.id].classList.add('active');
+          links[entry.target.id].setAttribute('aria-current', 'true');
         });
       },
       { rootMargin: '-30% 0px -60% 0px' }
@@ -581,74 +649,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
-  (function () {
-    var body = document.getElementById('iaConsoleBody');
-    if (!body) return;
-    var cmd = '> analisando matricula_45123.pdf';
-    var steps = [
-      'R1 e averbações extraídas',
-      '2 proprietários qualificados',
-      'alienação fiduciária detectada',
-      'contrato pronto em 4s',
-    ];
-    function stepHtml(text) {
-      return '<span class="ok">✓</span> ' + text;
-    }
-    if (reduceMotion || !animOn) {
-      body.innerHTML =
-        '<div class="ia-line cmd">' +
-        cmd +
-        '</div>' +
-        steps
-          .map(function (s) {
-            return '<div class="ia-line">' + stepHtml(s) + '</div>';
-          })
-          .join('');
-      return;
-    }
-    var caret = '<span class="ia-caret"></span>';
-    function typeCmd(el, i, done) {
-      if (i <= cmd.length) {
-        el.innerHTML = cmd.slice(0, i) + caret;
-        setTimeout(function () {
-          typeCmd(el, i + 1, done);
-        }, 26);
-      } else {
-        el.innerHTML = cmd;
-        done();
-      }
-    }
-    function showStep(index) {
-      if (index >= steps.length) {
-        setTimeout(restart, 3800);
-        return;
-      }
-      var el = document.createElement('div');
-      el.className = 'ia-line';
-      el.innerHTML = stepHtml(steps[index]);
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(8px)';
-      el.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-      body.appendChild(el);
-      requestAnimationFrame(function () {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      });
-      setTimeout(function () {
-        showStep(index + 1);
-      }, 450);
-    }
-    function restart() {
-      body.innerHTML = '';
-      var el = document.createElement('div');
-      el.className = 'ia-line cmd';
-      body.appendChild(el);
-      typeCmd(el, 0, function () {
-        setTimeout(function () {
-          showStep(0);
-        }, 350);
-      });
-    }
-    setTimeout(restart, 1600);
-  })();
 });

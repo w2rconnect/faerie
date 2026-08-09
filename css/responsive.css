@@ -47,13 +47,8 @@
   .story-more {
     grid-template-columns: repeat(2, 1fr);
   }
-  .ia-console {
-    position: static;
-    width: 100%;
-    margin-top: 18px;
-  }
   .stat-chip {
-    top: 52px;
+    top: 10px;
     right: 12px;
     padding: 10px 14px;
   }
@@ -61,16 +56,59 @@
     font-size: 18px;
   }
 }
+/* Abaixo de 980px a trilha vira lista vertical: nas posições absolutas do
+   traçado os cards ficariam com texto pequeno demais. */
+@media (max-width: 980px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .hero-trail {
+    aspect-ratio: auto;
+    max-width: 520px;
+    margin-top: 40px;
+    padding-left: 26px;
+  }
+  .hero-trail::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 22px;
+    bottom: 22px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--action), var(--accent));
+    opacity: 0.5;
+  }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .trail-svg {
+    display: none;
+  }
+  /* precisa casar a especificidade de .trail-node[data-node='N'] do hero.css */
+  .trail-node[data-node='1'],
+  .trail-node[data-node='2'],
+  .trail-node[data-node='3'] {
+    position: static;
+    width: 100%;
+    left: auto;
+    top: auto;
+    margin-bottom: 14px;
+  }
+  .trail-node[data-node='3'] {
+    margin-bottom: 0;
+  }
+  .trail-head,
+  .trail-fact {
+    white-space: normal;
+  }
+}
 @media (max-width: 860px) {
   section {
     padding: 80px 5%;
   }
   .hero {
-    padding: 130px 5% 60px;
-  }
-  .hero-sub-row {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 88px 5% 60px;
   }
   .how-steps {
     grid-template-columns: 1fr;
@@ -136,9 +174,6 @@
     font-size: 14px;
     padding: 16px 20px 16px 0;
   }
-  .circuit-hero {
-    display: none;
-  }
 }
 @media (max-width: 640px) {
   .video-placeholder {
@@ -158,26 +193,24 @@
     display: none;
   }
   nav {
-    padding: 10px 5%;
+    height: 62px;
+    padding: 0 5%;
   }
-  nav.scrolled {
-    padding: 8px 5%;
+  .nav-tagline {
+    font-size: 7px;
   }
   .nav-logo img {
-    height: 34px;
+    height: 22px;
   }
-  nav.scrolled .nav-logo img {
-    height: 30px;
-  }
+  /* mantém 44x44: o alvo de toque não encolhe junto com o resto */
   .nav-hamburger {
-    padding: 9px 8px;
     gap: 4px;
   }
   .nav-hamburger span {
     width: 19px;
   }
   .nav-mobile-menu {
-    padding: 80px 7% 40px;
+    padding: 80px 5% 40px;
   }
   .nav-mobile-menu a {
     font-size: clamp(19px, 5.5vw, 24px);
@@ -185,7 +218,7 @@
     gap: 12px;
   }
   .nav-mobile-menu a .idx {
-    font-size: 10.5px;
+    font-size: 11px; /* piso de texto funcional; 10.5px reprovava */
   }
   .mob-btn-row {
     gap: 10px;
@@ -229,7 +262,7 @@
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 2px solid #19d97f;
+  outline: 2px solid var(--action);
   outline-offset: 2px;
 }
 @media (prefers-reduced-motion: reduce) {

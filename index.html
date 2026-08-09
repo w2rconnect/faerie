@@ -32,11 +32,11 @@
     <link
       rel="preload"
       as="image"
-      href="assets/screen-hero.webp"
+      href="assets/screen-hero.png"
       fetchpriority="high"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/base.css" />
@@ -75,10 +75,10 @@
     <div class="preloader" id="preloader" aria-hidden="true">
       <img
         class="pre-logo"
-        src="assets/logo.png"
+        src="assets/home.svg"
         alt=""
-        width="127"
-        height="120"
+        width="449"
+        height="326"
       />
       <div class="pre-line"><span id="preFill"></span></div>
       <div class="pre-count">
@@ -88,35 +88,43 @@
 
     <div class="scroll-progress" aria-hidden="true"></div>
 
+    <a class="skip-link" href="#top">Pular para o conteúdo</a>
+
     <nav id="nav">
-      <a class="nav-logo" href="#top" aria-label="W2R Connect — início"
-        ><img src="assets/logo.png" alt="W2R Connect" width="127" height="120"
-      /></a>
-      <ul class="nav-links">
-        <li><a href="#produto">Produto</a></li>
-        <li><a href="#como-funciona">Como Funciona</a></li>
-        <li><a href="#funcionalidades">Funcionalidades</a></li>
-        <li><a href="#planos">Planos</a></li>
-        <li class="nav-sep" aria-hidden="true"></li>
-        <li><a href="mailto:suporte@w2rconnect.com.br">Suporte</a></li>
-        <li>
-          <a href="https://w2rconnect.app/login" class="nav-entrar">Entrar</a>
-        </li>
-        <li>
-          <a href="https://w2rconnect.app/register" class="nav-cta"
-            >Testar grátis</a
-          >
-        </li>
-      </ul>
-      <button
-        class="nav-hamburger"
-        id="hamburger"
-        aria-label="Abrir menu"
-        aria-expanded="false"
-        aria-controls="mobileMenu"
-      >
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-inner">
+        <a class="nav-logo" href="#top" aria-label="W2R Connect — início">
+          <img src="assets/logo.svg" alt="" width="375" height="175" />
+          <span class="nav-lockup" aria-hidden="true">
+            <span class="nav-brand shine-text">W2R Connect</span>
+            <span class="nav-tagline">Sistema de Gestão de Documentos</span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#produto">Produto</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#funcionalidades">Funcionalidades</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li class="nav-sep" aria-hidden="true"></li>
+          <li><a href="mailto:suporte@w2rconnect.com.br">Suporte</a></li>
+          <li>
+            <a href="https://w2rconnect.app/login" class="nav-entrar">Entrar</a>
+          </li>
+          <li>
+            <a href="https://w2rconnect.app/register" class="nav-cta"
+              >Testar grátis</a
+            >
+          </li>
+        </ul>
+        <button
+          class="nav-hamburger"
+          id="hamburger"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
 
     <div
@@ -144,56 +152,19 @@
     </div>
 
     <section class="hero t-dark" id="top">
-      <div class="hero-float-layer" aria-hidden="true">
-        <div class="hero-chip">
-          <span class="ok">✓</span> matricula_45123.pdf analisada
-        </div>
-        <div class="hero-chip">
-          <span class="ok">✓</span> R1 + averbações extraídas
-        </div>
-        <div class="hero-chip">
-          <span class="ok">✓</span> contrato gerado em 4s
-        </div>
-        <div class="hero-chip">
-          <span class="ok">✓</span> 2 proprietários qualificados
-        </div>
-        <div class="hero-chip">
-          <span class="ok">✓</span> dados enviados à Caixa
-        </div>
-      </div>
-      <svg
-        class="circuit circuit-hero"
-        viewBox="0 0 300 220"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path
-          class="draw"
-          d="M10 210 L10 120 Q10 110 20 110 L90 110 Q100 110 100 100 L100 30 Q100 20 110 20 L200 20"
-          stroke-width="1.2"
-        />
-        <path
-          class="draw"
-          d="M60 210 L60 160 Q60 150 70 150 L150 150 Q160 150 160 140 L160 70 Q160 60 170 60 L260 60"
-          stroke-width="1.2"
-        />
-        <circle class="node" cx="200" cy="20" r="4" />
-        <circle class="node" cx="260" cy="60" r="4" />
-        <circle class="node" cx="10" cy="210" r="4" />
-        <circle class="node" cx="60" cy="210" r="4" />
-      </svg>
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-inner">
-        <div class="hero-eyebrow" data-intro>
-          <span class="dot"></span>IA para correspondentes bancários
-        </div>
-        <h1 class="hero-title">
-          Menos cadastro.<br /><em>Mais contratos fechados.</em>
-        </h1>
-        <div class="hero-sub-row">
+        <div class="hero-copy">
+          <div class="hero-eyebrow" data-intro>
+            <span class="node"></span>IA para correspondentes bancários
+          </div>
+          <h1 class="hero-title">
+            Menos cadastro.<br /><em>Mais contratos fechados.</em>
+          </h1>
           <p class="hero-subtitle">
-            O W2R Connect usa <strong>inteligência artificial</strong> para ler
-            matrículas, preencher cadastros, gerar documentos e enviar dados aos
-            sistemas bancários automaticamente.
+            A IA lê os documentos, cria os cadastros, analisa imóvel e renda e
+            deixa tudo pronto para
+            <strong>transferir ao sistema do banco.</strong>
           </p>
           <div class="hero-actions" data-intro>
             <a href="https://w2rconnect.app/register" class="btn btn-primary"
@@ -216,28 +187,162 @@
                 /></svg
             ></a>
           </div>
-        </div>
-        <div class="hero-trust" data-intro>
-          <div class="trust-badge">
-            <span class="sq"></span>Criado por correspondentes bancários
-          </div>
-          <div class="trust-badge">
-            <span class="sq"></span>IA integrada em todo o fluxo
-          </div>
-          <div class="trust-badge">
-            <span class="sq"></span>7 dias grátis, sem cartão
+          <div class="hero-trust" data-intro>
+            <div class="trust-badge">
+              <span class="sq"></span>Criado por correspondentes bancários
+            </div>
+            <div class="trust-badge">
+              <span class="sq"></span>7 dias grátis, sem cartão
+            </div>
           </div>
         </div>
+
+        <div class="hero-trail" data-intro aria-hidden="true">
+          <svg class="trail-svg" viewBox="0 0 520 475" fill="none">
+            <defs>
+              <linearGradient
+                id="trailGrad"
+                gradientUnits="userSpaceOnUse"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="475"
+              >
+                <stop offset="0" stop-color="#5b8bff" />
+                <stop offset="0.55" stop-color="#49b8c4" />
+                <stop offset="1" stop-color="#2be38b" />
+              </linearGradient>
+            </defs>
+            <path class="stub" d="M360 110 H430 Q446 110 446 94 V78" />
+            <circle class="pin" cx="446" cy="72" r="3.5" />
+            <path class="stub" d="M186 310 H120 Q104 310 104 294 V278" />
+            <circle class="pin" cx="104" cy="272" r="3.5" />
+            <path class="trace" d="M250 45 H340 Q360 45 360 65 V200" />
+            <path
+              class="trace"
+              d="M240 270 V294 Q240 310 224 310 H186 Q170 310 170 326 V360"
+            />
+          </svg>
+
+          <div class="trail-node" data-node="1">
+            <div class="trail-head">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M8 10.6V2.6" />
+                <path d="M4.8 5.8 8 2.6l3.2 3.2" />
+                <path d="M2.6 10.6v1.8a1.4 1.4 0 0 0 1.4 1.4h8a1.4 1.4 0 0 0 1.4-1.4v-1.8" />
+              </svg>
+              Envio de documentos
+            </div>
+            <div class="trail-file">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9.2 1.8H4.6A1.6 1.6 0 0 0 3 3.4v9.2a1.6 1.6 0 0 0 1.6 1.6h6.8a1.6 1.6 0 0 0 1.6-1.6V5.6L9.2 1.8Z"
+                />
+                <path d="M9.2 1.8v3.8H13" />
+              </svg>
+              matricula.pdf
+            </div>
+            <div class="trail-file">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9.2 1.8H4.6A1.6 1.6 0 0 0 3 3.4v9.2a1.6 1.6 0 0 0 1.6 1.6h6.8a1.6 1.6 0 0 0 1.6-1.6V5.6L9.2 1.8Z"
+                />
+                <path d="M9.2 1.8v3.8H13" />
+              </svg>
+              irpf.pdf
+            </div>
+            <div class="trail-meta">+3 arquivos · 8,4 MB enviados</div>
+          </div>
+
+          <div class="trail-node is-lit" data-node="2">
+            <div class="trail-head">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="4.2" y="4.2" width="7.6" height="7.6" rx="1.6" />
+                <path
+                  d="M6.6 1.8v2.4M9.4 1.8v2.4M6.6 11.8v2.4M9.4 11.8v2.4M1.8 6.6h2.4M1.8 9.4h2.4M11.8 6.6h2.4M11.8 9.4h2.4"
+                />
+              </svg>
+              IA processando
+            </div>
+            <div class="trail-fact"><i class="ok">✓</i>Registros criados</div>
+            <div class="trail-fact">
+              <i class="ok">✓</i>Arquivos organizados nas pastas
+            </div>
+            <div class="trail-fact">
+              <i class="ok">✓</i>Imóvel e renda analisados
+            </div>
+          </div>
+
+          <div class="trail-node is-lit" data-node="3">
+            <div class="trail-head">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6.2 4.2h7.2M6.2 8h7.2M6.2 11.8h7.2" />
+                <path d="M3 4.2h.01M3 8h.01M3 11.8h.01" />
+              </svg>
+              Próximas etapas
+            </div>
+            <div class="trail-fact"><i class="next"></i>Gerar formulários</div>
+            <div class="trail-fact">
+              <i class="next"></i>Transferir para o banco
+            </div>
+            <div class="trail-fact"><i class="next"></i>Concluir o processo</div>
+          </div>
+        </div>
+
         <div class="hero-visual" data-intro-visual>
           <div class="screen-overlay-wrap">
             <div class="screen-frame" data-parallax>
               <div class="screen-topbar" data-gsap-ignore>
                 <span class="mark">W2R<em>·</em>Connect</span>
-                <span class="addr">app.w2rconnect.com.br/processos</span>
-                <span class="live"><i></i>IA ativa</span>
+                <span class="addr">w2rconnect.app/processos</span>
               </div>
               <img
-                src="assets/screen-hero.webp"
+                src="assets/screen-hero.png"
                 alt="Tela de processos do W2R Connect"
                 width="1600"
                 height="728"
@@ -248,10 +353,6 @@
             <div class="stat-chip" data-gsap-ignore>
               <div class="lbl">Tempo economizado</div>
               <div class="val js-counter">-80%</div>
-            </div>
-            <div class="ia-console" aria-hidden="true" data-gsap-ignore>
-              <div class="ia-console-head"><i></i>Assistente IA · ao vivo</div>
-              <div class="ia-console-body" id="iaConsoleBody"></div>
             </div>
           </div>
         </div>
@@ -1625,16 +1726,16 @@
     <footer class="t-dark">
       <div class="footer-logo">
         <img
-          src="assets/logo.png"
-          alt="W2R Connect"
-          width="127"
-          height="120"
+          src="assets/home.svg"
+          alt=""
+          width="449"
+          height="326"
           loading="lazy"
         />
       </div>
+      <div class="footer-brand shine-text">W2R Connect</div>
       <div class="footer-text">
-        W2R Connect — Sistema de Gestão de Documentos para Correspondentes
-        Bancários
+        Sistema de Gestão de Documentos para Correspondentes Bancários
       </div>
       <div class="footer-links">
         <a href="#">Termos de uso</a
