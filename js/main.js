@@ -31,11 +31,26 @@ document.addEventListener('DOMContentLoaded', function () {
   var lastY = 0;
   var navH = 72;
   var navLock = false;
+  var navPeek = false;
+  var navDown = false;
+  var navSuppress = null;
   function measureNav() {
     if (nav) navH = nav.offsetHeight || 72;
   }
   measureNav();
   window.addEventListener('resize', measureNav);
+  function applyNav() {
+    if (!nav) return;
+    if (navSuppress && navSuppress()) {
+      nav.classList.toggle('nav-hidden', !navPeek);
+      return;
+    }
+    if (navPeek || navLock) {
+      nav.classList.remove('nav-hidden');
+      return;
+    }
+    nav.classList.toggle('nav-hidden', navDown);
+  }
   function onScrollFrame(y) {
     var max = docEl.scrollHeight - window.innerHeight;
     if (progress)
@@ -44,14 +59,24 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!nav) return;
     nav.classList.toggle('scrolled', y > 40);
     if (navLock) {
-      nav.classList.remove('nav-hidden');
       lastY = y;
-      return;
-    }
-    if (Math.abs(y - lastY) > 8) {
-      nav.classList.toggle('nav-hidden', y > lastY && y > navH);
+    } else if (Math.abs(y - lastY) > 8) {
+      navDown = y > lastY && y > navH;
       lastY = y;
     }
+    applyNav();
+  }
+  if (nav && matchMedia('(hover: hover)').matches) {
+    document.addEventListener(
+      'mousemove',
+      function (e) {
+        var want = e.clientY <= (navPeek ? navH : 20);
+        if (want === navPeek) return;
+        navPeek = want;
+        applyNav();
+      },
+      { passive: true }
+    );
   }
   if (hasLenis && animOn) {
     lenis = new Lenis({ duration: 1.1 });
@@ -491,7 +516,6 @@ document.addEventListener('DOMContentLoaded', function () {
       stage.querySelectorAll('.stage-stop')
     );
     var cam = document.getElementById('stageCam');
-    var view = stage.querySelector('.stage-view');
     var shots = Array.prototype.slice.call(stage.querySelectorAll('.cam-shot'));
     var num = document.getElementById('stageNum');
     var ticks = Array.prototype.slice.call(
@@ -526,7 +550,6 @@ document.addEventListener('DOMContentLoaded', function () {
         s.classList.toggle('is-current', i === index);
       });
       var step = parseInt(stop.getAttribute('data-step'), 10);
-      if (view) view.classList.toggle('is-scene', !step);
       if (!step) return;
       ticks.forEach(function (t, i) {
         t.classList.toggle('is-active', i === step - 1);
@@ -578,18 +601,18 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollToTarget(
         stops[index],
         stops[index].offsetHeight / 2 - window.innerHeight / 2,
-        0.75
+        1.15
       );
+      navLock = false;
       clearTimeout(lockTimer);
       lockTimer = setTimeout(function () {
         locked = false;
         pending = -1;
-      }, 820);
+      }, 1250);
     }
     function inZone() {
       var y = window.scrollY;
-      var pad = Math.max(window.innerHeight * 0.5, 440);
-      return y > snapY(0) - pad && y < snapY(stops.length - 1) + pad;
+      return y > snapY(0) - 80 && y < snapY(stops.length - 1) + 80;
     }
     function stepTarget(dir) {
       if (pending >= 0) return pending + dir;
@@ -639,6 +662,21 @@ document.addEventListener('DOMContentLoaded', function () {
         if (stops[index]) goStop(index);
       });
     });
+    if (stepping) {
+      var zoneTop = 0;
+      var zoneEnd = 0;
+      var measureZone = function () {
+        zoneTop = snapY(0);
+        zoneEnd = snapY(stops.length - 1);
+      };
+      measureZone();
+      window.addEventListener('load', measureZone);
+      window.addEventListener('resize', measureZone);
+      navSuppress = function () {
+        var y = window.scrollY;
+        return y >= zoneTop && y <= zoneEnd;
+      };
+    }
     activate(0);
   })();
 

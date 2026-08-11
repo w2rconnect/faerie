@@ -11,8 +11,6 @@
   margin-top: 110px;
   padding-top: 56px;
 }
-/* home.svg é a marca completa (símbolo + circuito): precisa de altura para
-   o motivo ler — abaixo de ~80px vira ruído. */
 .footer-logo img {
   height: 92px;
   width: auto;

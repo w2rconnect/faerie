@@ -8,7 +8,7 @@ O produto é um CRM com IA para **correspondentes bancários** (financiamento im
 
 ## 1. Identidade visual
 
-> **Regra número um: a landing existe para parecer o mesmo produto que o app.** Toda decisão visual se resolve olhando `assets/screen-hero.png` (dashboard), as telas de auth e `assets/logo-full.png` — nunca inventando do zero e nunca copiando template de SaaS.
+> **Regra número um: a landing existe para parecer o mesmo produto que o app.** Toda decisão visual se resolve olhando os screenshots do app em `assets/` (`screen-home.png` para o dashboard, `screen-coleta.png` e `screen-aprovacao.png` para formulário e status), as telas de auth e `assets/logo.svg` — nunca inventando do zero e nunca copiando template de SaaS.
 
 ### O gradiente é a marca
 
@@ -64,7 +64,7 @@ Ao criar seção nova, prefira estender esse motivo a inventar uma metáfora vis
 
 ### Aberto / a resolver
 
-- **Assets de logo (resolvido).** `assets/logo.svg` é o símbolo W2R sozinho, em azul→verde, vetorial — é o que vai na nav (32px) e no rodapé (44px). `assets/home.svg` é o símbolo dentro do motivo de circuito e documentos: só legível a partir de ~90px, usado no preloader. `logo.png` / `logo-full.png` são o lockup com tagline em raster — **não usar em UI**, viram borrão abaixo de 100px.
+- **Assets de logo (resolvido).** `assets/logo.svg` é o símbolo W2R sozinho, em azul→verde, vetorial — é o que vai na nav (32px) e no rodapé (44px). `assets/home.svg` é o símbolo dentro do motivo de circuito e documentos: só legível a partir de ~90px, usado no preloader. O lockup com tagline em raster foi removido do repo — se precisar dele de novo, vem do brandkit, não da UI.
 - Ver `~/.claude/projects/.../memory/w2r-landing-pendencias.md` para o resto.
 
 ---

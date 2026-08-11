@@ -292,8 +292,8 @@
 }
 
 .stage {
-  --stage-nav-h: 44px;
-  --stage-gap: 14px;
+  --stage-nav-h: 20px;
+  --stage-gap: 26px;
   display: grid;
   position: relative;
 }
@@ -310,14 +310,12 @@
   list-style: none;
 }
 .stage-stop {
-  --zf: calc(var(--z) * 1.55);
-  --zm: var(--zf);
-  --cxm: var(--cx);
-  --cym: var(--cy);
+  --half: calc(50 / var(--z));
+  --cxc: clamp(var(--half), var(--cx), calc(100 - var(--half)));
+  --cyc: clamp(var(--half), var(--cy), calc(100 - var(--half)));
 }
 @media (min-width: 720px) {
   .stage-stop {
-    --zm: calc(var(--zf) * 0.72);
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: 34px;
@@ -357,7 +355,7 @@
 .stop-shot {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1600 / 730;
+  aspect-ratio: 1920 / 911;
   margin-top: 20px;
   border-radius: 14px;
   border: 1px solid var(--line-strong);
@@ -373,10 +371,10 @@
   object-position: top center;
   transform-origin: 0 0;
   transform: translate(
-      calc(50% - var(--cxm) * 1% * var(--zm)),
-      calc(50% - var(--cym) * 1% * var(--zm))
+      calc(50% - var(--cxc) * 1% * var(--z)),
+      calc(50% - var(--cyc) * 1% * var(--z))
     )
-    scale(var(--zm));
+    scale(var(--z));
 }
 
 .js-cam .stage-view {
@@ -417,8 +415,8 @@
   transform: translateY(14px);
   pointer-events: none;
   transition:
-    opacity 0.45s var(--ease-out),
-    transform 0.45s var(--ease-out);
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
 }
 .js-cam .stage-stop.is-current .stop-card {
   opacity: 1;
@@ -426,11 +424,10 @@
   pointer-events: auto;
 }
 .js-cam .stage-stop[data-scene] .stop-card {
-  width: min(460px, 46%);
   text-align: center;
   transition:
-    opacity 0.6s var(--ease-out),
-    transform 0.6s var(--ease-out);
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
 }
 .js-cam .stage-stop[data-scene]:not(.is-current) .stop-card {
   transform: translateY(52px);
@@ -449,9 +446,9 @@
 }
 .stage-frame {
   position: relative;
-  width: min(100%, calc((100vh - 210px) * 2.19));
+  width: min(90%, calc((88vh - 46px) * 2.108));
   margin: 0 auto;
-  aspect-ratio: 1600 / 730;
+  aspect-ratio: 1920 / 911;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--line-strong);
@@ -478,7 +475,7 @@
       calc(50% - var(--cy, 50) * 1% * var(--z, 1))
     )
     scale(var(--z, 1));
-  transition: transform 0.9s var(--ease-out);
+  transition: transform 1.4s var(--ease-out);
   will-change: transform;
 }
 .cam-shot {
@@ -489,7 +486,7 @@
   object-fit: cover;
   object-position: top center;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.8s ease;
 }
 .cam-shot.is-active {
   opacity: 1;
@@ -505,15 +502,8 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  width: min(100%, calc((100vh - 210px) * 2.19));
+  width: min(90%, calc((88vh - 46px) * 2.108));
   margin: 0 auto;
-  transition:
-    opacity 0.4s var(--ease-out),
-    visibility 0.4s var(--ease-out);
-}
-.stage-view.is-scene .stage-nav {
-  opacity: 0;
-  visibility: hidden;
 }
 .stage-nav-step {
   font-family: var(--font-mono);
