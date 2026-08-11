@@ -43,6 +43,9 @@
     <script>
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('js-anim');
+        if (matchMedia('(min-width: 1024px)').matches) {
+          document.documentElement.classList.add('js-cam');
+        }
       }
     </script>
     <script
@@ -560,147 +563,71 @@
           </div>
           <h2 class="sec-title">Veja o W2R Connect <em>em ação</em></h2>
           <p class="sec-desc">
-            Interface limpa, fluxo guiado e IA integrada em cada etapa do
-            financiamento.
+            Um processo percorrido etapa por etapa, na mesma interface que o
+            correspondente usa todo dia.
           </p>
+          <div class="sec-rule" aria-hidden="true"></div>
         </header>
-        <div class="story">
-          <div class="story-steps" data-gsap-ignore>
-            <div
-              class="story-step is-active"
-              data-url="Coleta → Análise do Imóvel (IA)"
-            >
-              <div class="story-step-num">01 / 05</div>
-              <h3>IA analisa a matrícula e preenche tudo sozinha</h3>
-              <p>
-                Envie o PDF da matrícula. Em segundos, a IA entrega histórico,
-                ônus, alienação, proprietários e qualificação completa.
-              </p>
-              <ul class="feature-list">
-                <li>Análise de R1 e averbações</li>
-                <li>Qualificação automática dos proprietários</li>
-                <li>Ônus, hipotecas e restrições identificados</li>
-                <li>Compradores vinculados via CNH lida pela IA</li>
-              </ul>
-              <div class="story-step-screen">
-                <img
-                  src="assets/screen-processos.webp"
-                  alt="Coleta de dados com IA"
-                  width="1600"
-                  height="739"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-            <div class="story-step" data-url="Assistente IA">
-              <div class="story-step-num">02 / 05</div>
-              <h3>Assistente IA em qualquer tela</h3>
-              <p>
-                Mande documentos por chat e ele cria processos, vincula
-                compradores e inicia a análise automaticamente.
-              </p>
-              <ul class="feature-list">
-                <li>Crie processos por conversa</li>
-                <li>Envie PDFs direto no chat</li>
-                <li>Extração e vinculação automática</li>
-                <li>Histórico de conversas persistido</li>
-              </ul>
-              <div class="story-step-screen">
-                <img
-                  src="assets/screen-assistente.webp"
-                  alt="Assistente IA por chat"
-                  width="1600"
-                  height="722"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-            <div class="story-step" data-url="Contrato Caixa">
-              <div class="story-step-num">03 / 05</div>
-              <h3>Contrato da Caixa preenchido automaticamente</h3>
-              <p>
-                Qualificação das partes já preenchida com os dados do processo.
-                Revise, ajuste e exporte sem redigitar nada.
-              </p>
-              <ul class="feature-list">
-                <li>Geração com 1 clique</li>
-                <li>Qualificação das partes automática</li>
-                <li>Templates por escritório</li>
-                <li>Formulários por etapa</li>
-              </ul>
-              <div class="story-step-screen">
-                <img
-                  src="assets/screen-contrato.webp"
-                  alt="Contrato Caixa preenchido automaticamente"
-                  width="1600"
-                  height="731"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-            <div class="story-step" data-url="Diagrama da Operação">
-              <div class="story-step-num">04 / 05</div>
-              <h3>Diagrama visual de cada operação</h3>
-              <p>
-                Visualize graficamente as conexões entre imóvel, compradores,
-                vendedores, corretores e documentos.
-              </p>
-              <ul class="feature-list">
-                <li>Imóvel, comprador, vendedor e corretor conectados</li>
-                <li>Templates vinculados a cada participante</li>
-                <li>Exportável e editável</li>
-              </ul>
-              <div class="story-step-screen">
-                <img
-                  src="assets/screen-diagrama.webp"
-                  alt="Diagrama visual da operação"
-                  width="1600"
-                  height="722"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-            <div class="story-step" data-url="app.w2rconnect.com.br">
-              <div class="story-step-num">05 / 05</div>
-              <h3>Dashboard limpo e intuitivo</h3>
-              <p>
-                Tela inicial com navegação clara e acesso rápido a todas as
-                funcionalidades. Assistente IA sempre disponível.
-              </p>
-              <ul class="feature-list">
-                <li>Acesso rápido a Processos e Requerimentos</li>
-                <li>Status do período de teste sempre visível</li>
-                <li>Interface dark moderna e responsiva</li>
-                <li>Assistente IA disponível em qualquer tela</li>
-              </ul>
-              <div class="story-step-screen">
-                <img
-                  src="assets/screen-home.webp"
-                  alt="Dashboard do W2R Connect"
-                  width="1600"
-                  height="734"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="story-visual" aria-hidden="true">
-            <div class="story-frame">
-              <div class="screen-topbar" data-gsap-ignore>
-                <span class="mark">W2R<em>·</em>Connect</span>
-                <span class="addr" id="storyUrl"
-                  >Coleta → Análise do Imóvel (IA)</span
+        <div class="stage" id="stage">
+          <div class="stage-view">
+            <div class="stage-nav">
+              <span class="stage-nav-step">Esteira do processo</span>
+              <span class="stage-ticks">
+                <button
+                  class="stage-tick is-active"
+                  type="button"
+                  data-go="1"
+                  aria-label="Parada 1 de 6"
                 >
-                <span class="live"><i></i>IA ativa</span>
-              </div>
-              <div class="story-imgs">
+                  <span></span>
+                </button>
+                <button
+                  class="stage-tick"
+                  type="button"
+                  data-go="2"
+                  aria-label="Parada 2 de 6"
+                >
+                  <span></span>
+                </button>
+                <button
+                  class="stage-tick"
+                  type="button"
+                  data-go="3"
+                  aria-label="Parada 3 de 6"
+                >
+                  <span></span>
+                </button>
+                <button
+                  class="stage-tick"
+                  type="button"
+                  data-go="4"
+                  aria-label="Parada 4 de 6"
+                >
+                  <span></span>
+                </button>
+                <button
+                  class="stage-tick"
+                  type="button"
+                  data-go="5"
+                  aria-label="Parada 5 de 6"
+                >
+                  <span></span>
+                </button>
+                <button
+                  class="stage-tick"
+                  type="button"
+                  data-go="6"
+                  aria-label="Parada 6 de 6"
+                >
+                  <span></span>
+                </button>
+              </span>
+              <span class="stage-count"><strong id="stageNum">01</strong>/06</span>
+            </div>
+            <div class="stage-frame" aria-hidden="true">
+              <div class="stage-cam" id="stageCam">
                 <img
-                  class="story-img is-active"
+                  class="cam-shot is-active"
                   src="assets/screen-processos.webp"
                   alt=""
                   width="1600"
@@ -708,34 +635,65 @@
                   decoding="async"
                 />
                 <img
-                  class="story-img"
+                  class="cam-shot"
                   src="assets/screen-assistente.webp"
                   alt=""
                   width="1600"
                   height="722"
-                  loading="lazy"
                   decoding="async"
                 />
                 <img
-                  class="story-img"
+                  class="cam-shot"
+                  src="assets/screen-reserva.webp"
+                  alt=""
+                  width="1600"
+                  height="721"
+                  decoding="async"
+                />
+                <img
+                  class="cam-shot"
                   src="assets/screen-contrato.webp"
                   alt=""
                   width="1600"
                   height="731"
-                  loading="lazy"
                   decoding="async"
                 />
                 <img
-                  class="story-img"
-                  src="assets/screen-diagrama.webp"
+                  class="cam-shot"
+                  src="assets/screen-home.webp"
                   alt=""
                   width="1600"
-                  height="722"
-                  loading="lazy"
+                  height="734"
                   decoding="async"
                 />
                 <img
-                  class="story-img"
+                  class="cam-shot"
+                  src="assets/screen-registro.webp"
+                  alt=""
+                  width="1600"
+                  height="724"
+                  decoding="async"
+                />
+              </div>
+              <div class="stage-vignette"></div>
+            </div>
+          </div>
+          <ol class="stage-stops">
+            <li
+              class="stage-stop"
+              data-scene="intro"
+              data-shot="4"
+              style="--cx: 40; --cy: 45; --z: 1.3; --cxm: 50; --cym: 45; --zf: 1.6"
+            >
+              <div class="stop-card">
+                <span class="stop-eyebrow">A demonstração</span>
+                <h3>Do primeiro documento ao registro</h3>
+                <p>
+                  Seis paradas na tela real do W2R Connect. Role para percorrer.
+                </p>
+              </div>
+              <div class="stop-shot">
+                <img
                   src="assets/screen-home.webp"
                   alt=""
                   width="1600"
@@ -744,168 +702,192 @@
                   decoding="async"
                 />
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="story-more-label">e o processo inteiro acompanhado</div>
-        <div class="story-more">
-          <div class="card" data-reveal>
-            <h4>Reserva sob controle</h4>
-            <p>
-              Datas de reserva e validade registradas, com alertas automáticos
-              de vencimento.
-            </p>
-          </div>
-          <div class="card" data-reveal>
-            <h4>Registro rastreado</h4>
-            <p>
-              Protocolo, senha e dados do cartório consolidados até a conclusão.
-            </p>
-          </div>
-          <div class="card" data-reveal>
-            <h4>Resumo do processo</h4>
-            <p>Imóvel, partes, corretores e datas em uma visão única.</p>
-          </div>
-          <div class="card" data-reveal>
-            <h4>Hierarquia de equipe</h4>
-            <p>
-              Distribua processos entre colaboradores sem perder o controle.
-            </p>
-          </div>
-        </div>
-        <header class="sec-head center part-head" data-reveal>
-          <div class="sec-eyebrow"><span class="sq"></span>demonstração</div>
-          <h3 class="sec-title">
-            Veja o sistema funcionando <em>na prática</em>
-          </h3>
-          <p class="sec-desc">
-            Assista ao W2R Connect gerenciando documentos por etapas do processo
-            — do início ao registro.
-          </p>
-        </header>
-        <div class="video-wrapper" data-reveal>
-          <div class="video-placeholder">
-            <div class="video-placeholder-inner">
-              <div class="video-play-icon">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                  <circle
-                    cx="32"
-                    cy="32"
-                    r="30"
-                    stroke="#2BE38B"
-                    stroke-width="1.5"
-                    opacity="0.4"
-                  />
-                  <circle
-                    cx="32"
-                    cy="32"
-                    r="22"
-                    stroke="#2BE38B"
-                    stroke-width="1"
-                    opacity="0.2"
-                  />
-                  <circle
-                    cx="32"
-                    cy="32"
-                    r="30"
-                    stroke="#2BE38B"
-                    stroke-width="1.5"
-                    stroke-dasharray="4 3"
-                    opacity="0.3"
-                    class="spin-circle"
-                  />
-                  <polygon points="26,20 50,32 26,44" fill="#2BE38B" />
-                </svg>
+            </li>
+            <li
+              class="stage-stop"
+              data-step="1"
+              data-shot="0"
+              data-side="left"
+              style="--cx: 57; --cy: 22; --z: 1.5"
+            >
+              <div class="stop-card">
+                <span class="stop-eyebrow">Esteira do processo</span>
+                <h3>Oito etapas, uma esteira só</h3>
+                <p>
+                  O processo nasce com as etapas da operação já montadas. Verde
+                  é o que ficou pronto, azul é onde ele está agora — a mesma
+                  leitura em qualquer processo aberto.
+                </p>
               </div>
-              <div>
-                <span class="video-badge">Em breve</span>
-                <div class="video-title">
-                  Gerenciar documentos por etapas do processo
-                </div>
-                <div class="video-subtitle">
-                  Vídeo demonstrativo interativo — disponível após publicação
-                </div>
+              <div class="stop-shot">
+                <img
+                  src="assets/screen-processos.webp"
+                  alt=""
+                  width="1600"
+                  height="739"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-            </div>
-            <div class="video-bg-grid" aria-hidden="true"></div>
-          </div>
-          <div class="video-features" data-gsap-ignore>
-            <div class="video-feature">
-              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-                <circle
-                  cx="9"
-                  cy="9"
-                  r="7"
-                  stroke="#2BE38B"
-                  stroke-width="1.2"
+            </li>
+            <li
+              class="stage-stop"
+              data-step="2"
+              data-shot="0"
+              data-side="right"
+              style="--cx: 60; --cy: 45; --z: 1.5; --cxm: 47; --cym: 50; --zf: 3.2"
+            >
+              <div class="stop-card">
+                <span class="stop-eyebrow">Etapa de dados</span>
+                <h3>Os campos já chegam preenchidos</h3>
+                <p>
+                  A IA lê a matrícula e o que era digitação vira conferência:
+                  datas, valores e qualificação já preenchidos, prontos para
+                  conferir.
+                </p>
+              </div>
+              <div class="stop-shot">
+                <img
+                  src="assets/screen-processos.webp"
+                  alt=""
+                  width="1600"
+                  height="739"
+                  loading="lazy"
+                  decoding="async"
                 />
-                <path
-                  d="M6 9l2 2 4-4"
-                  stroke="#2BE38B"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                /></svg
-              >Gestão de documentos por etapa
-            </div>
-            <div class="video-feature-sep"></div>
-            <div class="video-feature">
-              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-                <circle
-                  cx="9"
-                  cy="9"
-                  r="7"
-                  stroke="#2BE38B"
-                  stroke-width="1.2"
+              </div>
+            </li>
+            <li
+              class="stage-stop"
+              data-step="3"
+              data-shot="1"
+              data-side="left"
+              style="--cx: 84; --cy: 68; --z: 1.7; --cxm: 79; --cym: 83; --zf: 3.4"
+            >
+              <div class="stop-card">
+                <span class="stop-eyebrow">Assistente</span>
+                <h3>Mande o documento no chat</h3>
+                <p>
+                  O assistente abre o processo, vincula as partes e dispara a
+                  análise sem você trocar de tela. Ele fica disponível em
+                  qualquer etapa.
+                </p>
+              </div>
+              <div class="stop-shot">
+                <img
+                  src="assets/screen-assistente.webp"
+                  alt=""
+                  width="1600"
+                  height="722"
+                  loading="lazy"
+                  decoding="async"
                 />
-                <path
-                  d="M6 9l2 2 4-4"
-                  stroke="#2BE38B"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                /></svg
-              >Fluxo completo do processo
-            </div>
-            <div class="video-feature-sep"></div>
-            <div class="video-feature">
-              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-                <circle
-                  cx="9"
-                  cy="9"
-                  r="7"
-                  stroke="#2BE38B"
-                  stroke-width="1.2"
+              </div>
+            </li>
+            <li
+              class="stage-stop"
+              data-step="4"
+              data-shot="2"
+              data-side="right"
+              style="--cx: 59; --cy: 48; --z: 1.55; --cxm: 46; --cym: 50; --zf: 3.2"
+            >
+              <div class="stop-card">
+                <span class="stop-eyebrow">Etapa de reserva</span>
+                <h3>Prazo com data de validade</h3>
+                <p>
+                  Reserva e validade ficam registradas na própria etapa, e o
+                  vencimento avisa antes de virar problema no banco.
+                </p>
+              </div>
+              <div class="stop-shot">
+                <img
+                  src="assets/screen-reserva.webp"
+                  alt=""
+                  width="1600"
+                  height="721"
+                  loading="lazy"
+                  decoding="async"
                 />
-                <path
-                  d="M6 9l2 2 4-4"
-                  stroke="#2BE38B"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                /></svg
-              >Interface intuitiva e rápida
-            </div>
-            <div class="video-feature-sep"></div>
-            <div class="video-feature">
-              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-                <circle
-                  cx="9"
-                  cy="9"
-                  r="7"
-                  stroke="#2BE38B"
-                  stroke-width="1.2"
+              </div>
+            </li>
+            <li
+              class="stage-stop"
+              data-step="5"
+              data-shot="3"
+              data-side="left"
+              style="--cx: 61; --cy: 21; --z: 2; --zf: 2.8"
+            >
+              <div class="stop-card">
+                <span class="stop-eyebrow">Etapa de registro</span>
+                <h3>A esteira chega ao fim</h3>
+                <p>
+                  Seis etapas concluídas depois, o processo termina onde o
+                  correspondente precisa que ele termine: no registro.
+                </p>
+              </div>
+              <div class="stop-shot">
+                <img
+                  src="assets/screen-contrato.webp"
+                  alt=""
+                  width="1600"
+                  height="731"
+                  loading="lazy"
+                  decoding="async"
                 />
-                <path
-                  d="M6 9l2 2 4-4"
-                  stroke="#2BE38B"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                /></svg
-              >Sem necessidade de treinamento
-            </div>
-          </div>
+              </div>
+            </li>
+            <li
+              class="stage-stop"
+              data-step="6"
+              data-shot="3"
+              data-side="right"
+              style="--cx: 58; --cy: 54; --z: 1.5; --cxm: 46; --cym: 51; --zf: 3.2"
+            >
+              <div class="stop-card">
+                <span class="stop-eyebrow">Dados do registro</span>
+                <h3>Protocolo e senha no processo</h3>
+                <p>
+                  Protocolo, senha e registro de habitação guardados junto da
+                  operação — sem planilha paralela para achar depois.
+                </p>
+              </div>
+              <div class="stop-shot">
+                <img
+                  src="assets/screen-contrato.webp"
+                  alt=""
+                  width="1600"
+                  height="731"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </li>
+            <li
+              class="stage-stop"
+              data-scene="outro"
+              data-shot="5"
+              style="--cx: 58; --cy: 38; --z: 2.3; --cxm: 58; --cym: 37; --zm: 2.4"
+            >
+              <div class="stop-card">
+                <span class="stop-eyebrow">Processo concluído</span>
+                <h3>A esteira inteira verde</h3>
+                <p>
+                  Contrato gerado, dados nos sistemas do banco e registro
+                  guardado — o processo fecha sem planilha paralela.
+                </p>
+              </div>
+              <div class="stop-shot">
+                <img
+                  src="assets/screen-registro.webp"
+                  alt=""
+                  width="1600"
+                  height="724"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
     </section>

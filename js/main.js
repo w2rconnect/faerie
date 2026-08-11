@@ -84,17 +84,18 @@ document.addEventListener('DOMContentLoaded', function () {
     );
   });
 
-  function scrollToTarget(hash) {
-    var target = document.querySelector(hash);
+  function scrollToTarget(ref, offset, duration) {
+    var target = typeof ref === 'string' ? document.querySelector(ref) : ref;
     if (!target) return;
     navLock = true;
     measureNav();
+    var shift = typeof offset === 'number' ? offset : -navH;
     if (lenis) {
       lenis.start();
-      lenis.scrollTo(target, { offset: -navH });
+      lenis.scrollTo(target, { offset: shift, duration: duration });
     } else {
       window.scrollTo({
-        top: target.getBoundingClientRect().top + window.scrollY - navH,
+        top: target.getBoundingClientRect().top + window.scrollY + shift,
         behavior: reduceMotion ? 'auto' : 'smooth',
       });
     }
@@ -484,33 +485,161 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   (function () {
-    var steps = Array.prototype.slice.call(
-      document.querySelectorAll('.story-step')
+    var stage = document.getElementById('stage');
+    if (!stage) return;
+    var stops = Array.prototype.slice.call(
+      stage.querySelectorAll('.stage-stop')
     );
-    var imgs = document.querySelectorAll('.story-img');
-    var url = document.getElementById('storyUrl');
-    if (!steps.length) return;
-    function activate(index) {
-      steps.forEach(function (s, i) {
-        s.classList.toggle('is-active', i === index);
-      });
-      imgs.forEach(function (img, i) {
-        img.classList.toggle('is-active', i === index);
-      });
-      var stepUrl = steps[index].getAttribute('data-url');
-      if (url && stepUrl) url.textContent = stepUrl;
+    var cam = document.getElementById('stageCam');
+    var view = stage.querySelector('.stage-view');
+    var shots = Array.prototype.slice.call(stage.querySelectorAll('.cam-shot'));
+    var num = document.getElementById('stageNum');
+    var ticks = Array.prototype.slice.call(
+      stage.querySelectorAll('.stage-tick')
+    );
+    if (!stops.length || !cam) return;
+    var current = -1;
+
+    function readVar(el, name) {
+      return parseFloat(getComputedStyle(el).getPropertyValue(name)) || 0;
     }
+    function activate(index) {
+      if (index === current) return;
+      current = index;
+      var stop = stops[index];
+      var z = readVar(stop, '--z') || 1;
+      var half = 50 / z;
+      cam.style.setProperty(
+        '--cx',
+        Math.min(100 - half, Math.max(half, readVar(stop, '--cx')))
+      );
+      cam.style.setProperty(
+        '--cy',
+        Math.min(100 - half, Math.max(half, readVar(stop, '--cy')))
+      );
+      cam.style.setProperty('--z', z);
+      var shot = parseInt(stop.getAttribute('data-shot'), 10) || 0;
+      shots.forEach(function (img, i) {
+        img.classList.toggle('is-active', i === shot);
+      });
+      stops.forEach(function (s, i) {
+        s.classList.toggle('is-current', i === index);
+      });
+      var step = parseInt(stop.getAttribute('data-step'), 10);
+      if (view) view.classList.toggle('is-scene', !step);
+      if (!step) return;
+      ticks.forEach(function (t, i) {
+        t.classList.toggle('is-active', i === step - 1);
+      });
+      if (num) num.textContent = ('0' + step).slice(-2);
+    }
+
+    var stepping = docEl.classList.contains('js-cam');
+    var pending = -1;
+    var locked = false;
+    var lockTimer = 0;
+
     var spy = new IntersectionObserver(
       function (entries) {
+        if (pending >= 0) return;
+        var hit = -1;
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) activate(steps.indexOf(entry.target));
+          if (entry.isIntersecting) hit = stops.indexOf(entry.target);
         });
+        activate(hit < 0 ? nearestStop() : hit);
       },
-      { rootMargin: '-45% 0px -45% 0px' }
+      { rootMargin: '-50% 0px -50% 0px' }
     );
-    steps.forEach(function (s) {
+    stops.forEach(function (s) {
       spy.observe(s);
     });
+
+    function snapY(index) {
+      var r = stops[index].getBoundingClientRect();
+      return r.top + window.scrollY + r.height / 2 - window.innerHeight / 2;
+    }
+    function nearestStop() {
+      var y = window.scrollY;
+      var best = 0;
+      var bd = Infinity;
+      for (var i = 0; i < stops.length; i++) {
+        var d = Math.abs(snapY(i) - y);
+        if (d < bd) {
+          bd = d;
+          best = i;
+        }
+      }
+      return best;
+    }
+    function goStop(index) {
+      pending = index;
+      locked = true;
+      activate(index);
+      scrollToTarget(
+        stops[index],
+        stops[index].offsetHeight / 2 - window.innerHeight / 2,
+        0.75
+      );
+      clearTimeout(lockTimer);
+      lockTimer = setTimeout(function () {
+        locked = false;
+        pending = -1;
+      }, 820);
+    }
+    function inZone() {
+      var y = window.scrollY;
+      var pad = Math.max(window.innerHeight * 0.5, 440);
+      return y > snapY(0) - pad && y < snapY(stops.length - 1) + pad;
+    }
+    function stepTarget(dir) {
+      if (pending >= 0) return pending + dir;
+      var y = window.scrollY;
+      var i;
+      if (dir > 0) {
+        for (i = 0; i < stops.length; i++) if (snapY(i) > y + 8) return i;
+        return -1;
+      }
+      for (i = stops.length - 1; i >= 0; i--) if (snapY(i) < y - 8) return i;
+      return -1;
+    }
+    function step(dir, strong) {
+      if (!stepping || !dir || !inZone()) return false;
+      var next = stepTarget(dir);
+      if (next < 0 || next >= stops.length) return false;
+      if (strong && !locked) goStop(next);
+      return true;
+    }
+
+    window.addEventListener(
+      'wheel',
+      function (e) {
+        if (e.ctrlKey || !e.deltaY) return;
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+        if (!step(e.deltaY > 0 ? 1 : -1, Math.abs(e.deltaY) >= 4)) return;
+        e.preventDefault();
+        e.stopPropagation();
+      },
+      { capture: true, passive: false }
+    );
+
+    window.addEventListener('keydown', function (e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      var t = e.target;
+      if (t && t.closest && t.closest('input, textarea, select, [contenteditable]'))
+        return;
+      var dir = 0;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') dir = 1;
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp') dir = -1;
+      if (step(dir, true)) e.preventDefault();
+    });
+
+    ticks.forEach(function (t) {
+      t.addEventListener('click', function () {
+        var index = parseInt(t.getAttribute('data-go'), 10) || 0;
+        if (stops[index]) goStop(index);
+      });
+    });
+    activate(0);
   })();
 
   (function () {
