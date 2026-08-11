@@ -1,21 +1,22 @@
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh;
   display: flex;
-  align-items: center;
-  padding: 132px 4% 72px;
+  flex-direction: column;
+  padding: 92px 0 0;
   overflow: hidden;
 }
 .hero-inner {
+  width: 92%;
   max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
+  margin: auto;
   position: relative;
   z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
   column-gap: clamp(40px, 4.4vw, 72px);
   align-items: center;
+  padding: 0 0 20px;
 }
 .hero-copy {
   min-width: 0;
@@ -98,7 +99,7 @@
   line-height: 1.7;
   max-width: 50ch;
   margin-bottom: 30px;
-  text-wrap: pretty; /* evita "banco." sozinho na última linha */
+  text-wrap: pretty;
 }
 .hero-subtitle strong {
   color: var(--text);
@@ -131,7 +132,6 @@
   flex-shrink: 0;
 }
 
-/* ---------- trilha do documento (motivo do logo) ---------- */
 .hero-trail {
   position: relative;
   width: 100%;
@@ -223,10 +223,6 @@
   margin-top: 7px;
   white-space: nowrap;
 }
-/* o nome do arquivo é o dado, não o rótulo: contraste cheio */
-.trail-file {
-  color: var(--text-2);
-}
 .trail-file svg {
   flex-shrink: 0;
   color: var(--action);
@@ -237,7 +233,6 @@
   font-style: normal;
   flex-shrink: 0;
 }
-/* etapa na fila: anel azul (ação pendente), não check verde (resultado) */
 .trail-fact .next {
   width: 7px;
   height: 7px;
@@ -251,23 +246,6 @@
   visibility: hidden;
 }
 
-.hero-visual {
-  position: relative;
-  z-index: 2;
-  grid-column: 1 / -1;
-  margin-top: clamp(40px, 4.6vw, 68px);
-}
-.screen-frame {
-  border-radius: 18px;
-  overflow: hidden;
-  background: var(--ink-2);
-  border: 1px solid rgba(241, 245, 251, 0.1);
-  box-shadow:
-    0 0 0 1px rgba(91, 139, 255, 0.08),
-    0 30px 80px rgba(0, 0, 0, 0.55),
-    0 0 90px rgba(53, 96, 224, 0.07);
-  will-change: transform;
-}
 .screen-topbar {
   display: flex;
   align-items: center;
@@ -300,45 +278,6 @@
   border-radius: 7px;
   padding: 5px 12px;
 }
-.screen-frame img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.screen-overlay-wrap {
-  position: relative;
-  width: 100%;
-}
-
-.stat-chip {
-  position: absolute;
-  top: -18px;
-  right: -14px;
-  z-index: 3;
-  background: var(--ink-3);
-  border: 1px solid rgba(43, 227, 139, 0.3);
-  border-radius: 12px;
-  padding: 14px 18px;
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.45),
-    0 0 24px rgba(43, 227, 139, 0.12);
-}
-.stat-chip .lbl {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #9aa8bf;
-  margin-bottom: 4px;
-}
-.stat-chip .val {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 22px;
-  color: #2be38b;
-  font-variant-numeric: tabular-nums;
-}
-
 .circuit {
   position: absolute;
   pointer-events: none;
@@ -354,10 +293,11 @@
 }
 
 .marquee {
+  flex-shrink: 0;
   overflow: hidden;
-  border-block: 1px solid var(--line);
-  padding: 0;
+  border-top: 1px solid var(--line);
   position: relative;
+  z-index: 2;
 }
 .marquee-track {
   display: flex;

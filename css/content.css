@@ -91,116 +91,204 @@
   color: var(--text);
 }
 
-.ia-cards {
-  display: grid;
-  grid-template-columns: 1fr 1.12fr 1fr;
-  gap: 22px;
-  align-items: start;
+.ben {
+  --ben-w: clamp(288px, 76vw, 560px);
+  --ben-gap: 22px;
 }
-.ia-card-brand {
-  background: var(--ink);
-  color: #f1f5fb;
-  border-color: rgba(43, 227, 139, 0.3);
+.ben-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-.ia-card-brand h3 {
-  color: #f1f5fb;
+.ben-viewport::-webkit-scrollbar {
+  display: none;
 }
-.ia-card-brand p {
-  color: #9aa8bf;
+.ben-viewport:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 4px;
+  border-radius: 20px;
 }
-.ia-card-brand .card-tag {
-  color: #2be38b;
-  background: rgba(43, 227, 139, 0.1);
+.ben.is-carousel .ben-viewport {
+  scroll-snap-type: x mandatory;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
 }
-.ia-card-brand .card-icon {
-  background: rgba(43, 227, 139, 0.1);
-  border-color: rgba(43, 227, 139, 0.3);
-  color: #f1f5fb;
+.ben-track {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  gap: var(--ben-gap);
+  padding: 22px max(0px, calc(50% - var(--ben-w) / 2)) 46px;
 }
-.ia-card-brand::before {
+.ben-card {
+  position: relative;
+  flex: 0 0 var(--ben-w);
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  transition:
+    transform 0.45s var(--ease-out),
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.ben.is-carousel .ben-card {
+  transform: scale(0.95);
+  cursor: pointer;
+}
+.ben.is-carousel .ben-card.is-active {
+  transform: none;
+  cursor: default;
+  background: var(--card-2);
+  border-color: var(--accent-line);
+  box-shadow: 0 16px 40px rgba(16, 22, 31, 0.08);
+}
+.ben-card::before {
   content: '';
   position: absolute;
-  top: -1px;
-  left: 18%;
-  right: 18%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #2be38b, transparent);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--brand-grad);
+  transform: scaleX(0);
+  transition: transform 0.5s var(--ease-out);
 }
-.ia-stats {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+.ben.is-carousel .ben-card.is-active::before {
+  transform: scaleX(1);
 }
-.ia-card-brand .ia-stats {
-  border-color: rgba(241, 245, 251, 0.1);
-}
-.ia-stat-num {
+.ben-card h3 {
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 22px;
 }
-.ia-card-brand .ia-stat-num {
-  color: #2be38b;
-}
-.ia-stat-label {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 5px;
+.ben-label {
+  display: block;
   font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 10px;
 }
-.ia-card-brand .ia-stat-label {
-  color: #64748e;
+.ben-now p,
+.ben-then p {
+  font-size: 14.5px;
+  line-height: 1.7;
 }
-.ia-stat-div {
-  width: 1px;
-  height: 34px;
-  background: var(--line);
+.ben-now p {
+  color: var(--text-2);
 }
-.ia-card-brand .ia-stat-div {
-  background: rgba(241, 245, 251, 0.1);
+.ben-then {
+  position: relative;
+  margin-top: 20px;
+  padding-top: 20px;
 }
-.ia-strip {
+.ben-then::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--action-line),
+    var(--accent-line) 60%,
+    transparent
+  );
+}
+.ben-then p {
+  color: var(--text);
+}
+.ben-then strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+.ben-dots {
+  display: none;
+  justify-content: center;
+  margin-top: 8px;
+}
+.ben.is-carousel .ben-dots {
+  display: flex;
+}
+.ben-dot {
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  flex-wrap: wrap;
-  margin-top: 52px;
-  padding: 20px 32px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
-.ia-strip-item {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 13.5px;
-  color: var(--text-2);
+.ben-dot span {
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line-strong);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
 }
-.ia-strip-sep {
-  width: 1px;
-  height: 18px;
-  background: var(--line);
+.ben-dot:hover span {
+  background: var(--text-2);
 }
-
-.pain-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+.ben-dot.is-active span {
+  background: var(--accent-line);
 }
-.pain-num {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  margin-bottom: 14px;
-  display: block;
+.ben-dot span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--btn-grad);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+.t-dark .ben-dot span::after {
+  background: var(--brand-grad);
+}
+.ben-dot.is-active span::after {
+  transform: scaleX(1);
+}
+.ben.is-auto .ben-dot.is-active span::after {
+  animation: benFill 5.5s linear;
+}
+.ben.is-auto.is-paused .ben-dot.is-active span::after {
+  animation-play-state: paused;
+}
+@keyframes benFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .story {
@@ -562,6 +650,7 @@
 .proof-stars {
   display: flex;
   gap: 3px;
+  color: var(--accent);
 }
 .proof-quote {
   font-size: 14.5px;

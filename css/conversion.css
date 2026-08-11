@@ -328,11 +328,8 @@
   }
 }
 
-.cta-section {
-  padding: 120px 4%;
-  overflow: hidden;
-}
 .cta-inner {
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;

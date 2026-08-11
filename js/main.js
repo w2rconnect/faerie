@@ -29,9 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var progress = document.querySelector('.scroll-progress');
   var nav = document.getElementById('nav');
   var lastY = 0;
-  // Some assim que o scroll passa a própria altura da nav (72 desktop / 62
-  // mobile). Medido, não fixo, para acompanhar o breakpoint.
   var navH = 72;
+  var navLock = false;
   function measureNav() {
     if (nav) navH = nav.offsetHeight || 72;
   }
@@ -44,7 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
         'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
     if (!nav) return;
     nav.classList.toggle('scrolled', y > 40);
-    // Folga de 8px para não tremer com micro-oscilação do scroll suave.
+    if (navLock) {
+      nav.classList.remove('nav-hidden');
+      lastY = y;
+      return;
+    }
     if (Math.abs(y - lastY) > 8) {
       nav.classList.toggle('nav-hidden', y > lastY && y > navH);
       lastY = y;
@@ -71,13 +74,27 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   onScrollFrame(window.scrollY);
 
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+    window.addEventListener(
+      ev,
+      function () {
+        navLock = false;
+      },
+      { passive: true }
+    );
+  });
+
   function scrollToTarget(hash) {
     var target = document.querySelector(hash);
     if (!target) return;
+    navLock = true;
+    measureNav();
     if (lenis) {
-      lenis.scrollTo(target, { offset: -70 });
+      lenis.start();
+      lenis.scrollTo(target, { offset: -navH });
     } else {
-      target.scrollIntoView({
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY - navH,
         behavior: reduceMotion ? 'auto' : 'smooth',
       });
     }
@@ -97,16 +114,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var menu = document.getElementById('mobileMenu');
     if (!hamburger || !menu) return;
     var open = false;
-    // inert tira o resto da página do tab order e dos leitores de tela
-    // enquanto o menu está aberto — o dialog se diz aria-modal, então precisa.
     var behind = Array.prototype.filter.call(
       document.body.children,
       function (el) {
         return el !== menu && el !== nav;
       }
     );
-    // A nav inteira não pode ser inert (o hambúrguer vira o X de fechar), mas
-    // o logo sim: com aria-modal o leitor de tela ignora tudo fora do dialog.
     var navLogo = nav && nav.querySelector('.nav-logo');
     if (navLogo) behind.push(navLogo);
     function setMenu(state, returnFocus) {
@@ -124,8 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
         open ? lenis.stop() : lenis.start();
       }
       document.body.style.overflow = open ? 'hidden' : '';
-      // Dois frames: o <button> reassume o foco depois do handler de click, e
-      // um rAF só ainda perde a corrida. Verificado no navegador.
       if (open)
         requestAnimationFrame(function () {
           requestAnimationFrame(function () {
@@ -233,10 +244,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function splitAndReveal(el, dur, stag) {
     gsap.set(el, { autoAlpha: 1 });
-    // O hero anima só na entrada da página, nunca no scroll. inViewport() é
-    // um retrato do momento e autoSplit reexecuta onSplit a cada resize
-    // (barra de URL no mobile, carga de fonte): se isso rodar já com scroll,
-    // nasce um ScrollTrigger com reverse e o texto reverte ao voltar ao topo.
     var introOnly = !!el.closest('.hero') || inViewport(el);
     SplitText.create(el, {
       type: 'lines',
@@ -321,6 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
       delay: 0.15,
       clearProps: 'opacity,visibility,transform',
     });
+    if (!document.querySelector('[data-intro-visual]')) return;
     gsap.from('[data-intro-visual]', {
       y: 90,
       autoAlpha: 0,
@@ -377,8 +385,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Trilha do documento: o traço desenha em azul (sistema) e fecha em
-  // verde (resultado) — mesmo motivo de circuito do logo.
   function initTrail() {
     var trail = document.querySelector('.hero-trail');
     if (!trail) return;
@@ -507,6 +513,132 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
+  (function () {
+    var root = document.getElementById('ben');
+    var wrap = document.getElementById('benViewport');
+    var dotWrap = document.getElementById('benDots');
+    if (!root || !wrap || !dotWrap) return;
+    var track = wrap.querySelector('.ben-track');
+    var dots = Array.prototype.slice.call(dotWrap.querySelectorAll('.ben-dot'));
+    var originals = track
+      ? Array.prototype.slice.call(track.querySelectorAll('.ben-card'))
+      : [];
+    var total = originals.length;
+    if (total < 3 || total !== dots.length) return;
+
+    var EDGE = 2;
+    function twin(el) {
+      var copy = el.cloneNode(true);
+      copy.setAttribute('aria-hidden', 'true');
+      copy.classList.remove('is-active');
+      return copy;
+    }
+    track.prepend(twin(originals[total - 2]), twin(originals[total - 1]));
+    track.append(twin(originals[0]), twin(originals[1]));
+
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.ben-card'));
+    root.classList.add('is-carousel');
+    var index = EDGE;
+    var shown = -1;
+    var settle = null;
+
+    function middle(el) {
+      var r = el.getBoundingClientRect();
+      return r.left + r.width / 2;
+    }
+    function realOf(slot) {
+      return (((slot - EDGE) % total) + total) % total;
+    }
+    function goTo(slot, smooth) {
+      index = Math.max(0, Math.min(cards.length - 1, slot));
+      wrap.scrollTo({
+        left: wrap.scrollLeft + middle(cards[index]) - middle(wrap),
+        behavior: smooth === false ? 'auto' : 'smooth',
+      });
+    }
+    function rewind() {
+      if (index >= EDGE && index < EDGE + total) return;
+      goTo(index < EDGE ? index + total : index - total, false);
+    }
+    function mark() {
+      var mid = middle(wrap);
+      var best = 0;
+      var dist = Infinity;
+      cards.forEach(function (c, slot) {
+        var d = Math.abs(middle(c) - mid);
+        if (d < dist) {
+          dist = d;
+          best = slot;
+        }
+      });
+      index = best;
+      var real = realOf(best);
+      if (real !== shown) {
+        shown = real;
+        cards.forEach(function (c, slot) {
+          c.classList.toggle('is-active', realOf(slot) === real);
+        });
+        dots.forEach(function (d, n) {
+          d.classList.toggle('is-active', n === real);
+          if (n === real) d.setAttribute('aria-current', 'true');
+          else d.removeAttribute('aria-current');
+        });
+      }
+      clearTimeout(settle);
+      settle = setTimeout(rewind, 140);
+    }
+    function stopAuto() {
+      root.classList.remove('is-auto', 'is-paused');
+    }
+
+    wrap.addEventListener('scroll', mark, { passive: true });
+    new ResizeObserver(function () {
+      goTo(index, false);
+      mark();
+    }).observe(wrap);
+    dots.forEach(function (d, n) {
+      d.addEventListener('click', function () {
+        stopAuto();
+        var target = null;
+        [n + EDGE - total, n + EDGE, n + EDGE + total].forEach(function (slot) {
+          if (slot < 0 || slot >= cards.length) return;
+          if (target === null || Math.abs(slot - index) < Math.abs(target - index))
+            target = slot;
+        });
+        goTo(target);
+      });
+    });
+    cards.forEach(function (c, slot) {
+      c.addEventListener('click', function () {
+        if (c.classList.contains('is-active')) return;
+        stopAuto();
+        goTo(slot);
+      });
+    });
+    wrap.addEventListener('pointerdown', stopAuto);
+    wrap.addEventListener('keydown', stopAuto);
+    goTo(EDGE, false);
+    mark();
+
+    if (!animOn) return;
+    root.classList.add('is-auto');
+    dotWrap.addEventListener('animationend', function (e) {
+      if (e.animationName === 'benFill') goTo(index + 1);
+    });
+    root.addEventListener('mouseenter', function () {
+      root.classList.add('is-paused');
+    });
+    root.addEventListener('focusin', function () {
+      root.classList.add('is-paused');
+    });
+    root.addEventListener('mouseleave', function () {
+      root.classList.remove('is-paused');
+    });
+    root.addEventListener('focusout', function () {
+      root.classList.remove('is-paused');
+    });
+  })();
+
   if (matchMedia('(hover:hover)').matches) {
     document.querySelectorAll('.card').forEach(function (card) {
       card.addEventListener('pointermove', function (e) {
@@ -532,7 +664,7 @@ document.addEventListener('DOMContentLoaded', function () {
   (function () {
     var links = {};
     document
-      .querySelectorAll('.nav-links a[href^="#"]')
+      .querySelectorAll('.nav-links a[href^="#"], .mob-links a[href^="#"]')
       .forEach(function (a) {
         var id = a.getAttribute('href').slice(1);
         if (
@@ -540,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function () {
           !a.classList.contains('nav-cta') &&
           !a.classList.contains('nav-entrar')
         )
-          links[id] = a;
+          (links[id] = links[id] || []).push(a);
       });
     var sections = Object.keys(links)
       .map(function (id) {
@@ -548,16 +680,27 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .filter(Boolean);
     if (!sections.length) return;
+    var visible = [];
     var spy = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          Object.keys(links).forEach(function (id) {
-            links[id].classList.remove('active');
-            links[id].removeAttribute('aria-current');
+          var i = visible.indexOf(entry.target);
+          if (entry.isIntersecting) {
+            if (i < 0) visible.push(entry.target);
+          } else if (i > -1) {
+            visible.splice(i, 1);
+          }
+        });
+        var current = visible.reduce(function (a, b) {
+          return !a || b.offsetTop < a.offsetTop ? b : a;
+        }, null);
+        Object.keys(links).forEach(function (id) {
+          var on = !!current && current.id === id;
+          links[id].forEach(function (a) {
+            a.classList.toggle('active', on);
+            if (on) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
           });
-          links[entry.target.id].classList.add('active');
-          links[entry.target.id].setAttribute('aria-current', 'true');
         });
       },
       { rootMargin: '-30% 0px -60% 0px' }

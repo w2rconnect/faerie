@@ -30,12 +30,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      as="image"
-      href="assets/screen-hero.png"
-      fetchpriority="high"
-    />
-    <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
@@ -100,12 +94,12 @@
           </span>
         </a>
         <ul class="nav-links">
+          <li><a href="#beneficios">Benefícios</a></li>
           <li><a href="#produto">Produto</a></li>
-          <li><a href="#como-funciona">Como Funciona</a></li>
           <li><a href="#funcionalidades">Funcionalidades</a></li>
           <li><a href="#planos">Planos</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
           <li class="nav-sep" aria-hidden="true"></li>
-          <li><a href="mailto:suporte@w2rconnect.com.br">Suporte</a></li>
           <li>
             <a href="https://w2rconnect.app/login" class="nav-entrar">Entrar</a>
           </li>
@@ -134,20 +128,33 @@
       aria-modal="true"
       aria-label="Menu de navegação"
     >
-      <a href="#produto"><span class="idx">01</span>Produto</a>
-      <a href="#como-funciona"><span class="idx">02</span>Como Funciona</a>
-      <a href="#funcionalidades"><span class="idx">03</span>Funcionalidades</a>
-      <a href="#planos"><span class="idx">04</span>Planos</a>
-      <a href="mailto:suporte@w2rconnect.com.br"
-        ><span class="idx">05</span>Suporte</a
-      >
+      <p class="mob-eyebrow"><span class="node"></span>Navegação</p>
+      <div class="mob-links">
+        <a href="#beneficios"><span class="idx">01</span>Benefícios</a>
+        <a href="#produto"><span class="idx">02</span>Produto</a>
+        <a href="#funcionalidades"
+          ><span class="idx">03</span>Funcionalidades</a
+        >
+        <a href="#planos"><span class="idx">04</span>Planos</a>
+        <a href="#duvidas"><span class="idx">05</span>Dúvidas</a>
+      </div>
       <div class="mob-btn-row">
-        <a href="https://w2rconnect.app/login" class="mob-btn-entrar"
-          >Entrar</a
-        >
+        <a href="https://w2rconnect.app/login" class="mob-btn-entrar">Entrar</a>
         <a href="https://w2rconnect.app/register" class="mob-btn-cta"
-          >Testar grátis</a
-        >
+          >Testar grátis<svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <path
+              d="M3 8h10M9 4l4 4-4 4"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+        ></a>
       </div>
     </div>
 
@@ -238,7 +245,9 @@
               >
                 <path d="M8 10.6V2.6" />
                 <path d="M4.8 5.8 8 2.6l3.2 3.2" />
-                <path d="M2.6 10.6v1.8a1.4 1.4 0 0 0 1.4 1.4h8a1.4 1.4 0 0 0 1.4-1.4v-1.8" />
+                <path
+                  d="M2.6 10.6v1.8a1.4 1.4 0 0 0 1.4 1.4h8a1.4 1.4 0 0 0 1.4-1.4v-1.8"
+                />
               </svg>
               Envio de documentos
             </div>
@@ -330,332 +339,214 @@
             <div class="trail-fact">
               <i class="next"></i>Transferir para o banco
             </div>
-            <div class="trail-fact"><i class="next"></i>Concluir o processo</div>
+            <div class="trail-fact">
+              <i class="next"></i>Concluir o processo
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="hero-visual" data-intro-visual>
-          <div class="screen-overlay-wrap">
-            <div class="screen-frame" data-parallax>
-              <div class="screen-topbar" data-gsap-ignore>
-                <span class="mark">W2R<em>·</em>Connect</span>
-                <span class="addr">w2rconnect.app/processos</span>
-              </div>
-              <img
-                src="assets/screen-hero.png"
-                alt="Tela de processos do W2R Connect"
-                width="1600"
-                height="728"
-                fetchpriority="high"
-                decoding="async"
-              />
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <div class="marquee-item">
+              <span class="sq"></span>IA lê matrículas em segundos
             </div>
-            <div class="stat-chip" data-gsap-ignore>
-              <div class="lbl">Tempo economizado</div>
-              <div class="val js-counter">-80%</div>
+            <div class="marquee-item">
+              <span class="sq"></span>Zero redigitação
+            </div>
+            <div class="marquee-item">
+              <span class="sq"></span>Contratos gerados em 1 clique
+            </div>
+            <div class="marquee-item">
+              <span class="sq"></span>Extensão para sistemas Caixa
+            </div>
+            <div class="marquee-item">
+              <span class="sq"></span>7 dias grátis sem cartão
+            </div>
+          </div>
+          <div class="marquee-group">
+            <div class="marquee-item">
+              <span class="sq"></span>IA lê matrículas em segundos
+            </div>
+            <div class="marquee-item">
+              <span class="sq"></span>Zero redigitação
+            </div>
+            <div class="marquee-item">
+              <span class="sq"></span>Contratos gerados em 1 clique
+            </div>
+            <div class="marquee-item">
+              <span class="sq"></span>Extensão para sistemas Caixa
+            </div>
+            <div class="marquee-item">
+              <span class="sq"></span>7 dias grátis sem cartão
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="marquee t-dark" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-group">
-          <div class="marquee-item">
-            <span class="sq"></span>IA lê matrículas em segundos
-          </div>
-          <div class="marquee-item">
-            <span class="sq"></span>Zero redigitação
-          </div>
-          <div class="marquee-item">
-            <span class="sq"></span>Contratos gerados em 1 clique
-          </div>
-          <div class="marquee-item">
-            <span class="sq"></span>Extensão para sistemas Caixa
-          </div>
-          <div class="marquee-item">
-            <span class="sq"></span>7 dias grátis sem cartão
-          </div>
-        </div>
-        <div class="marquee-group">
-          <div class="marquee-item">
-            <span class="sq"></span>IA lê matrículas em segundos
-          </div>
-          <div class="marquee-item">
-            <span class="sq"></span>Zero redigitação
-          </div>
-          <div class="marquee-item">
-            <span class="sq"></span>Contratos gerados em 1 clique
-          </div>
-          <div class="marquee-item">
-            <span class="sq"></span>Extensão para sistemas Caixa
-          </div>
-          <div class="marquee-item">
-            <span class="sq"></span>7 dias grátis sem cartão
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <section class="t-light" id="ia">
+    <section class="t-light" id="beneficios">
       <div class="section-inner">
         <header class="sec-head center">
           <div class="sec-eyebrow">
-            <span class="idx">01</span><span class="sq"></span>powered by
-            inteligência artificial
+            <span class="idx">01</span><span class="sq"></span>benefícios
           </div>
           <h2 class="sec-title">
-            A IA que trabalha<br /><em>enquanto você fecha contratos</em>
+            Seu tempo volta<br /><em>para o que só você resolve.</em>
           </h2>
           <p class="sec-desc">
-            O W2R Connect não é só um CRM. É um sistema com inteligência
-            artificial integrada em cada etapa do financiamento imobiliário.
+            Ler documentos linha por linha e redigitar o mesmo dado em cada
+            formulário exige tempo. O W2R Connect assume essa parte e devolve o
+            processo pronto para a sua conferência.
           </p>
+          <div class="sec-rule" aria-hidden="true"></div>
         </header>
-        <div class="ia-cards">
-          <div class="card" data-reveal>
-            <div class="card-icon">
-              <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
-                <rect
-                  x="3"
-                  y="3"
-                  width="30"
-                  height="30"
-                  rx="6"
-                  stroke="currentColor"
-                  stroke-width="1.2"
-                  stroke-dasharray="3 2"
-                />
-                <path
-                  d="M9 18h18M18 9v18"
-                  style="stroke: var(--accent)"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <circle
-                  cx="18"
-                  cy="18"
-                  r="4"
-                  style="stroke: var(--accent)"
-                  stroke-width="1.5"
-                />
-              </svg>
-            </div>
-            <div class="card-tag">IA · Leitura automática</div>
-            <h3>Leitura da Matrícula do Imóvel</h3>
-            <p>
-              Envie o PDF e a IA entrega em segundos: histórico cronológico,
-              ônus, alienação, hipotecas, proprietários qualificados e área do
-              imóvel — tudo estruturado e pronto para o processo.
-            </p>
-            <div class="ia-stats" data-gsap-ignore>
-              <div>
-                <div class="ia-stat-num js-counter">-90%</div>
-                <div class="ia-stat-label">tempo de análise</div>
-              </div>
-              <div class="ia-stat-div"></div>
-              <div>
-                <div class="ia-stat-num js-counter">100%</div>
-                <div class="ia-stat-label">automático</div>
-              </div>
-            </div>
-          </div>
-          <div class="card ia-card-brand" data-reveal>
-            <div class="card-icon">
-              <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
-                <circle
-                  cx="18"
-                  cy="18"
-                  r="13"
-                  stroke="currentColor"
-                  stroke-width="1.4"
-                />
-                <circle
-                  cx="18"
-                  cy="18"
-                  r="7"
-                  stroke="currentColor"
-                  stroke-width="1"
-                  stroke-dasharray="2 2"
-                />
-                <circle cx="18" cy="18" r="3" style="fill: #2be38b" />
-                <path
-                  d="M18 5v3M18 28v3M5 18h3M28 18h3"
-                  stroke="currentColor"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-            <div class="card-tag">IA · Core do sistema</div>
-            <h3>Inteligência Artificial em Todo o Fluxo</h3>
-            <p>
-              Da coleta ao registro, a IA está presente em cada etapa: lê
-              documentos, preenche formulários, gera contratos, responde dúvidas
-              no chat e organiza todo o processo automaticamente.
-            </p>
-            <div class="ia-stats" data-gsap-ignore>
-              <div>
-                <div class="ia-stat-num js-counter">8</div>
-                <div class="ia-stat-label">etapas automatizadas</div>
-              </div>
-              <div class="ia-stat-div"></div>
-              <div>
-                <div class="ia-stat-num">Chat</div>
-                <div class="ia-stat-label">assistente IA</div>
-              </div>
-            </div>
-          </div>
-          <div class="card" data-reveal>
-            <div class="card-icon">
-              <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
-                <rect
-                  x="5"
-                  y="3"
-                  width="22"
-                  height="28"
-                  rx="3"
-                  stroke="currentColor"
-                  stroke-width="1.4"
-                />
-                <path
-                  d="M10 10h12M10 15h8M10 20h10M10 25h6"
-                  stroke="currentColor"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                />
-                <circle
-                  cx="28"
-                  cy="28"
-                  r="7"
-                  style="stroke: var(--accent)"
-                  fill="var(--card)"
-                  stroke-width="1.5"
-                />
-                <path
-                  d="M25 28l2 2 4-4"
-                  style="stroke: var(--accent)"
-                  stroke-width="1.3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
-            <div class="card-tag">IA · Geração automática</div>
-            <h3>Geração Automática de Documentos</h3>
-            <p>
-              Requerimentos, declarações e contratos gerados com os dados já
-              cadastrados no processo. A IA preenche, formata e entrega — você
-              só revisa e assina.
-            </p>
-            <div class="ia-stats" data-gsap-ignore>
-              <div>
-                <div class="ia-stat-num" style="font-size: 20px">segundos</div>
-                <div class="ia-stat-label">para gerar</div>
-              </div>
-              <div class="ia-stat-div"></div>
-              <div>
-                <div class="ia-stat-num" style="font-size: 20px">zero</div>
-                <div class="ia-stat-label">redigitação</div>
-              </div>
+        <div class="ben" id="ben" data-reveal>
+          <div
+            class="ben-viewport"
+            id="benViewport"
+            role="group"
+            tabindex="0"
+            aria-label="Benefícios do W2R Connect"
+          >
+            <div class="ben-track">
+              <article class="ben-card">
+                <h3>Extração de dados e cadastro</h3>
+                <div class="ben-now">
+                  <span class="ben-label">hoje</span>
+                  <p>
+                    Você abre matrícula, CNH e comprovantes um por um e digita
+                    cada campo. Depois digita os mesmos dados de novo no sistema
+                    do banco.
+                  </p>
+                </div>
+                <div class="ben-then">
+                  <span class="ben-label">no w2r connect</span>
+                  <p>
+                    A IA extrai os dados dos documentos e monta o cadastro do
+                    imóvel e das partes.
+                    <strong
+                      >Pronto para gerar formulário e transferir ao
+                      banco.</strong
+                    >
+                  </p>
+                </div>
+              </article>
+              <article class="ben-card">
+                <h3>Análise do imóvel e da renda</h3>
+                <div class="ben-now">
+                  <span class="ben-label">hoje</span>
+                  <p>
+                    Percorrer a matrícula inteira atrás de cada AV e R, conferir
+                    ônus, área, regime de casamento e espólio. Um item que
+                    escapa volta como exigência do banco.
+                  </p>
+                </div>
+                <div class="ben-then">
+                  <span class="ben-label">no w2r connect</span>
+                  <p>
+                    A IA lê a matrícula item por item: histórico cronológico de
+                    AV e R, ônus e gravames, qualificação dos proprietários,
+                    situação familiar, área e condomínio.
+                    <strong>A renda entra na mesma análise.</strong>
+                  </p>
+                </div>
+              </article>
+              <article class="ben-card">
+                <h3>Organização dos documentos</h3>
+                <div class="ben-now">
+                  <span class="ben-label">hoje</span>
+                  <p>
+                    CNH no WhatsApp, matrícula no e-mail, comprovante no drive.
+                    Cada processo vira caça ao tesouro.
+                  </p>
+                </div>
+                <div class="ben-then">
+                  <span class="ben-label">no w2r connect</span>
+                  <p>
+                    A IA já arquiva na parte certa o que você mandou analisar, e
+                    o gerenciador de arquivos guarda o resto:
+                    <strong>um processo, um lugar</strong>.
+                  </p>
+                </div>
+              </article>
+              <article class="ben-card">
+                <h3>Geração de formulários</h3>
+                <div class="ben-now">
+                  <span class="ben-label">hoje</span>
+                  <p>
+                    Modelo antigo aberto do lado, qualificação das partes
+                    copiada na mão, uma linha de cada vez, em cada formulário.
+                  </p>
+                </div>
+                <div class="ben-then">
+                  <span class="ben-label">no w2r connect</span>
+                  <p>
+                    Modelos prontos ou o seu próprio documento, enviado uma vez.
+                    O diagrama da operação mostra quem entra em cada campo e o
+                    formulário <strong>sai preenchido em segundos</strong>.
+                  </p>
+                </div>
+              </article>
+              <article class="ben-card">
+                <h3>Controle de prazos</h3>
+                <div class="ben-now">
+                  <span class="ben-label">hoje</span>
+                  <p>
+                    Aprovação, reserva e registro anotados em planilha e na
+                    memória. Você descobre que o prazo venceu quando o banco
+                    cobra.
+                  </p>
+                </div>
+                <div class="ben-then">
+                  <span class="ben-label">no w2r connect</span>
+                  <p>
+                    Datas e valores de aprovação, reserva e registro em
+                    formulários curtos, dentro do processo.
+                    <strong>Cada etapa mostra onde está.</strong>
+                  </p>
+                </div>
+              </article>
+              <article class="ben-card">
+                <h3>Textos para o contrato</h3>
+                <div class="ben-now">
+                  <span class="ben-label">hoje</span>
+                  <p>
+                    Qualificação das partes e descrição do imóvel redigidas do
+                    zero a cada contrato, com risco de erro em cada linha.
+                  </p>
+                </div>
+                <div class="ben-then">
+                  <span class="ben-label">no w2r connect</span>
+                  <p>
+                    O sistema monta o texto com os dados já conferidos no
+                    processo.
+                    <strong>Copiar e colar no contrato da Caixa.</strong>
+                  </p>
+                </div>
+              </article>
             </div>
           </div>
-        </div>
-        <div class="ia-strip" data-reveal>
-          <div class="ia-strip-item">
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M2 8l4 4 8-8"
-                style="stroke: var(--accent)"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >IA treinada para o mercado imobiliário brasileiro
-          </div>
-          <div class="ia-strip-sep"></div>
-          <div class="ia-strip-item">
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M2 8l4 4 8-8"
-                style="stroke: var(--accent)"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >Funciona com PDFs reais de cartório
-          </div>
-          <div class="ia-strip-sep"></div>
-          <div class="ia-strip-item">
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M2 8l4 4 8-8"
-                style="stroke: var(--accent)"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >Assistente disponível em qualquer tela
-          </div>
-          <div class="ia-strip-sep"></div>
-          <div class="ia-strip-item">
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M2 8l4 4 8-8"
-                style="stroke: var(--accent)"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >Sem necessidade de treinamento técnico
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="t-light" style="padding-top: 0">
-      <div class="section-inner">
-        <header class="sec-head">
-          <div class="sec-eyebrow">
-            <span class="idx">02</span><span class="sq"></span>o problema atual
-          </div>
-          <h2 class="sec-title">
-            Quanto tempo você perde<br />nessas tarefas toda semana?
-          </h2>
-        </header>
-        <div class="pain-grid">
-          <div class="card" data-reveal>
-            <span class="pain-num">/01</span>
-            <h3>Matrícula página por página</h3>
-            <p>
-              Horas lendo para identificar ônus, alienação, proprietários e
-              histórico. Tudo manual, tudo lento.
-            </p>
-          </div>
-          <div class="card" data-reveal>
-            <span class="pain-num">/02</span>
-            <h3>Redigitação nos sistemas bancários</h3>
-            <p>
-              Os mesmos dados digitados várias vezes. Um erro na Caixa pode
-              consumir aprovações do cliente.
-            </p>
-          </div>
-          <div class="card" data-reveal>
-            <span class="pain-num">/03</span>
-            <h3>Documentos espalhados</h3>
-            <p>
-              CNH no WhatsApp, matrícula no e-mail, contrato no drive. Cada
-              processo vira caça ao tesouro.
-            </p>
-          </div>
-          <div class="card" data-reveal>
-            <span class="pain-num">/04</span>
-            <h3>Prazos perdidos</h3>
-            <p>
-              Aprovação vencida, protocolo atrasado. Sem controle centralizado,
-              algo sempre escapa.
-            </p>
+          <div class="ben-dots" id="benDots">
+            <button class="ben-dot" type="button" aria-label="Benefício 1 de 6">
+              <span></span>
+            </button>
+            <button class="ben-dot" type="button" aria-label="Benefício 2 de 6">
+              <span></span>
+            </button>
+            <button class="ben-dot" type="button" aria-label="Benefício 3 de 6">
+              <span></span>
+            </button>
+            <button class="ben-dot" type="button" aria-label="Benefício 4 de 6">
+              <span></span>
+            </button>
+            <button class="ben-dot" type="button" aria-label="Benefício 5 de 6">
+              <span></span>
+            </button>
+            <button class="ben-dot" type="button" aria-label="Benefício 6 de 6">
+              <span></span>
+            </button>
           </div>
         </div>
       </div>
@@ -665,7 +556,7 @@
       <div class="section-inner">
         <header class="sec-head center">
           <div class="sec-eyebrow">
-            <span class="idx">03</span><span class="sq"></span>o sistema
+            <span class="idx">02</span><span class="sq"></span>produto
           </div>
           <h2 class="sec-title">Veja o W2R Connect <em>em ação</em></h2>
           <p class="sec-desc">
@@ -882,18 +773,11 @@
             </p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="t-dark" style="padding-top: 0">
-      <div class="section-inner">
-        <header class="sec-head center">
-          <div class="sec-eyebrow">
-            <span class="idx">04</span><span class="sq"></span>demonstração
-          </div>
-          <h2 class="sec-title">
-            Veja o sistema funcionando<br /><em>na prática</em>
-          </h2>
+        <header class="sec-head center part-head" data-reveal>
+          <div class="sec-eyebrow"><span class="sq"></span>demonstração</div>
+          <h3 class="sec-title">
+            Veja o sistema funcionando <em>na prática</em>
+          </h3>
           <p class="sec-desc">
             Assista ao W2R Connect gerenciando documentos por etapas do processo
             — do início ao registro.
@@ -1026,11 +910,11 @@
       </div>
     </section>
 
-    <section class="t-light" id="como-funciona">
+    <section class="t-light" id="funcionalidades">
       <div class="section-inner">
         <header class="sec-head">
           <div class="sec-eyebrow">
-            <span class="idx">05</span><span class="sq"></span>fluxo do processo
+            <span class="idx">03</span><span class="sq"></span>funcionalidades
           </div>
           <h2 class="sec-title">
             Do documento ao registro,<br />em um único sistema
@@ -1076,16 +960,9 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="t-light" id="funcionalidades" style="padding-top: 0">
-      <div class="section-inner">
-        <header class="sec-head">
-          <div class="sec-eyebrow">
-            <span class="idx">06</span><span class="sq"></span>funcionalidades
-          </div>
-          <h2 class="sec-title">Tudo que o correspondente precisa</h2>
+        <header class="sec-head part-head" data-reveal>
+          <div class="sec-eyebrow"><span class="sq"></span>recursos</div>
+          <h3 class="sec-title">Tudo que o correspondente precisa</h3>
         </header>
         <div class="features-grid">
           <div class="card" data-reveal>
@@ -1170,137 +1047,11 @@
       </div>
     </section>
 
-    <section class="t-dark">
+    <section class="t-dark" id="planos">
       <div class="section-inner">
         <header class="sec-head center">
           <div class="sec-eyebrow">
-            <span class="idx">07</span><span class="sq"></span>quem usa
-          </div>
-          <h2 class="sec-title">
-            Quem vive o processo,<br /><em>aprova o resultado</em>
-          </h2>
-        </header>
-        <div class="proof-grid">
-          <div class="card proof-card" data-reveal>
-            <div class="proof-stars" aria-label="5 de 5 estrelas">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                />
-              </svg>
-            </div>
-            <p class="proof-quote">
-              "Antes eu levava uma tarde inteira para montar a pasta de um
-              financiamento. Hoje a IA lê a matrícula e o contrato sai em
-              minutos."
-            </p>
-            <div class="proof-person">
-              <div class="proof-avatar">MS</div>
-              <div>
-                <div class="proof-name">M. S.</div>
-                <div class="proof-role">Correspondente bancária · SP</div>
-              </div>
-            </div>
-          </div>
-          <div class="card proof-card" data-reveal>
-            <div class="proof-stars" aria-label="5 de 5 estrelas">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                />
-              </svg>
-            </div>
-            <p class="proof-quote">
-              "A extensão que preenche o sistema da Caixa sozinha já pagou a
-              assinatura no primeiro mês. Zero redigitação."
-            </p>
-            <div class="proof-person">
-              <div class="proof-avatar">RA</div>
-              <div>
-                <div class="proof-name">R. A.</div>
-                <div class="proof-role">
-                  Escritório de crédito imobiliário · MG
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card proof-card" data-reveal>
-            <div class="proof-stars" aria-label="5 de 5 estrelas">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                /></svg
-              ><svg width="14" height="14" viewBox="0 0 14 14" fill="#2BE38B">
-                <path
-                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
-                />
-              </svg>
-            </div>
-            <p class="proof-quote">
-              "Distribuo os processos para a equipe e acompanho tudo pelo
-              diagrama. Ninguém mais perde prazo de reserva."
-            </p>
-            <div class="proof-person">
-              <div class="proof-avatar">CF</div>
-              <div>
-                <div class="proof-name">C. F.</div>
-                <div class="proof-role">Gestor de equipe · PR</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="t-dark" id="planos" style="padding-top: 0">
-      <div class="section-inner">
-        <header class="sec-head center">
-          <div class="sec-eyebrow">
-            <span class="idx">08</span><span class="sq"></span>planos
+            <span class="idx">04</span><span class="sq"></span>planos
           </div>
           <h2 class="sec-title">
             Escolha o seu plano<br />e <em>comece hoje</em>
@@ -1489,14 +1240,209 @@
       </div>
     </section>
 
-    <section class="t-light" id="faq">
+    <section class="t-light" id="duvidas">
       <div class="section-inner">
         <header class="sec-head center">
           <div class="sec-eyebrow">
-            <span class="idx">09</span><span class="sq"></span>perguntas
-            frequentes
+            <span class="idx">05</span><span class="sq"></span>dúvidas
           </div>
-          <h2 class="sec-title">Ficou alguma dúvida?</h2>
+          <h2 class="sec-title">
+            Quem vive o processo,<br /><em>aprova o resultado</em>
+          </h2>
+        </header>
+        <div class="proof-grid">
+          <div class="card proof-card" data-reveal>
+            <div class="proof-stars" aria-label="5 de 5 estrelas">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                />
+              </svg>
+            </div>
+            <p class="proof-quote">
+              "Antes eu levava uma tarde inteira para montar a pasta de um
+              financiamento. Hoje a IA lê a matrícula e o contrato sai em
+              minutos."
+            </p>
+            <div class="proof-person">
+              <div class="proof-avatar">MS</div>
+              <div>
+                <div class="proof-name">M. S.</div>
+                <div class="proof-role">Correspondente bancária · SP</div>
+              </div>
+            </div>
+          </div>
+          <div class="card proof-card" data-reveal>
+            <div class="proof-stars" aria-label="5 de 5 estrelas">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                />
+              </svg>
+            </div>
+            <p class="proof-quote">
+              "A extensão que preenche o sistema da Caixa sozinha já pagou a
+              assinatura no primeiro mês. Zero redigitação."
+            </p>
+            <div class="proof-person">
+              <div class="proof-avatar">RA</div>
+              <div>
+                <div class="proof-name">R. A.</div>
+                <div class="proof-role">
+                  Escritório de crédito imobiliário · MG
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card proof-card" data-reveal>
+            <div class="proof-stars" aria-label="5 de 5 estrelas">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                /></svg
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+              >
+                <path
+                  d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"
+                />
+              </svg>
+            </div>
+            <p class="proof-quote">
+              "Distribuo os processos para a equipe e acompanho tudo pelo
+              diagrama. Ninguém mais perde prazo de reserva."
+            </p>
+            <div class="proof-person">
+              <div class="proof-avatar">CF</div>
+              <div>
+                <div class="proof-name">C. F.</div>
+                <div class="proof-role">Gestor de equipe · PR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <header class="sec-head center part-head" data-reveal>
+          <div class="sec-eyebrow">
+            <span class="sq"></span>perguntas frequentes
+          </div>
+          <h3 class="sec-title">Ficou alguma dúvida?</h3>
         </header>
         <div class="faq-list">
           <details class="faq-item">
@@ -1617,130 +1563,131 @@
       </div>
     </section>
 
-    <section class="cta-section t-dark">
-      <svg
-        class="circuit circuit-cta"
-        viewBox="0 0 380 260"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path
-          class="draw"
-          d="M10 250 L10 140 Q10 130 20 130 L120 130 Q130 130 130 120 L130 40 Q130 30 140 30 L260 30"
-          stroke-width="1.2"
-        />
-        <path
-          class="draw"
-          d="M70 250 L70 190 Q70 180 80 180 L190 180 Q200 180 200 170 L200 90 Q200 80 210 80 L330 80"
-          stroke-width="1.2"
-        />
-        <circle class="node" cx="260" cy="30" r="4" />
-        <circle class="node" cx="330" cy="80" r="4" />
-      </svg>
-      <div class="cta-inner">
-        <div class="cta-eyebrow" data-gsap-ignore>
-          <span class="dot"></span>Comece hoje — é grátis
-        </div>
-        <h2 class="cta-title">
-          Feche mais financiamentos.<br /><em>Com muito menos trabalho.</em>
-        </h2>
-        <p class="cta-desc">
-          Mais de uma hora salva por processo. Zero redigitação.<br />Documentos
-          gerados em segundos. Teste e veja.
-        </p>
-        <div class="cta-stats" data-reveal data-gsap-ignore>
-          <div>
-            <div class="cta-stat-value js-counter">-80%</div>
-            <div class="cta-stat-label">tempo de cadastro</div>
+    <footer class="footer t-dark">
+      <div class="footer-cta">
+        <svg
+          class="circuit circuit-cta"
+          viewBox="0 0 380 260"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            class="draw"
+            d="M10 250 L10 140 Q10 130 20 130 L120 130 Q130 130 130 120 L130 40 Q130 30 140 30 L260 30"
+            stroke-width="1.2"
+          />
+          <path
+            class="draw"
+            d="M70 250 L70 190 Q70 180 80 180 L190 180 Q200 180 200 170 L200 90 Q200 80 210 80 L330 80"
+            stroke-width="1.2"
+          />
+          <circle class="node" cx="260" cy="30" r="4" />
+          <circle class="node" cx="330" cy="80" r="4" />
+        </svg>
+        <div class="cta-inner">
+          <div class="cta-eyebrow" data-gsap-ignore>
+            <span class="dot"></span>Comece hoje — é grátis
           </div>
-          <div class="cta-stat-div"></div>
-          <div>
-            <div class="cta-stat-value">7 dias</div>
-            <div class="cta-stat-label">grátis, sem cartão</div>
+          <h2 class="cta-title">
+            Feche mais financiamentos.<br /><em>Com muito menos trabalho.</em>
+          </h2>
+          <p class="cta-desc">
+            Mais de uma hora salva por processo. Zero redigitação.<br />Documentos
+            gerados em segundos. Teste e veja.
+          </p>
+          <div class="cta-stats" data-reveal data-gsap-ignore>
+            <div>
+              <div class="cta-stat-value js-counter">-80%</div>
+              <div class="cta-stat-label">tempo de cadastro</div>
+            </div>
+            <div class="cta-stat-div"></div>
+            <div>
+              <div class="cta-stat-value">7 dias</div>
+              <div class="cta-stat-label">grátis, sem cartão</div>
+            </div>
+            <div class="cta-stat-div"></div>
+            <div>
+              <div class="cta-stat-value js-counter">100%</div>
+              <div class="cta-stat-label">focado no correspondente</div>
+            </div>
           </div>
-          <div class="cta-stat-div"></div>
-          <div>
-            <div class="cta-stat-value js-counter">100%</div>
-            <div class="cta-stat-label">focado no correspondente</div>
+          <div class="cta-actions" data-gsap-ignore>
+            <a href="https://w2rconnect.app/register" class="btn btn-primary"
+              ><span class="btn-flip"
+                ><span>Criar conta grátis</span
+                ><span aria-hidden="true">Criar conta grátis</span></span
+              ><svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M3 9h12M10 4l5 5-5 5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></a>
+            <a href="#produto" class="btn btn-ghost"
+              ><span class="btn-flip"
+                ><span>Ver o sistema</span
+                ><span aria-hidden="true">Ver o sistema</span></span
+              ></a
+            >
           </div>
-        </div>
-        <div class="cta-actions" data-gsap-ignore>
-          <a href="https://w2rconnect.app/register" class="btn btn-primary"
-            ><span class="btn-flip"
-              ><span>Criar conta grátis</span
-              ><span aria-hidden="true">Criar conta grátis</span></span
-            ><svg width="17" height="17" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M3 9h12M10 4l5 5-5 5"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-          ></a>
-          <a href="#produto" class="btn btn-ghost"
-            ><span class="btn-flip"
-              ><span>Ver o sistema</span
-              ><span aria-hidden="true">Ver o sistema</span></span
-            ></a
-          >
-        </div>
-        <div class="cta-trust" data-gsap-ignore>
-          <div class="cta-trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M2 7l3.5 3.5L12 4"
-                stroke="#2BE38B"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >Acesso imediato
-          </div>
-          <div class="cta-trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M2 7l3.5 3.5L12 4"
-                stroke="#2BE38B"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >Sem cartão de crédito
-          </div>
-          <div class="cta-trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M2 7l3.5 3.5L12 4"
-                stroke="#2BE38B"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >Cancele quando quiser
+          <div class="cta-trust" data-gsap-ignore>
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M2 7l3.5 3.5L12 4"
+                  stroke="#2BE38B"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >Acesso imediato
+            </div>
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M2 7l3.5 3.5L12 4"
+                  stroke="#2BE38B"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >Sem cartão de crédito
+            </div>
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M2 7l3.5 3.5L12 4"
+                  stroke="#2BE38B"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              >Cancele quando quiser
+            </div>
           </div>
         </div>
       </div>
-    </section>
-
-    <footer class="t-dark">
-      <div class="footer-logo">
-        <img
-          src="assets/home.svg"
-          alt=""
-          width="449"
-          height="326"
-          loading="lazy"
-        />
-      </div>
-      <div class="footer-brand shine-text">W2R Connect</div>
-      <div class="footer-text">
-        Sistema de Gestão de Documentos para Correspondentes Bancários
-      </div>
-      <div class="footer-links">
-        <a href="#">Termos de uso</a
-        ><a href="politica-de-privacidade.html">Política de privacidade</a
-        ><a href="mailto:suporte@w2rconnect.com.br">Suporte</a>
+      <div class="footer-base">
+        <div class="footer-logo">
+          <img
+            src="assets/home.svg"
+            alt=""
+            width="449"
+            height="326"
+            loading="lazy"
+          />
+        </div>
+        <div class="footer-brand shine-text">W2R Connect</div>
+        <div class="footer-text">
+          Sistema de Gestão de Documentos para Correspondentes Bancários
+        </div>
+        <div class="footer-links">
+          <a href="#">Termos de uso</a
+          ><a href="politica-de-privacidade.html">Política de privacidade</a
+          ><a href="#">Contato</a>
+        </div>
       </div>
     </footer>
   </body>

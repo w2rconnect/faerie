@@ -19,9 +19,11 @@ O app usa **azul → verde como gradiente**, não como duas cores separadas. Apa
 3. **Divisor curto** — barra de ~80×3px sob parágrafos de introdução
 
 ```css
---brand-grad: linear-gradient(96deg, #5b8bff 0%, #2be38b 100%); /* traço e texto sobre fundo escuro */
---btn-grad:   linear-gradient(96deg, #3560e0 0%, #0d8355 100%); /* fundo de CTA, texto branco */
+--brand-grad: linear-gradient(96deg, #5b8bff 0%, #2be38b 100%);
+--btn-grad:   linear-gradient(96deg, #3560e0 0%, #0d8355 100%);
 ```
+
+`--brand-grad` é traço e texto sobre fundo escuro. `--btn-grad` é fundo de CTA com texto branco.
 
 **São dois tokens porque um só não serve.** `--brand-grad` é claro de propósito — precisa contrastar com `#080c14` como traçado e como texto em `background-clip`. Como *fundo* de botão ele reprova feio: 3,2:1 no azul e 1,7:1 no verde contra texto branco. `--btn-grad` faz o mesmo movimento azul→verde com as duas pontas acima de 4,5:1 (5,4:1 e 4,8:1). Verificado por amostragem das paradas, não por estimativa.
 
@@ -89,8 +91,10 @@ Um arquivo, IIFEs e funções nomeadas dentro de um `DOMContentLoaded`. GSAP + S
 **Progressive enhancement é obrigatório.** O CSS padrão mostra o **estado final**; o JS esconde e então anima. Se o GSAP não carregar, ou `prefers-reduced-motion` estiver ativo, a página fica completa e legível.
 
 ```css
-.js-anim .trail-fact { opacity: 0; visibility: hidden; }  /* .js-anim é setada no <head>, antes do paint */
+.js-anim .trail-fact { opacity: 0; visibility: hidden; }
 ```
+
+`.js-anim` é setada no `<head>`, antes do paint.
 
 Vocabulário de atributos:
 
@@ -112,7 +116,9 @@ Alvo de toque mínimo **44×44px** para qualquer controle tocável. O hambúrgue
 
 ### Comentários
 
-Português, e só onde a intenção não é óbvia pelo código — por quê, não o quê. Comentário `ponytail:` marca simplificação deliberada com o teto conhecido.
+**Não escrever comentário nenhum.** Nem em CSS, nem em JS, nem em HTML. Só o código.
+
+Isso vale sem exceção: nada de comentário de seção, de "por quê", de TODO, de marcador `ponytail:`. Se um trecho precisa de explicação, ela vai no nome da classe/função, na mensagem de commit ou nesta CLAUDE.md — nunca em `/* */`, `//` ou `<!-- -->`. Ao editar um arquivo, apague os comentários que já estiverem ali.
 
 ---
 
@@ -122,8 +128,9 @@ Português, e só onde a intenção não é óbvia pelo código — por quê, n�
 
 Playwright já está disponível (`npx playwright`). Rode do scratchpad, nunca do repo:
 
+Viewports mínimos: 1440×900, 1366×768 (a dobra real), 390×844.
+
 ```js
-// viewports mínimos: 1440x900, 1366x768 (a dobra real), 390x844
 await page.goto(SITE + '?nointro', { waitUntil: 'networkidle' });
 ```
 
@@ -208,9 +215,26 @@ O redesign é **seção por seção**, conduzido pelo usuário. Só o hero foi r
 
 Ordem por rodada:
 
-1. Ler o que existe (HTML + CSS + JS da seção) **e os assets do app** antes de propor
+1. Ler o que existe (HTML + CSS + JS da seção) **e os assets do app** antes de propor — o texto da seção junto, contra a seção 6
 2. Diagnosticar com evidência: `arquivo:linha`, números reais, não impressão
 3. Propor direção e confirmar com o usuário
 4. Construir
 5. Renderizar e verificar (seção 3)
 6. Reportar o que foi verificado e o que ficou de fora
+
+---
+
+## 6. Texto: a herança errada
+
+A landing foi escrita por uma equipe que não entendeu o produto. Sobrou copy apontada para **imobiliária e corretor de imóvel** — público errado, em várias seções.
+
+O usuário é o **correspondente bancário**, e só ele: quem monta e acompanha o processo de financiamento imobiliário para o banco — lê matrícula, confere R1 e averbações, identifica proprietários, gera contrato, alimenta os sistemas dos bancos e toca vários processos ao mesmo tempo. A dor dele é volume de documento, retrabalho de digitação e processo travado no banco. Não é vender imóvel, não é captar cliente comprador, não é gestão de carteira de imóveis.
+
+**Texto incoerente é bug, não escopo separado.** Ao mexer em qualquer seção, ler o texto dela antes do CSS. Se falar com imobiliária, ajustar na mesma rodada e levar a proposta de texto junto com a proposta de layout (passo 3 do fluxo).
+
+Sinais de texto herdado errado:
+
+- fala com "sua imobiliária", "sua equipe de corretores", "seus clientes compradores"
+- promete vender/anunciar imóvel, captar lead, gerir carteira de imóveis
+- benefício genérico de CRM de vendas em vez de ganho no processo de financiamento
+- termo de mercado imobiliário onde caberia o vocabulário do correspondente (matrícula, R1, averbação, proprietário, contrato, esteira do banco)

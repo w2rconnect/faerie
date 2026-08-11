@@ -1,7 +1,15 @@
-footer {
-  border-top: 1px solid var(--line);
-  padding: 56px 4% 40px;
+.footer {
+  padding: 120px 4% 40px;
   text-align: center;
+}
+.footer-cta {
+  position: relative;
+  overflow: hidden;
+}
+.footer-base {
+  border-top: 1px solid var(--line);
+  margin-top: 110px;
+  padding-top: 56px;
 }
 /* home.svg é a marca completa (símbolo + circuito): precisa de altura para
    o motivo ler — abaixo de ~80px vira ruído. */
