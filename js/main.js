@@ -34,6 +34,20 @@ document.addEventListener('DOMContentLoaded', function () {
   var navPeek = false;
   var navDown = false;
   var navSuppress = null;
+  var jumping = false;
+  var jumpTimer = 0;
+  var jumpEnd = null;
+  function startJump() {
+    jumping = true;
+    clearTimeout(jumpTimer);
+    jumpTimer = setTimeout(endJump, 1400);
+  }
+  function endJump() {
+    clearTimeout(jumpTimer);
+    if (!jumping) return;
+    jumping = false;
+    if (jumpEnd) jumpEnd();
+  }
   function measureNav() {
     if (nav) navH = nav.offsetHeight || 72;
   }
@@ -104,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ev,
       function () {
         navLock = false;
+        endJump();
       },
       { passive: true }
     );
@@ -130,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var hash = a.getAttribute('href');
       if (hash.length > 1) {
         e.preventDefault();
+        startJump();
         scrollToTarget(hash);
       }
     });
@@ -562,9 +578,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var locked = false;
     var lockTimer = 0;
 
+    jumpEnd = function () {
+      activate(nearestStop());
+    };
+
     var spy = new IntersectionObserver(
       function (entries) {
-        if (pending >= 0) return;
+        if (pending >= 0 || jumping) return;
         var hit = -1;
         entries.forEach(function (entry) {
           if (entry.isIntersecting) hit = stops.indexOf(entry.target);

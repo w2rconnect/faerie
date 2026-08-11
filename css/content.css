@@ -294,6 +294,7 @@
 .stage {
   --stage-nav-h: 20px;
   --stage-gap: 26px;
+  --frame-w: min(100%, calc((88vh - 46px) * 2.108));
   display: grid;
   position: relative;
 }
@@ -308,6 +309,14 @@
   position: relative;
   z-index: 1;
   list-style: none;
+  counter-reset: stop;
+}
+.stage-stop[data-step] {
+  counter-increment: stop;
+}
+.stage-stop[data-step] .stop-eyebrow::before {
+  content: counter(stop, decimal-leading-zero) ' · ';
+  color: var(--accent);
 }
 .stage-stop {
   --half: calc(50 / var(--z));
@@ -393,7 +402,10 @@
 }
 .js-cam .stage-stop {
   min-height: 42vh;
+  width: var(--frame-w);
+  margin-inline: auto;
   padding-top: calc(var(--stage-nav-h) + var(--stage-gap));
+  padding-inline: 28px;
   display: flex;
   align-items: center;
 }
@@ -404,13 +416,14 @@
   justify-content: center;
 }
 .js-cam .stop-card {
-  width: min(360px, 34%);
-  padding: 26px 26px 28px;
-  background: color-mix(in srgb, var(--card) 94%, transparent);
+  width: min(360px, 36%);
+  padding: 24px 26px 26px;
+  background: color-mix(in srgb, var(--card) 82%, transparent);
   border: 1px solid var(--line-strong);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(10px);
-  overflow: hidden;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.62),
+    inset 0 1px 0 rgba(241, 245, 251, 0.07);
+  backdrop-filter: blur(14px);
   opacity: 0;
   transform: translateY(14px);
   pointer-events: none;
@@ -432,21 +445,12 @@
 .js-cam .stage-stop[data-scene]:not(.is-current) .stop-card {
   transform: translateY(52px);
 }
-.js-cam .stop-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--brand-grad);
-}
 .js-cam .stop-shot {
   display: none;
 }
 .stage-frame {
   position: relative;
-  width: min(90%, calc((88vh - 46px) * 2.108));
+  width: var(--frame-w);
   margin: 0 auto;
   aspect-ratio: 1920 / 911;
   border-radius: 16px;
@@ -486,10 +490,17 @@
   object-fit: cover;
   object-position: top center;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  visibility: hidden;
+  transition:
+    opacity 0.8s ease,
+    visibility 0s linear 0.8s;
 }
 .cam-shot.is-active {
   opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.8s ease,
+    visibility 0s;
 }
 .stage-vignette {
   position: absolute;
@@ -502,7 +513,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  width: min(90%, calc((88vh - 46px) * 2.108));
+  width: var(--frame-w);
   margin: 0 auto;
 }
 .stage-nav-step {
