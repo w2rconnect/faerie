@@ -655,6 +655,9 @@
                 </button>
               </span>
               <span class="stage-count"><strong id="stageNum">01</strong>/10</span>
+              <button class="stage-exit" id="stageExit" type="button" data-stage-close>
+                Sair
+              </button>
             </div>
             <div class="stage-frame" aria-hidden="true">
               <div class="stage-cam" id="stageCam">
@@ -741,6 +744,23 @@
               </div>
               <div class="stage-vignette"></div>
             </div>
+            <div class="stage-idle">
+              <div class="stop-card">
+                <span class="stop-eyebrow">Demonstração</span>
+                <h3>Uma visualização do fluxo completo</h3>
+                <p>
+                  Todas as etapas do processo, na mesma tela que o correspondente
+                  usa todo dia.
+                </p>
+                <button
+                  class="btn btn-primary stop-btn"
+                  id="stagePlay"
+                  type="button"
+                >
+                  Iniciar
+                </button>
+              </div>
+            </div>
           </div>
           <ol class="stage-stops">
             <li
@@ -750,10 +770,10 @@
             >
               <div class="stop-card">
                 <span class="stop-eyebrow">Demonstração</span>
-                <h3>Uma visualização do fluxo completo</h3>
+                <h3>Você está na demonstração</h3>
                 <p>
-                  Role a tela para acompanhar cada etapa do processo dentro da
-                  aplicação.
+                  Use o scroll ou as setas do teclado para percorrer cada etapa
+                  do processo dentro da aplicação.
                 </p>
               </div>
               <div class="stop-shot">
@@ -976,6 +996,13 @@
                   O resumo fecha o processo com imóvel, partes, responsável e datas
                   em uma tela só, pronta para virar relatório.
                 </p>
+                <button
+                  class="btn btn-primary stop-btn"
+                  type="button"
+                  data-stage-close
+                >
+                  Encerrar
+                </button>
               </div>
               <div class="stop-shot">
                 <img
