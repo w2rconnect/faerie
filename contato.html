@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contato | W2R Connect</title>
+    <meta
+      name="description"
+      content="Fale com a equipe do W2R Connect. Dúvidas sobre o sistema, ajuda para começar ou uma consultoria para conhecer o produto."
+    />
+    <meta name="theme-color" content="#080C14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="W2R Connect" />
+    <meta property="og:title" content="Contato | W2R Connect" />
+    <meta
+      property="og:description"
+      content="Fale com a equipe do W2R Connect. Respondemos o mais rápido possível."
+    />
+    <meta property="og:locale" content="pt_BR" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <script>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-anim');
+      }
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/lenis@1.3.8/dist/lenis.min.js"
+    ></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/pages.js"></script>
+  </head>
+  <body class="t-dark">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <nav id="nav" class="nav-solid">
+      <div class="nav-inner">
+        <a class="nav-logo" href="/" aria-label="Início — W2R Connect">
+          <img src="assets/logo.svg" alt="" width="375" height="175" />
+          <span class="nav-lockup" aria-hidden="true">
+            <span class="nav-brand shine-text">W2R Connect</span>
+            <span class="nav-tagline">Sistema de Gestão de Documentos</span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#conteudo">Contato</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="t-light page-body" id="conteudo">
+      <div class="section-inner">
+        <header class="sec-head center">
+          <div class="sec-eyebrow"><span class="sq"></span>contato</div>
+          <h1 class="sec-title">Fale com <em>quem construiu</em></h1>
+          <p class="sec-desc">
+            Dúvida sobre o sistema, ajuda para colocar o primeiro processo na
+            esteira ou uma consultoria para conhecer o produto antes de assinar.
+            Conte o que precisa e a gente responde.
+          </p>
+          <div class="sec-rule" aria-hidden="true"></div>
+        </header>
+
+        <div class="form-shell" id="formShell" data-reveal>
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="form-alert" id="formAlert" role="alert">
+                <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                  <circle
+                    cx="9"
+                    cy="9"
+                    r="7.2"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M9 5.4v4.2M9 12.4h.01"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span id="formAlertText"></span>
+              </div>
+
+              <div class="field" id="fieldNome">
+                <label for="nome">Nome<span class="req">*</span></label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  autocomplete="name"
+                  placeholder="Como podemos te chamar"
+                  required
+                />
+                <span class="field-error" id="errNome"></span>
+              </div>
+
+              <div class="field" id="fieldTelefone">
+                <label for="telefone">Telefone<span class="req">*</span></label>
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="(00) 00000-0000"
+                  required
+                />
+                <span class="field-error" id="errTelefone"></span>
+              </div>
+
+              <div class="field" id="fieldEmail">
+                <label for="email">E-mail<span class="req">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  inputmode="email"
+                  autocomplete="email"
+                  placeholder="voce@escritorio.com.br"
+                  required
+                />
+                <span class="field-error" id="errEmail"></span>
+              </div>
+
+              <div class="field" id="fieldMensagem">
+                <label for="mensagem">Mensagem<span class="req">*</span></label>
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  placeholder="Conte o que você precisa resolver"
+                  required
+                ></textarea>
+                <span class="field-error" id="errMensagem"></span>
+              </div>
+
+              <div class="field-hp" aria-hidden="true">
+                <label for="site">Não preencha este campo</label>
+                <input
+                  type="text"
+                  id="site"
+                  name="site"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
+              <button
+                class="btn btn-primary form-submit"
+                type="submit"
+                id="formSubmit"
+              >
+                <span class="btn-flip"
+                  ><span>Enviar mensagem</span
+                  ><span aria-hidden="true">Enviar mensagem</span></span
+                >
+                <span class="btn-spin" aria-hidden="true"></span>
+                <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                  <path
+                    d="M3 9h12M10 4l5 5-5 5"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <p class="form-secure">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <rect
+                    x="3.2"
+                    y="7"
+                    width="9.6"
+                    height="7"
+                    rx="1.6"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                  />
+                  <path
+                    d="M5.6 7V5.2a2.4 2.4 0 0 1 4.8 0V7"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Enviado por conexão segura. Usamos seus dados só para responder
+                este contato.
+              </p>
+            </form>
+
+            <div class="form-done" id="formDone" role="status" aria-live="polite">
+              <div class="done-mark" aria-hidden="true">
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+                  <path
+                    d="M9.5 17.6l5 5L24.5 12"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h2 id="doneTitle" tabindex="-1">Mensagem enviada</h2>
+              <p>
+                Recebemos o seu contato e vamos responder o mais rápido possível,
+                no e-mail ou no telefone que você informou.
+              </p>
+              <p class="done-meta">Atendimento em dias úteis</p>
+              <button class="done-again" type="button" id="formAgain">
+                Enviar outra mensagem
+              </button>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer footer-slim t-dark">
+      <div class="footer-glow" aria-hidden="true"></div>
+      <div class="footer-base">
+        <div class="footer-logo">
+          <img
+            src="assets/home.svg"
+            alt=""
+            width="449"
+            height="326"
+            loading="lazy"
+          />
+        </div>
+        <div class="footer-brand shine-text">W2R Connect</div>
+        <div class="footer-text">
+          Sistema de Gestão de Documentos para Correspondentes Bancários
+        </div>
+        <div class="footer-links">
+          <a href="/">Início</a><a href="termos-de-uso.html">Termos de uso</a
+          ><a href="politica-de-privacidade.html">Política de privacidade</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

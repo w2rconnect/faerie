@@ -280,13 +280,24 @@ document.addEventListener('DOMContentLoaded', function () {
     );
   })();
 
-  function inViewport(el) {
-    var r = el.getBoundingClientRect();
-    return r.top < window.innerHeight && r.bottom > 0;
+  function aboveFold(el) {
+    return (
+      el.getBoundingClientRect().top + window.scrollY <
+      window.innerHeight
+    );
+  }
+  function revealTrigger(el, playAt) {
+    if (aboveFold(el)) return null;
+    return {
+      trigger: el,
+      start: 'top bottom',
+      end: 'clamp(' + playAt + ')',
+      toggleActions: 'none play none reverse',
+    };
   }
   function splitAndReveal(el, dur, stag) {
     gsap.set(el, { autoAlpha: 1 });
-    var introOnly = !!el.closest('.hero') || inViewport(el);
+    var st = el.closest('.hero') ? null : revealTrigger(el, 'top 85%');
     SplitText.create(el, {
       type: 'lines',
       mask: 'lines',
@@ -298,13 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
           duration: dur,
           stagger: stag,
           ease: 'power3.out',
-          scrollTrigger: introOnly
-            ? null
-            : {
-                trigger: el,
-                start: 'clamp(top 85%)',
-                toggleActions: 'play none none reverse',
-              },
+          scrollTrigger: st,
         });
       },
     });
@@ -325,31 +330,42 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function initBatchReveal() {
-    var items = document.querySelectorAll('[data-reveal]');
+    var items = Array.prototype.slice.call(
+      document.querySelectorAll('[data-reveal]')
+    );
     if (!items.length) return;
     gsap.set(items, { y: 36, autoAlpha: 0 });
-    ScrollTrigger.batch(items, {
-      start: 'top 88%',
-      onEnter: function (batch) {
-        gsap.to(batch, {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          stagger: 0.09,
-          ease: 'power3.out',
-          overwrite: true,
-          clearProps: 'transform',
-        });
-      },
-      onLeaveBack: function (batch) {
-        gsap.to(batch, {
-          y: 36,
-          autoAlpha: 0,
-          duration: 0.4,
-          ease: 'power2.in',
-          overwrite: true,
-        });
-      },
+    function show(batch) {
+      gsap.to(batch, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.8,
+        stagger: 0.09,
+        ease: 'power3.out',
+        overwrite: true,
+        clearProps: 'transform',
+      });
+    }
+    function hide(batch) {
+      gsap.to(batch, {
+        y: 36,
+        autoAlpha: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+        overwrite: true,
+      });
+    }
+    var intro = items.filter(aboveFold);
+    var onScroll = items.filter(function (el) {
+      return !aboveFold(el);
+    });
+    if (intro.length) show(intro);
+    if (!onScroll.length) return;
+    ScrollTrigger.batch(onScroll, {
+      start: 'top bottom',
+      end: 'clamp(top 88%)',
+      onLeave: show,
+      onLeaveBack: hide,
     });
   }
 
@@ -503,11 +519,7 @@ document.addEventListener('DOMContentLoaded', function () {
           strokeDashoffset: 0,
           duration: 1.8,
           ease: 'power2.out',
-          scrollTrigger: {
-            trigger: svg,
-            start: 'top 92%',
-            toggleActions: 'play none none reverse',
-          },
+          scrollTrigger: revealTrigger(svg, 'top 92%'),
         });
       });
       gsap.from(svg.querySelectorAll('.node'), {
@@ -517,11 +529,7 @@ document.addEventListener('DOMContentLoaded', function () {
         stagger: 0.15,
         delay: 1.2,
         ease: 'back.out(2)',
-        scrollTrigger: {
-          trigger: svg,
-          start: 'top 92%',
-          toggleActions: 'play none none reverse',
-        },
+        scrollTrigger: revealTrigger(svg, 'top 92%'),
       });
     });
   }
@@ -962,4 +970,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
+  (function () {
+    if (!location.hash || document.getElementById('preloader')) return;
+    var target = document.querySelector(location.hash);
+    if (!target) return;
+    function jump() {
+      measureNav();
+      var y = target.getBoundingClientRect().top + window.scrollY - navH;
+      if (lenis) lenis.scrollTo(y, { immediate: true });
+      else window.scrollTo(0, y);
+      lastY = y;
+      navDown = false;
+      applyNav();
+    }
+    var ready =
+      document.fonts && document.fonts.ready
+        ? document.fonts.ready
+        : Promise.resolve();
+    ready.then(function () {
+      jump();
+      setTimeout(jump, 400);
+    });
+  })();
 });

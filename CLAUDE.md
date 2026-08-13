@@ -1,6 +1,6 @@
 # W2R Connect — Landing Page
 
-Landing de `w2rconnect.com.br`. **HTML/CSS/JS puro, sem build, sem framework.** Abre `index.html` direto no navegador. Deploy por Docker/Cloud Build.
+Landing de `w2rconnect.com`. **HTML/CSS/JS puro, sem build, sem framework.** Abre `index.html` direto no navegador. Deploy por Docker/Cloud Build.
 
 O produto é um CRM com IA para **correspondentes bancários** (financiamento imobiliário): lê matrículas, extrai R1/averbações/proprietários, gera contratos e envia dados aos sistemas dos bancos.
 
