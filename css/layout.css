@@ -85,7 +85,7 @@
 .menu-open .scroll-progress {
   opacity: 0;
 }
-nav {
+#nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -108,20 +108,20 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
-nav.nav-hidden {
+#nav.nav-hidden {
   transform: translateY(-100%);
 }
-nav:has(:focus-visible),
-.menu-open nav {
+#nav:has(:focus-visible),
+.menu-open #nav {
   transform: none;
 }
-nav.scrolled {
+#nav.scrolled {
   background: rgba(8, 12, 20, 0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 1px 0 var(--line);
 }
-nav::after {
+#nav::after {
   content: '';
   position: absolute;
   left: 0;
@@ -133,7 +133,7 @@ nav::after {
   pointer-events: none;
   transition: opacity 0.3s ease 0.12s;
 }
-.menu-open nav::after {
+.menu-open #nav::after {
   opacity: 0.7;
 }
 .nav-logo {
