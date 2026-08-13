@@ -338,6 +338,7 @@ document.addEventListener('DOMContentLoaded', function () {
           stagger: 0.09,
           ease: 'power3.out',
           overwrite: true,
+          clearProps: 'transform',
         });
       },
       onLeaveBack: function (batch) {
@@ -558,25 +559,32 @@ document.addEventListener('DOMContentLoaded', function () {
         Math.min(100 - half, Math.max(half, readVar(stop, '--cy')))
       );
       cam.style.setProperty('--z', z);
-      var shot = parseInt(stop.getAttribute('data-shot'), 10) || 0;
       shots.forEach(function (img, i) {
-        img.classList.toggle('is-active', i === shot);
+        img.classList.toggle('is-active', i === index);
       });
       stops.forEach(function (s, i) {
         s.classList.toggle('is-current', i === index);
       });
-      var step = parseInt(stop.getAttribute('data-step'), 10);
-      if (!step) return;
       ticks.forEach(function (t, i) {
-        t.classList.toggle('is-active', i === step - 1);
+        t.classList.toggle('is-active', i === index);
       });
-      if (num) num.textContent = ('0' + step).slice(-2);
+      if (num) num.textContent = ('0' + (index + 1)).slice(-2);
     }
 
     var stepping = docEl.classList.contains('js-cam');
     var pending = -1;
-    var locked = false;
     var lockTimer = 0;
+    var inside = false;
+    var acc = 0;
+    var accDir = 0;
+    var lastInputAt = 0;
+    var gestureAt = 0;
+    var settleTimer = 0;
+    var stepped = false;
+    var stepDist = 60;
+    var gestureGap = 200;
+    var gestureMax = 1000;
+    var notchDelta = 50;
 
     jumpEnd = function () {
       activate(nearestStop());
@@ -614,25 +622,29 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       return best;
     }
-    function goStop(index) {
+    function goStop(index, rush) {
       pending = index;
-      locked = true;
       activate(index);
+      stage.classList.toggle('is-rushing', !!rush);
       scrollToTarget(
         stops[index],
         stops[index].offsetHeight / 2 - window.innerHeight / 2,
-        1.15
+        rush ? 0.42 : 1.15
       );
       navLock = false;
       clearTimeout(lockTimer);
-      lockTimer = setTimeout(function () {
-        locked = false;
-        pending = -1;
-      }, 1250);
+      lockTimer = setTimeout(
+        function () {
+          pending = -1;
+          stage.classList.remove('is-rushing');
+        },
+        rush ? 620 : 1250
+      );
     }
     function inZone() {
       var y = window.scrollY;
-      return y > snapY(0) - 80 && y < snapY(stops.length - 1) + 80;
+      var m = window.innerHeight / 2;
+      return y > snapY(0) - m && y < snapY(stops.length - 1) + m;
     }
     function stepTarget(dir) {
       if (pending >= 0) return pending + dir;
@@ -645,11 +657,60 @@ document.addEventListener('DOMContentLoaded', function () {
       for (i = stops.length - 1; i >= 0; i--) if (snapY(i) < y - 8) return i;
       return -1;
     }
-    function step(dir, strong) {
-      if (!stepping || !dir || !inZone()) return false;
+    function armSettle() {
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(function () {
+        if (pending >= 0 || !inZone()) return;
+        var at = nearestStop();
+        var off = Math.abs(snapY(at) - window.scrollY);
+        if (off > 12 && off < window.innerHeight * 0.3) goStop(at);
+      }, 900);
+    }
+    function step(dir, amount) {
+      if (!stepping || !dir) return false;
+      if (!inZone()) {
+        inside = false;
+        acc = 0;
+        clearTimeout(settleTimer);
+        return false;
+      }
+      var now = Date.now();
+      if (now - lastInputAt >= gestureGap) {
+        gestureAt = now;
+        stepped = false;
+        acc = 0;
+      }
+      lastInputAt = now;
+      if (!inside) {
+        inside = true;
+        acc = 0;
+        var at = nearestStop();
+        if (Math.abs(snapY(at) - window.scrollY) > 60) {
+          gestureAt = now;
+          stepped = true;
+          goStop(at);
+          return true;
+        }
+      }
       var next = stepTarget(dir);
-      if (next < 0 || next >= stops.length) return false;
-      if (strong && !locked) goStop(next);
+      if (next < 0 || next >= stops.length) {
+        if (pending >= 0 && Math.abs(snapY(pending) - window.scrollY) > 12)
+          return true;
+        armSettle();
+        return false;
+      }
+      if (dir !== accDir) {
+        accDir = dir;
+        acc = 0;
+        stepped = false;
+      }
+      acc += amount;
+      if (acc < stepDist) return true;
+      if (stepped && now - gestureAt < gestureMax) return true;
+      acc = 0;
+      stepped = true;
+      gestureAt = now;
+      goStop(next, pending >= 0);
       return true;
     }
 
@@ -658,7 +719,10 @@ document.addEventListener('DOMContentLoaded', function () {
       function (e) {
         if (e.ctrlKey || !e.deltaY) return;
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-        if (!step(e.deltaY > 0 ? 1 : -1, Math.abs(e.deltaY) >= 4)) return;
+        var d =
+          Math.abs(e.deltaY) *
+          (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? window.innerHeight : 1);
+        if (!step(e.deltaY > 0 ? 1 : -1, d >= notchDelta ? stepDist : d)) return;
         e.preventDefault();
         e.stopPropagation();
       },
@@ -673,7 +737,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var dir = 0;
       if (e.key === 'ArrowDown' || e.key === 'PageDown') dir = 1;
       else if (e.key === 'ArrowUp' || e.key === 'PageUp') dir = -1;
-      if (step(dir, true)) e.preventDefault();
+      if (step(dir, stepDist)) e.preventDefault();
     });
 
     ticks.forEach(function (t) {
@@ -694,7 +758,8 @@ document.addEventListener('DOMContentLoaded', function () {
       window.addEventListener('resize', measureZone);
       navSuppress = function () {
         var y = window.scrollY;
-        return y >= zoneTop && y <= zoneEnd;
+        var m = window.innerHeight / 2;
+        return y >= zoneTop - m && y <= zoneEnd + m;
       };
     }
     activate(0);

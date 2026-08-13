@@ -89,7 +89,7 @@
 
     <nav id="nav">
       <div class="nav-inner">
-        <a class="nav-logo" href="#top" aria-label="W2R Connect — início">
+        <a class="nav-logo" href="#top" aria-label="Logo W2R Connect">
           <img src="assets/logo.svg" alt="" width="375" height="175" />
           <span class="nav-lockup" aria-hidden="true">
             <span class="nav-brand shine-text">W2R Connect</span>
@@ -576,8 +576,16 @@
                 <button
                   class="stage-tick is-active"
                   type="button"
+                  data-go="0"
+                  aria-label="Parada 1 de 10"
+                >
+                  <span></span>
+                </button>
+                <button
+                  class="stage-tick"
+                  type="button"
                   data-go="1"
-                  aria-label="Parada 1 de 8"
+                  aria-label="Parada 2 de 10"
                 >
                   <span></span>
                 </button>
@@ -585,7 +593,7 @@
                   class="stage-tick"
                   type="button"
                   data-go="2"
-                  aria-label="Parada 2 de 8"
+                  aria-label="Parada 3 de 10"
                 >
                   <span></span>
                 </button>
@@ -593,7 +601,7 @@
                   class="stage-tick"
                   type="button"
                   data-go="3"
-                  aria-label="Parada 3 de 8"
+                  aria-label="Parada 4 de 10"
                 >
                   <span></span>
                 </button>
@@ -601,7 +609,7 @@
                   class="stage-tick"
                   type="button"
                   data-go="4"
-                  aria-label="Parada 4 de 8"
+                  aria-label="Parada 5 de 10"
                 >
                   <span></span>
                 </button>
@@ -609,7 +617,7 @@
                   class="stage-tick"
                   type="button"
                   data-go="5"
-                  aria-label="Parada 5 de 8"
+                  aria-label="Parada 6 de 10"
                 >
                   <span></span>
                 </button>
@@ -617,7 +625,7 @@
                   class="stage-tick"
                   type="button"
                   data-go="6"
-                  aria-label="Parada 6 de 8"
+                  aria-label="Parada 7 de 10"
                 >
                   <span></span>
                 </button>
@@ -625,7 +633,7 @@
                   class="stage-tick"
                   type="button"
                   data-go="7"
-                  aria-label="Parada 7 de 8"
+                  aria-label="Parada 8 de 10"
                 >
                   <span></span>
                 </button>
@@ -633,12 +641,20 @@
                   class="stage-tick"
                   type="button"
                   data-go="8"
-                  aria-label="Parada 8 de 8"
+                  aria-label="Parada 9 de 10"
+                >
+                  <span></span>
+                </button>
+                <button
+                  class="stage-tick"
+                  type="button"
+                  data-go="9"
+                  aria-label="Parada 10 de 10"
                 >
                   <span></span>
                 </button>
               </span>
-              <span class="stage-count"><strong id="stageNum">01</strong>/08</span>
+              <span class="stage-count"><strong id="stageNum">01</strong>/10</span>
             </div>
             <div class="stage-frame" aria-hidden="true">
               <div class="stage-cam" id="stageCam">
@@ -730,7 +746,6 @@
             <li
               class="stage-stop"
               data-scene="intro"
-              data-shot="0"
               style="--cx: 50; --cy: 50; --z: 1"
             >
               <div class="stop-card">
@@ -754,10 +769,8 @@
             </li>
             <li
               class="stage-stop"
-              data-step="1"
-              data-shot="1"
               data-side="left"
-              style="--cx: 72; --cy: 45; --z: 1.7"
+              style="--cx: 72; --cy: 51.5; --z: 1.35"
             >
               <div class="stop-card">
                 <span class="stop-eyebrow">Assistente IA</span>
@@ -781,8 +794,6 @@
             </li>
             <li
               class="stage-stop"
-              data-step="2"
-              data-shot="2"
               data-side="right"
               style="--cx: 50; --cy: 50; --z: 1"
             >
@@ -790,7 +801,7 @@
                 <span class="stop-eyebrow">Etapa de coleta</span>
                 <h3>Você confere o que o agente cadastrou</h3>
                 <p>
-                  Imóvel, compradores e vendedores chegam preenchidos — você só
+                  Imóvel, compradores e vendedores chegam preenchidos, você só
                   revisa. Conferido o cadastro, a extensão leva os dados ao
                   sistema do banco sem redigitar.
                 </p>
@@ -808,17 +819,15 @@
             </li>
             <li
               class="stage-stop"
-              data-step="3"
-              data-shot="3"
               data-side="left"
               style="--cx: 54; --cy: 52; --z: 1.2"
             >
               <div class="stop-card">
                 <span class="stop-eyebrow">Etapa de aprovação</span>
-                <h3>A aprovação com prazo à vista</h3>
+                <h3>A aprovação para acompanhamento</h3>
                 <p>
                   Data de aprovação, vencimento, renda e condicionamento ficam
-                  na própria etapa — o prazo aparece antes de vencer.
+                  na própria etapa, o prazo aparece antes de vencer.
                 </p>
               </div>
               <div class="stop-shot">
@@ -834,8 +843,6 @@
             </li>
             <li
               class="stage-stop"
-              data-step="4"
-              data-shot="4"
               data-side="right"
               style="--cx: 61; --cy: 60; --z: 1.5"
             >
@@ -844,7 +851,7 @@
                 <h3>Cada arquivo na parte a que pertence</h3>
                 <p>
                   Imóvel, compradores, vendedores, corretores, conformidade e
-                  formulários do banco — cada documento na sua pasta, com a
+                  formulários do banco, cada documento na sua pasta, com a
                   contagem à vista.
                 </p>
               </div>
@@ -861,8 +868,6 @@
             </li>
             <li
               class="stage-stop"
-              data-step="5"
-              data-shot="5"
               data-side="left"
               style="--cx: 50; --cy: 50; --z: 1.02"
             >
@@ -870,7 +875,7 @@
                 <span class="stop-eyebrow">Etapa de formulários</span>
                 <h3>As partes ligadas aos modelos</h3>
                 <p>
-                  As partes se conectam aos formulários no diagrama — dá para
+                  As partes se conectam aos formulários no diagrama, dá para
                   ver quem entra em cada documento antes de gerar.
                 </p>
               </div>
@@ -887,8 +892,6 @@
             </li>
             <li
               class="stage-stop"
-              data-step="6"
-              data-shot="6"
               data-side="right"
               style="--cx: 61; --cy: 40; --z: 1.8"
             >
@@ -913,8 +916,6 @@
             </li>
             <li
               class="stage-stop"
-              data-step="7"
-              data-shot="7"
               data-side="left"
               style="--cx: 54.6; --cy: 63; --z: 1.7"
             >
@@ -940,8 +941,6 @@
             </li>
             <li
               class="stage-stop"
-              data-step="8"
-              data-shot="8"
               data-side="right"
               style="--cx: 68; --cy: 57; --z: 1.42"
             >
@@ -950,7 +949,7 @@
                 <h3>Protocolo e senha guardados no processo</h3>
                 <p>
                   Protocolo, senha, registro do imóvel e as datas de entrada,
-                  prenotação e conclusão ficam junto da operação — não em uma
+                  prenotação e conclusão ficam junto da operação, não em uma
                   planilha à parte.
                 </p>
               </div>
@@ -968,7 +967,6 @@
             <li
               class="stage-stop"
               data-scene="outro"
-              data-shot="9"
               style="--cx: 50; --cy: 50; --z: 1"
             >
               <div class="stop-card">
@@ -997,13 +995,18 @@
 
     <section class="t-light" id="funcionalidades">
       <div class="section-inner">
-        <header class="sec-head">
+        <header class="sec-head center">
           <div class="sec-eyebrow">
             <span class="idx">03</span><span class="sq"></span>funcionalidades
           </div>
           <h2 class="sec-title">
-            Do documento ao registro,<br />em um único sistema
+            Do documento ao registro,<br /><em>em um único sistema</em>
           </h2>
+          <p class="sec-desc">
+            A matrícula entra como PDF e sai como cadastro conferido, contrato
+            gerado e protocolo guardado, sem uma segunda digitação no caminho.
+          </p>
+          <div class="sec-rule" aria-hidden="true"></div>
         </header>
         <div class="how-steps" id="howSteps">
           <div class="how-line" aria-hidden="true">
@@ -1012,120 +1015,132 @@
           <div class="how-step">
             <div class="how-num">01</div>
             <div>
-              <h3>Crie o processo</h3>
-              <p>Abra e envie os documentos. A IA começa a analisar na hora.</p>
+              <h3>Documentos no chat</h3>
+              <p>
+                Matrícula, CNH e comprovantes vão direto no assistente. A
+                leitura começa no envio.
+              </p>
             </div>
           </div>
           <div class="how-step">
             <div class="how-num">02</div>
             <div>
-              <h3>IA preenche tudo</h3>
-              <p>CNH, matrícula, imóvel. Dados cadastrados automaticamente.</p>
+              <h3>Cadastro conferido</h3>
+              <p>
+                Imóvel, compradores e vendedores chegam preenchidos. Você
+                revisa, não digita.
+              </p>
             </div>
           </div>
           <div class="how-step">
             <div class="how-num">03</div>
             <div>
-              <h3>Documentos gerados</h3>
-              <p>Requerimentos e contratos prontos para revisão em segundos.</p>
+              <h3>Contrato gerado</h3>
+              <p>
+                Partes ligadas no diagrama e o contrato sai com a qualificação
+                pronta.
+              </p>
             </div>
           </div>
           <div class="how-step">
             <div class="how-num">04</div>
             <div>
-              <h3>Envio ao banco</h3>
-              <p>Extensão preenche os sistemas bancários. Sem redigitar.</p>
+              <h3>Dados no banco</h3>
+              <p>
+                A extensão leva o que você conferiu ao formulário do banco. Sem
+                redigitar.
+              </p>
             </div>
           </div>
           <div class="how-step">
             <div class="how-num">05</div>
             <div>
-              <h3>Imóvel registrado</h3>
-              <p>Protocolos, prazos e registro consolidados no sistema.</p>
+              <h3>Registro acompanhado</h3>
+              <p>
+                Protocolo, prenotação e datas ficam no processo até a conclusão.
+              </p>
             </div>
           </div>
         </div>
-        <header class="sec-head part-head" data-reveal>
-          <div class="sec-eyebrow"><span class="sq"></span>recursos</div>
-          <h3 class="sec-title">Tudo que o correspondente precisa</h3>
+        <header class="sec-head center part-head" data-reveal>
+          <h3 class="sec-title">
+            O que o sistema faz <em>em cada processo</em>
+          </h3>
+          <p class="sec-desc">
+            Nada aqui é módulo à parte. Tudo mora dentro do processo que você
+            abriu, na etapa em que o dado é usado.
+          </p>
         </header>
         <div class="features-grid">
           <div class="card" data-reveal>
-            <div class="card-tag">IA</div>
-            <h3>Leitura automática de matrícula</h3>
+            <div class="card-tag">Leitura com IA</div>
+            <h3>A matrícula lida item por item</h3>
             <p>
-              A IA analisa o PDF completo e entrega resumo estruturado com
-              histórico, ônus, proprietários, área e metragem.
+              A IA percorre o PDF inteiro e devolve o histórico em ordem, não um
+              resumo solto. O que costuma voltar como exigência do banco aparece
+              antes de você enviar.
             </p>
+            <span class="panel-label">Extraído da matrícula</span>
             <ul>
-              <li>R1 e averbações detalhados</li>
-              <li>Ônus e restrições identificados</li>
-              <li>Qualificação dos proprietários</li>
-            </ul>
-          </div>
-          <div class="card" data-reveal>
-            <div class="card-tag">Automação</div>
-            <h3>Geração automática de documentos</h3>
-            <p>
-              Requerimentos, declarações e contratos gerados com os dados já
-              cadastrados. Revisão em segundos.
-            </p>
-            <ul>
-              <li>Contrato Caixa pré-preenchido</li>
-              <li>Templates por escritório</li>
-              <li>Exportação direta</li>
+              <li>R1 e a cadeia dominial em ordem</li>
+              <li>AV de ônus, gravame e penhora</li>
+              <li>Qualificação e estado civil dos proprietários</li>
+              <li>Regime de bens, espólio e inventário</li>
+              <li>Área, condomínio e descrição do imóvel</li>
             </ul>
           </div>
           <div class="card" data-reveal>
             <div class="card-tag">Extensão</div>
-            <h3>Preenchimento nos sistemas bancários</h3>
+            <h3>O dado conferido entra no sistema do banco</h3>
             <p>
-              A extensão transfere os dados para os sistemas da Caixa. Zero
-              redigitação, zero erros.
+              A extensão leva ao formulário da Caixa exatamente o que você
+              revisou na coleta. A segunda digitação, a que gera divergência
+              entre cadastro e proposta, deixa de existir.
             </p>
+            <span class="panel-label">Atravessa sem redigitação</span>
             <ul>
-              <li>Integração com sistemas Caixa</li>
-              <li>Sem redigitar dados</li>
-              <li>Evita aprovações perdidas</li>
+              <li>Qualificação de compradores e vendedores</li>
+              <li>Imóvel, matrícula e endereço</li>
+              <li>Renda do cliente e mês de referência</li>
+              <li>Corretor e CRECI</li>
             </ul>
           </div>
           <div class="card" data-reveal>
-            <div class="card-tag">Chat IA</div>
-            <h3>Assistente IA por conversa</h3>
+            <div class="card-tag">Assistente</div>
+            <h3>O processo aberto por conversa</h3>
             <p>
-              Mande os documentos no chat e o assistente cria o processo,
-              vincula participantes e inicia a análise.
+              Mande matrícula, certidões e comprovantes no chat. O agente extrai
+              os dados, cadastra imóvel e partes e abre o processo com o
+              histórico salvo.
             </p>
-            <ul>
-              <li>Cria processos via chat</li>
-              <li>Lê PDFs enviados direto</li>
-              <li>Histórico persistido</li>
-            </ul>
           </div>
           <div class="card" data-reveal>
-            <div class="card-tag">Gestão</div>
-            <h3>Controle de prazos e etapas</h3>
+            <div class="card-tag">Diagrama</div>
+            <h3>Contrato preenchido a partir das partes</h3>
             <p>
-              Coleta ao Registro — cada etapa rastreada com alertas e histórico
-              completo.
+              Compradores, vendedores, corretor e imóvel ligados ao formulário
+              no diagrama. Um clique em Gerar e o Contrato Caixa sai com a
+              qualificação no lugar certo.
             </p>
-            <ul>
-              <li>Progresso visual por etapa</li>
-              <li>Alertas de vencimento</li>
-              <li>Histórico completo</li>
-            </ul>
           </div>
           <div class="card" data-reveal>
-            <div class="card-tag">Equipe</div>
-            <h3>Hierarquia e distribuição</h3>
+            <div class="card-tag">Esteira</div>
+            <h3>Oito etapas com o prazo à vista</h3>
             <p>
-              Distribua processos para a equipe com controle de acesso por
-              nível.
+              Coleta, Aprovação, Documentos, Formulários, Reserva, Contrato,
+              Registro e Conclusão. A validade da aprovação, a da reserva e a
+              prenotação ficam na própria etapa.
             </p>
+          </div>
+          <div class="card features-more" data-reveal>
+            <span class="panel-label">no mesmo sistema</span>
             <ul>
-              <li>Master + colaboradores</li>
-              <li>Sem perda de contexto</li>
-              <li>Diagrama visual</li>
+              <li>Documentos separados por participante e por finalidade</li>
+              <li>Modelos de formulário do seu escritório</li>
+              <li>Imóveis e participantes reaproveitados entre processos</li>
+              <li>Master e colaboradores com acesso por nível</li>
+              <li>Histórico de alterações do processo</li>
+              <li>Resumo do processo pronto para virar relatório</li>
             </ul>
           </div>
         </div>
@@ -1549,7 +1564,7 @@
             <div class="faq-a">
               Você cria a conta e usa o sistema completo por 7 dias, sem
               informar cartão de crédito. Ao final do período, escolhe o plano
-              que faz sentido — ou simplesmente não continua, sem cobrança
+              que faz sentido ou simplesmente não continua, sem cobrança
               nenhuma.
             </div>
           </details>
@@ -1595,7 +1610,7 @@
             <div class="faq-a">
               A IA foi treinada com PDFs reais de cartórios brasileiros. Ela
               extrai R1, averbações, ônus, alienação fiduciária, proprietários
-              qualificados e dados do imóvel — e entrega tudo estruturado no
+              qualificados e dados do imóvel e entrega tudo estruturado no
               processo.
             </div>
           </details>
@@ -1640,7 +1655,7 @@
             </summary>
             <div class="faq-a">
               Não. A assinatura é mensal, paga via cartão (Stripe), e pode ser
-              cancelada a qualquer momento direto no sistema — sem multa, sem
+              cancelada a qualquer momento direto no sistema sem multa, sem
               burocracia, sem ligação para retenção.
             </div>
           </details>
@@ -1671,7 +1686,7 @@
         </svg>
         <div class="cta-inner">
           <div class="cta-eyebrow" data-gsap-ignore>
-            <span class="dot"></span>Comece hoje — é grátis
+            <span class="dot"></span>Comece hoje grátis
           </div>
           <h2 class="cta-title">
             Feche mais financiamentos.<br /><em>Com muito menos trabalho.</em>

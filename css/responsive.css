@@ -2,6 +2,16 @@
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .features-grid .card,
+  .features-grid .card:nth-child(-n + 2) {
+    grid-column: span 1;
+  }
+  .features-grid .features-more {
+    grid-column: span 2;
+  }
+  .features-grid .features-more ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (max-width: 1199px) {
   .nav-links {
@@ -110,6 +120,14 @@
     flex-shrink: 0;
   }
   .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .features-grid .card,
+  .features-grid .card:nth-child(-n + 2),
+  .features-grid .features-more {
+    grid-column: span 1;
+  }
+  .features-grid .features-more ul {
     grid-template-columns: 1fr;
   }
   .ben {
