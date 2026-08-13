@@ -78,18 +78,6 @@
   color: var(--text-2);
   line-height: 1.7;
 }
-.card-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-line);
-  margin-bottom: 20px;
-  color: var(--text);
-}
 
 .ben {
   --ben-w: clamp(288px, 76vw, 560px);
@@ -295,6 +283,9 @@
   --stage-nav-h: 20px;
   --stage-gap: 26px;
   --frame-w: min(100%, calc((88vh - 46px) * 2.108));
+  --cam-ms: 1.4s;
+  --fade-ms: 0.8s;
+  --card-ms: 0.6s;
   display: grid;
   position: relative;
 }
@@ -311,14 +302,12 @@
   list-style: none;
   counter-reset: stop;
 }
-.stage-stop[data-step] {
-  counter-increment: stop;
-}
-.stage-stop[data-step] .stop-eyebrow::before {
+.stage-stop .stop-eyebrow::before {
   content: counter(stop, decimal-leading-zero) ' · ';
   color: var(--accent);
 }
 .stage-stop {
+  counter-increment: stop;
   --half: calc(50 / var(--z));
   --cxc: clamp(var(--half), var(--cx), calc(100 - var(--half)));
   --cyc: clamp(var(--half), var(--cy), calc(100 - var(--half)));
@@ -387,27 +376,74 @@
 }
 
 .js-cam .stage-view {
-  position: sticky;
-  top: 6vh;
-  height: 88vh;
-  z-index: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: var(--stage-gap);
 }
 .js-cam .stage-stops {
-  padding: 23vh 0;
+  display: grid;
+  grid-template-rows: 1fr;
   pointer-events: none;
 }
 .js-cam .stage-stop {
-  min-height: 42vh;
+  grid-area: 1 / 1;
   width: var(--frame-w);
   margin-inline: auto;
   padding-top: calc(var(--stage-nav-h) + var(--stage-gap));
   padding-inline: 28px;
   display: flex;
   align-items: center;
+}
+.js-cam .stage:not(.is-playing) .stage-nav {
+  visibility: hidden;
+}
+.js-cam .stage:not(.is-playing) .stage-stops {
+  display: none;
+}
+.js-cam .stage.is-playing {
+  position: fixed;
+  inset: 0;
+  z-index: 340;
+  padding: 0 4%;
+  align-content: center;
+  background: var(--bg);
+  --frame-w: min(1280px, 92vw, calc((88vh - 46px) * 2.108));
+}
+.js-cam .stage.is-playing .stage-nav {
+  animation: stageBarIn 0.55s var(--ease-out) 0.12s backwards;
+}
+@keyframes stageBarIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+.stage-idle {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: calc(var(--stage-nav-h) + var(--stage-gap));
+}
+.js-cam .stage:not(.is-playing) .stage-idle {
+  display: flex;
+}
+.stage-idle .stop-card {
+  width: min(400px, 64%);
+  text-align: center;
+}
+.stop-btn {
+  margin-top: 22px;
+  font-size: 14px;
+  padding: 13px 28px;
+  border: none;
+}
+html:not(.js-cam) .stop-btn {
+  display: none;
 }
 .js-cam .stage-stop[data-side='right'] {
   justify-content: flex-end;
@@ -424,12 +460,14 @@
     0 24px 64px rgba(0, 0, 0, 0.62),
     inset 0 1px 0 rgba(241, 245, 251, 0.07);
   backdrop-filter: blur(14px);
+}
+.js-cam .stage-stop .stop-card {
   opacity: 0;
   transform: translateY(14px);
   pointer-events: none;
   transition:
-    opacity 0.6s var(--ease-out),
-    transform 0.6s var(--ease-out);
+    opacity var(--card-ms) var(--ease-out),
+    transform var(--card-ms) var(--ease-out);
 }
 .js-cam .stage-stop.is-current .stop-card {
   opacity: 1;
@@ -439,8 +477,8 @@
 .js-cam .stage-stop[data-scene] .stop-card {
   text-align: center;
   transition:
-    opacity 0.8s var(--ease-out),
-    transform 0.8s var(--ease-out);
+    opacity var(--fade-ms) var(--ease-out),
+    transform var(--fade-ms) var(--ease-out);
 }
 .js-cam .stage-stop[data-scene]:not(.is-current) .stop-card {
   transform: translateY(52px);
@@ -479,7 +517,7 @@
       calc(50% - var(--cy, 50) * 1% * var(--z, 1))
     )
     scale(var(--z, 1));
-  transition: transform 1.4s var(--ease-out);
+  transition: transform var(--cam-ms) var(--ease-out);
   will-change: transform;
 }
 .cam-shot {
@@ -492,14 +530,14 @@
   opacity: 0;
   visibility: hidden;
   transition:
-    opacity 0.8s ease,
-    visibility 0s linear 0.8s;
+    opacity var(--fade-ms) ease,
+    visibility 0s linear var(--fade-ms);
 }
 .cam-shot.is-active {
   opacity: 1;
   visibility: visible;
   transition:
-    opacity 0.8s ease,
+    opacity var(--fade-ms) ease,
     visibility 0s;
 }
 .stage-vignette {
@@ -510,9 +548,10 @@
   box-shadow: inset 0 0 100px 24px rgba(8, 12, 20, 0.6);
 }
 .stage-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto minmax(0, 1fr);
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   width: var(--frame-w);
   margin: 0 auto;
 }
@@ -527,8 +566,6 @@
 }
 .stage-ticks {
   display: flex;
-  flex: 1;
-  justify-content: flex-end;
   gap: 2px;
 }
 .stage-tick {
@@ -569,6 +606,24 @@
 .stage-count strong {
   font-weight: 500;
   color: var(--accent);
+}
+.stage-exit {
+  justify-self: end;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  background: none;
+  border: none;
+  padding: 13px 10px;
+  margin: -13px -10px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stage-exit:hover {
+  color: var(--text);
 }
 
 .how-steps {
@@ -639,11 +694,43 @@
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
 }
+.features-grid .card {
+  grid-column: span 2;
+  transition:
+    transform 0.55s var(--ease-out),
+    border-color 0.45s,
+    box-shadow 0.55s;
+}
+.features-grid .card:nth-child(-n + 2) {
+  grid-column: span 3;
+}
+@media (hover: hover) {
+  .features-grid .card:hover {
+    transform: translateY(-6px) scale(1.012);
+    box-shadow: 0 20px 44px rgba(16, 22, 31, 0.12);
+  }
+  .features-grid .features-more:hover {
+    transform: none;
+    box-shadow: 0 1px 2px rgba(16, 22, 31, 0.04);
+  }
+}
+.panel-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.card p + .panel-label {
+  margin-top: 20px;
+}
 .features-grid .card ul {
-  margin-top: 16px;
+  margin-top: 12px;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -652,6 +739,7 @@
 .features-grid .card ul li {
   font-size: 13px;
   color: var(--muted);
+  line-height: 1.5;
   padding-left: 16px;
   position: relative;
 }
@@ -662,7 +750,34 @@
   background: var(--accent);
   position: absolute;
   left: 0;
+  top: 7px;
+}
+.features-grid .features-more {
+  grid-column: span 6;
+  padding: 26px 30px 28px;
+}
+.features-grid .features-more ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px 36px;
+  margin-top: 18px;
+}
+.features-grid .features-more li {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-2);
+  padding-left: 18px;
+  position: relative;
+}
+.features-grid .features-more li::before {
+  content: '';
+  position: absolute;
+  left: 0;
   top: 8px;
+  width: 5px;
+  height: 5px;
+  background: var(--action);
 }
 
 .proof-grid {

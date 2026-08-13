@@ -1,129 +1,815 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Política de Privacidade — W2R Connect Transferência de Dados</title>
-  <meta name="theme-color" content="#080C14">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --ink: #080c14;
-      --text: #f1f5fb;
-      --text-2: #9aa8bf;
-      --muted: #64748e;
-      --line: rgba(241, 245, 251, 0.08);
-      --card: #0d1320;
-      --accent: #2be38b;
-    }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      line-height: 1.7;
-      background: var(--ink);
-      color: var(--text-2);
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 56px 24px 72px;
-      -webkit-font-smoothing: antialiased;
-    }
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.7rem, 4vw, 2.2rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-    h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--text);
-      margin: 2.4rem 0 0.6rem;
-    }
-    p, li { font-size: 0.97rem; }
-    strong { color: var(--text); font-weight: 600; }
-    ul { padding-left: 1.15rem; }
-    li { margin-bottom: 0.5rem; }
-    li::marker { color: var(--accent); }
-    code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85em;
-      background: var(--card);
-      border: 1px solid var(--line);
-      color: var(--accent);
-      padding: 1px 6px;
-      border-radius: 5px;
-    }
-    a { color: var(--accent); }
-    .updated { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
-    .lead { margin-top: 1.8rem; }
-    footer {
-      margin-top: 3.5rem;
-      padding-top: 1.4rem;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.85rem;
-      display: flex;
-      gap: 20px;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    ::selection { background: var(--accent); color: #07130c; }
-    * { scrollbar-width: thin; scrollbar-color: rgba(241,245,251,.18) transparent; }
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-thumb { background: rgba(241,245,251,.18); border-radius: 99px; border: 3px solid transparent; background-clip: content-box; }
-  </style>
-</head>
-<body>
-  <h1>Política de Privacidade</h1>
-  <p class="updated">Extensão: <strong>W2R Connect — Transferência de Dados</strong> · Última atualização: 24/07/2026</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Política de Privacidade | W2R Connect</title>
+    <meta
+      name="description"
+      content="Política de privacidade do W2R Connect: como a aplicação e a extensão de navegador tratam os dados de correspondentes bancários e das partes do processo."
+    />
+    <meta name="theme-color" content="#080C14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="W2R Connect" />
+    <meta property="og:title" content="Política de Privacidade | W2R Connect" />
+    <meta property="og:locale" content="pt_BR" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <script>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-anim');
+      }
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/lenis@1.3.8/dist/lenis.min.js"
+    ></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/pages.js"></script>
+  </head>
+  <body class="t-dark">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
-  <p class="lead">Esta extensão foi criada para agilizar o preenchimento de formulários, transferindo dados do aplicativo <strong>w2rconnect.app</strong> para o formulário de cadastro do <strong>Caixa Aqui</strong> (caixaaqui.caixa.gov.br). Esta política explica quais dados a extensão manipula e como.</p>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <h2>Quais dados a extensão manipula</h2>
-  <p>Para preencher o formulário de destino, a extensão manipula os dados de cadastro que o próprio usuário seleciona no aplicativo w2rconnect.app, que podem incluir:</p>
-  <ul>
-    <li><strong>Informações de identificação pessoal</strong>: nome, e‑mail, data de nascimento, filiação, endereço e números de documentos (CPF, RG, CNH), inclusive dados de cônjuge quando aplicável.</li>
-    <li><strong>Informações financeiras</strong>: dados de renda e da fonte pagadora (por exemplo, valores de renda e CNPJ/CPF da fonte).</li>
-  </ul>
+    <nav id="nav" class="nav-solid">
+      <div class="nav-inner">
+        <a class="nav-logo" href="/" aria-label="Início — W2R Connect">
+          <img src="assets/logo.svg" alt="" width="375" height="175" />
+          <span class="nav-lockup" aria-hidden="true">
+            <span class="nav-brand shine-text">W2R Connect</span>
+            <span class="nav-tagline">Sistema de Gestão de Documentos</span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#sumario">Sumário</a></li>
+          <li><a href="#aplicacao">Aplicação</a></li>
+          <li><a href="#extensao">Extensão</a></li>
+        </ul>
+      </div>
+    </nav>
 
-  <h2>Como os dados são usados</h2>
-  <ul>
-    <li>Os dados são obtidos do aplicativo w2rconnect.app apenas quando o usuário aciona a transferência, e são usados exclusivamente para <strong>preencher automaticamente os campos do formulário de destino</strong>.</li>
-    <li>Os dados são armazenados <strong>somente no dispositivo do usuário</strong>, de forma temporária, usando o armazenamento local do navegador (<code>chrome.storage.local</code>), apenas para manter o preenchimento consistente entre os recarregamentos de página do formulário.</li>
-    <li>Os dados <strong>expiram automaticamente</strong> após um curto período e podem ser apagados pelo usuário a qualquer momento.</li>
-  </ul>
+    <section class="t-light page-body" id="conteudo">
+      <div class="section-inner">
+        <header class="sec-head center">
+          <div class="sec-eyebrow">
+            <span class="sq"></span>política de privacidade
+          </div>
+          <h1 class="sec-title">O que fazemos <em>com cada dado</em></h1>
+          <p class="sec-desc">
+            Este documento cobre dois programas independentes: a
+            <strong>aplicação</strong> em w2rconnect.app e a
+            <strong>extensão de navegador</strong> que leva os dados conferidos
+            aos sistemas dos bancos. Cada um trata dados de um jeito diferente.
+          </p>
+          <div class="sec-rule" aria-hidden="true"></div>
+          <p class="page-meta">Última atualização: 13/08/2026</p>
+        </header>
 
-  <h2>O que a extensão NÃO faz</h2>
-  <ul>
-    <li><strong>Não envia</strong> os dados para servidores próprios da extensão nem para qualquer serviço externo. Os dados trafegam apenas do aplicativo de origem para o formulário de destino, no navegador do próprio usuário.</li>
-    <li><strong>Não vende</strong> nem compartilha os dados com terceiros.</li>
-    <li><strong>Não usa</strong> os dados para finalidades diferentes do preenchimento de formulários, nem para determinar crédito ou capacidade de empréstimo.</li>
-    <li><strong>Não coleta</strong> credenciais de login, histórico de navegação, localização ou atividade do usuário.</li>
-  </ul>
+        <div class="doc" data-gsap-ignore>
+          <nav class="doc-toc" id="sumario" aria-label="Sumário">
+            <span class="doc-toc-label">Sumário</span>
+            <ul>
+              <li>
+                <a class="doc-toc-item" href="#visao"
+                  ><span class="n">00</span><span class="t">Visão geral</span></a
+                >
+              </li>
+            </ul>
+            <div class="doc-toc-groups">
+              <div class="doc-toc-group">
+                <a class="doc-toc-label" href="#aplicacao">Aplicação</a>
+                <ul>
+                  <li>
+                    <a class="doc-toc-item" href="#a1"
+                      ><span class="n">1.1</span
+                      ><span class="t">Quem trata os dados</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#a2"
+                      ><span class="n">1.2</span
+                      ><span class="t">O que coletamos</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#a3"
+                      ><span class="n">1.3</span
+                      ><span class="t">Para que usamos</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#a4"
+                      ><span class="n">1.4</span
+                      ><span class="t">Com quem compartilhamos</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#a5"
+                      ><span class="n">1.5</span
+                      ><span class="t">Segurança</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#a6"
+                      ><span class="n">1.6</span
+                      ><span class="t">Retenção e exclusão</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#a7"
+                      ><span class="n">1.7</span
+                      ><span class="t">Seus direitos</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="doc-toc-group">
+                <a class="doc-toc-label" href="#extensao">Extensão</a>
+                <ul>
+                  <li>
+                    <a class="doc-toc-item" href="#e1"
+                      ><span class="n">2.1</span
+                      ><span class="t">O que a extensão faz</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#e2"
+                      ><span class="n">2.2</span
+                      ><span class="t">Dados e onde ficam</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#e3"
+                      ><span class="n">2.3</span
+                      ><span class="t">O que ela não faz</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#e4"
+                      ><span class="n">2.4</span
+                      ><span class="t">Permissões</span></a
+                    >
+                  </li>
+                  <li>
+                    <a class="doc-toc-item" href="#e5"
+                      ><span class="n">2.5</span
+                      ><span class="t">Controle do usuário</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
 
-  <h2>Permissões e por quê</h2>
-  <ul>
-    <li><strong>Acesso a w2rconnect.app</strong>: para exibir o aplicativo de origem no painel lateral e obter os dados que o usuário escolher transferir.</li>
-    <li><strong>Acesso a caixaaqui.caixa.gov.br</strong>: para preencher automaticamente os campos do formulário de destino.</li>
-    <li><strong>activeTab / scripting / tabs</strong>: para preencher a aba de formulário correta quando o usuário aciona a transferência.</li>
-    <li><strong>storage</strong>: para guardar os dados temporariamente no dispositivo, conforme descrito acima.</li>
-    <li><strong>sidePanel</strong>: para exibir o painel lateral com o aplicativo de origem.</li>
-  </ul>
+          <div class="doc-body">
+            <section class="doc-sec" id="visao">
+              <h2 class="doc-h"><span class="n">00</span>Visão geral</h2>
+              <p>
+                O W2R Connect é um sistema de gestão de documentos e processos
+                para <strong>correspondentes bancários</strong> de financiamento
+                imobiliário. Para funcionar, ele trata dois conjuntos de dados bem
+                diferentes: os de quem assina o serviço e os das pessoas que
+                aparecem nos processos — compradores, vendedores, cônjuges e
+                corretores.
+              </p>
+              <p>
+                A seção <strong>Aplicação</strong> descreve o sistema web. A seção
+                <strong>Extensão</strong> descreve a extensão de navegador, que é
+                um programa separado, opcional, e que
+                <strong>não envia dados para servidor nenhum</strong>.
+              </p>
+              <div class="doc-note">
+                <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                  <path
+                    d="M9 2.2 15.4 5.6v4.1c0 3.4-2.6 5.6-6.4 6.5-3.8-.9-6.4-3.1-6.4-6.5V5.6L9 2.2Z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <p>
+                  Não vendemos dados pessoais, não fazemos publicidade com eles e
+                  não usamos os documentos dos seus processos para treinar modelos
+                  de inteligência artificial próprios.
+                </p>
+              </div>
+            </section>
 
-  <h2>Controle do usuário</h2>
-  <p>O usuário controla quando os dados são transferidos (a ação é sempre iniciada por ele) e pode limpar os dados armazenados a qualquer momento pela própria extensão. A remoção da extensão apaga qualquer dado local remanescente.</p>
+            <section class="doc-part" id="aplicacao">
+              <div class="part-banner">
+                <span class="part-kicker"
+                  ><span class="sq"></span>w2rconnect.app</span
+                >
+                <h2>A <em>aplicação</em></h2>
+                <p>
+                  O sistema web onde você abre processos, envia documentos,
+                  cadastra as partes, gera contratos e acompanha os prazos. Vale
+                  para <strong>tudo o que acontece dentro da sua conta</strong>.
+                </p>
+                <div class="part-rule" aria-hidden="true"></div>
+              </div>
 
-  <h2>Contato</h2>
-  <p>Em caso de dúvidas sobre esta política, entre em contato pelo e‑mail: <a href="mailto:suporte@w2rconnect.com.br">suporte@w2rconnect.com.br</a>.</p>
+              <section class="doc-sec" id="a1">
+                <h3 class="doc-h">
+                  <span class="n">1.1</span>Quem trata os dados
+                </h3>
+                <p>
+                  Os dados tratados na aplicação são de responsabilidade de
+                  <strong>66.594.795 William Flores de Souza</strong>, inscrita no
+                  CNPJ sob o nº <strong>66.594.795/0001-11</strong>, com sede no
+                  bairro Vila Nova, Barra Velha/SC, CEP 88390-000.
+                </p>
+                <p class="doc-sub">Dois papéis diferentes</p>
+                <ul>
+                  <li>
+                    <strong>Dados da sua conta</strong> — nome, e-mail, assinatura,
+                    uso do sistema. Aqui somos <strong>controladores</strong>:
+                    definimos as finalidades e os meios do tratamento.
+                  </li>
+                  <li>
+                    <strong>Dados que você insere sobre terceiros</strong> —
+                    compradores, vendedores, cônjuges, corretores. Aqui somos
+                    <strong>operadores</strong>: tratamos esses dados apenas para
+                    executar o serviço, seguindo as suas instruções.
+                    <strong>Você é o controlador</strong> desses dados e responde
+                    pela base legal da coleta.
+                  </li>
+                </ul>
+                <p>
+                  Para falar sobre privacidade, exercer direitos ou tirar dúvidas,
+                  use o formulário de <a href="contato.html">contato</a>.
+                </p>
+              </section>
 
-  <footer>
-    <span>W2R Connect — Transferência de Dados. Esta política pode ser atualizada; a data no topo indica a versão mais recente.</span>
-    <a href="index.html">← Voltar ao site</a>
-  </footer>
-</body>
+              <section class="doc-sec" id="a2">
+                <h3 class="doc-h"><span class="n">1.2</span>O que coletamos</h3>
+
+                <p class="doc-sub">Dados da sua conta</p>
+                <ul>
+                  <li>Nome e e-mail.</li>
+                  <li>
+                    Senha, guardada apenas como
+                    <strong>hash bcrypt com salt</strong> — nunca em texto legível.
+                    Se você entra com Google, não guardamos senha nenhuma, só o
+                    identificador da conta Google e a foto de perfil.
+                  </li>
+                  <li>
+                    Preferências e estado da conta: tema, nível de acesso, vínculo
+                    entre conta master e colaboradores, data do último acesso e
+                    confirmação de e-mail.
+                  </li>
+                </ul>
+
+                <p class="doc-sub">Dados de assinatura</p>
+                <ul>
+                  <li>
+                    Plano contratado, status da assinatura, período de teste e
+                    histórico de cobrança.
+                  </li>
+                  <li>
+                    Seu identificador de cliente na Stripe.
+                    <strong
+                      >Os dados do cartão são informados diretamente à Stripe e
+                      nunca passam pelos nossos servidores.</strong
+                    >
+                  </li>
+                </ul>
+
+                <p class="doc-sub">Dados dos processos, inseridos por você</p>
+                <p>
+                  São os dados que você cadastra ou que a IA extrai dos documentos
+                  que você envia:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Identificação das partes</strong>: nome, CPF, RG
+                    (número, órgão emissor e datas), CNH (número, órgão, datas de
+                    emissão, primeira habilitação e validade), data de nascimento,
+                    nacionalidade, naturalidade, filiação, profissão, e-mail,
+                    telefone e endereço.
+                  </li>
+                  <li>
+                    <strong>Situação familiar</strong>: estado civil, regime de
+                    bens, data do casamento, pacto antenupcial, livro, folha e
+                    cartório do registro, e os mesmos dados do cônjuge quando
+                    houver.
+                  </li>
+                  <li>
+                    <strong>Renda</strong>: característica e tipo de renda, nome e
+                    documento da fonte pagadora, data de admissão, renda bruta e
+                    líquida, imposto retido, tipo e data do comprovante.
+                  </li>
+                  <li>
+                    <strong>Imóvel</strong>: matrícula, cartório, endereço, área,
+                    tipo, valor, condomínio, certidões, ônus e gravames, e a análise
+                    gerada a partir da matrícula.
+                  </li>
+                  <li><strong>Corretor</strong>: nome e CRECI.</li>
+                  <li>
+                    <strong>Andamento do processo</strong>: datas e valores de
+                    aprovação, reserva, contrato e registro, protocolo, prenotação e
+                    histórico de alterações.
+                  </li>
+                </ul>
+
+                <p class="doc-sub">Documentos e conversas</p>
+                <ul>
+                  <li>
+                    Os arquivos que você envia — matrícula, certidões, documentos
+                    pessoais, comprovantes de renda e residência, formulários do
+                    banco — e os documentos que o sistema gera.
+                  </li>
+                  <li>
+                    As mensagens trocadas com o assistente de IA e os anexos
+                    enviados nessa conversa, com o histórico salvo no processo.
+                  </li>
+                </ul>
+
+                <p class="doc-sub">Dados técnicos</p>
+                <ul>
+                  <li>
+                    Registros de acesso e de atividade na aplicação, endereço IP e
+                    registros de erro, usados para segurança e diagnóstico.
+                  </li>
+                  <li>
+                    <strong>Armazenamento local</strong>: a aplicação guarda no seu
+                    navegador o token de sessão necessário para manter você
+                    conectado. Este site institucional não usa cookies de
+                    publicidade nem ferramentas de rastreamento de terceiros.
+                  </li>
+                </ul>
+              </section>
+
+              <section class="doc-sec" id="a3">
+                <h3 class="doc-h"><span class="n">1.3</span>Para que usamos</h3>
+                <ul>
+                  <li>
+                    <strong>Executar o serviço</strong>: manter sua conta, abrir e
+                    movimentar processos, organizar documentos, gerar formulários e
+                    contratos, controlar prazos.
+                  </li>
+                  <li>
+                    <strong>Leitura com inteligência artificial</strong>: os
+                    documentos e mensagens que você envia para análise são
+                    transmitidos aos modelos <strong>Google Gemini</strong> para
+                    extrair os dados e produzir a resposta daquela solicitação,
+                    conforme os termos da API do Google. É o que permite ler a
+                    matrícula e montar o cadastro sem digitação.
+                  </li>
+                  <li>
+                    <strong>Comunicação</strong>: e-mails de verificação de conta,
+                    redefinição de senha e notificações do sistema, enviados via
+                    SendGrid.
+                  </li>
+                  <li>
+                    <strong>Cobrança</strong>: gestão da assinatura e dos pagamentos
+                    pela Stripe.
+                  </li>
+                  <li>
+                    <strong>Segurança</strong>: prevenir acesso não autorizado,
+                    fraude e abuso, e investigar incidentes.
+                  </li>
+                  <li>
+                    <strong>Melhoria do produto</strong>: entender uso e falhas a
+                    partir de dados agregados, sem expor conteúdo de processos.
+                  </li>
+                </ul>
+
+                <p class="doc-sub">Links públicos de formulário</p>
+                <p>
+                  O sistema permite gerar um link para que o próprio comprador ou
+                  vendedor preencha os dados dele. Esse link
+                  <strong>tem prazo de validade</strong> e dá acesso ao
+                  preenchimento a quem tiver o endereço. A decisão de gerar e para
+                  quem enviar é sua.
+                </p>
+
+                <p class="doc-sub">Base legal</p>
+                <p>
+                  Tratamos os dados da sua conta para
+                  <strong>executar o contrato</strong> firmado com você (art. 7º, V
+                  da LGPD), para <strong>cumprir obrigação legal</strong> nos
+                  registros fiscais (art. 7º, II) e com base no
+                  <strong>legítimo interesse</strong> em segurança e prevenção a
+                  fraude (art. 7º, IX). Os dados de terceiros são tratados na
+                  qualidade de operador, sob a base legal indicada por você.
+                </p>
+              </section>
+
+              <section class="doc-sec" id="a4">
+                <h3 class="doc-h">
+                  <span class="n">1.4</span>Com quem compartilhamos
+                </h3>
+                <p>
+                  Compartilhamos apenas o necessário para o serviço funcionar, com
+                  os fornecedores abaixo, que atuam como suboperadores:
+                </p>
+                <div class="doc-table-wrap">
+                  <table class="doc-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Fornecedor</th>
+                        <th scope="col">Para quê</th>
+                        <th scope="col">Dados envolvidos</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Google Cloud</td>
+                        <td>Hospedagem da aplicação e do banco de dados</td>
+                        <td>Todos os dados do sistema</td>
+                      </tr>
+                      <tr>
+                        <td>Google Cloud Storage</td>
+                        <td>Armazenamento dos arquivos enviados e gerados</td>
+                        <td>Documentos, certidões e comprovantes</td>
+                      </tr>
+                      <tr>
+                        <td>Google Gemini</td>
+                        <td>Leitura de documentos e assistente de IA</td>
+                        <td>Documentos enviados para análise e mensagens do chat</td>
+                      </tr>
+                      <tr>
+                        <td>Stripe</td>
+                        <td>Processamento de pagamento e assinatura</td>
+                        <td>Nome, e-mail e dados de cobrança</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  Também podemos compartilhar dados para
+                  <strong>cumprir obrigação legal</strong> ou atender ordem de
+                  autoridade competente, e em caso de reorganização societária,
+                  hipótese em que esta política continua valendo para os dados
+                  transferidos.
+                </p>
+                <p class="doc-sub">Transferência internacional</p>
+                <p>
+                  Parte desses fornecedores processa dados fora do Brasil. A
+                  transferência ocorre nos termos do
+                  <strong>art. 33 da LGPD</strong>, amparada nas cláusulas
+                  contratuais e nas garantias de proteção oferecidas por cada
+                  fornecedor.
+                </p>
+              </section>
+
+              <section class="doc-sec" id="a5">
+                <h3 class="doc-h"><span class="n">1.5</span>Segurança</h3>
+                <ul>
+                  <li>
+                    Todo o tráfego entre o seu navegador e os nossos servidores é
+                    <strong>criptografado por HTTPS</strong>.
+                  </li>
+                  <li>
+                    As senhas são guardadas apenas como hash bcrypt com salt.
+                    Ninguém na equipe consegue ler a sua senha.
+                  </li>
+                  <li>
+                    O acesso à API exige
+                    <strong>token de autenticação com expiração</strong>, renovado a
+                    cada sessão.
+                  </li>
+                  <li>
+                    Cada conta enxerga apenas os próprios registros. Colaboradores
+                    veem só o que o nível de acesso concedido pela conta master
+                    permite.
+                  </li>
+                  <li>
+                    Alterações relevantes nos processos ficam registradas em
+                    histórico.
+                  </li>
+                </ul>
+                <p>
+                  Nenhum sistema é totalmente imune. Se ocorrer incidente de
+                  segurança com risco relevante, comunicaremos os titulares afetados
+                  e a <strong>ANPD</strong>, nos termos do art. 48 da LGPD.
+                </p>
+              </section>
+
+              <section class="doc-sec" id="a6">
+                <h3 class="doc-h"><span class="n">1.6</span>Retenção e exclusão</h3>
+                <ul>
+                  <li>
+                    Os dados dos seus processos ficam guardados enquanto a conta
+                    estiver ativa — o histórico do processo é justamente o que o
+                    produto entrega.
+                  </li>
+                  <li>
+                    Quando você exclui um processo, um documento ou um cadastro, ele
+                    <strong>sai do seu acesso imediatamente</strong> e é removido em
+                    definitivo nos ciclos seguintes de expurgo das bases e cópias de
+                    segurança.
+                  </li>
+                  <li>
+                    Encerrada a conta, os dados são eliminados, ressalvado o que
+                    precisamos manter por <strong>obrigação legal</strong> — como os
+                    registros fiscais de cobrança — e o necessário ao exercício de
+                    direitos em processo.
+                  </li>
+                  <li>
+                    Você pode pedir a eliminação definitiva a qualquer momento pelo
+                    canal de contato.
+                  </li>
+                </ul>
+                <div class="doc-note">
+                  <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                    <circle
+                      cx="9"
+                      cy="9"
+                      r="7.2"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                    />
+                    <path
+                      d="M9 8.2v4.4M9 5.6h.01"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <p>
+                    Antes de encerrar a conta,
+                    <strong>exporte o que precisar guardar</strong>. Depois do
+                    encerramento os processos deixam de estar acessíveis.
+                  </p>
+                </div>
+              </section>
+
+              <section class="doc-sec" id="a7">
+                <h3 class="doc-h"><span class="n">1.7</span>Seus direitos</h3>
+                <p>
+                  A LGPD garante ao titular, no art. 18, o direito de pedir a
+                  qualquer momento:
+                </p>
+                <ul>
+                  <li>Confirmação de que tratamos os seus dados e acesso a eles.</li>
+                  <li>Correção de dados incompletos, inexatos ou desatualizados.</li>
+                  <li>
+                    Anonimização, bloqueio ou eliminação de dados desnecessários,
+                    excessivos ou tratados fora da lei.
+                  </li>
+                  <li>Portabilidade dos dados a outro fornecedor.</li>
+                  <li>Eliminação dos dados tratados com base no consentimento.</li>
+                  <li>
+                    Informação sobre com quem compartilhamos os dados e sobre a
+                    possibilidade de não consentir.
+                  </li>
+                  <li>Revogação do consentimento.</li>
+                </ul>
+                <p>
+                  O pedido pode ser feito pelo formulário de 
+                  <a href="contato.html">contato</a>. Respondemos no
+                  menor prazo possível e, nos casos previstos em lei, em até
+                  <strong>15 dias</strong>.
+                </p>
+                <p>
+                  Se o pedido for sobre dados de um comprador, vendedor ou corretor
+                  cadastrado por um correspondente, encaminharemos a solicitação ao
+                  correspondente responsável, que é o controlador desses dados.
+                </p>
+              </section>
+            </section>
+
+            <section class="doc-part" id="extensao">
+              <div class="part-banner">
+                <span class="part-kicker"
+                  ><span class="sq"></span>W2R Connect — Transferência de
+                  Dados</span
+                >
+                <h2>A <em>extensão</em> de navegador</h2>
+                <p>
+                  Chrome, Edge e Brave (Manifest V3). Preenche automaticamente os
+                  formulários dos sistemas bancários com os dados que você já
+                  conferiu na aplicação. É opcional, sempre acionada por você, e
+                  <strong>não possui servidor próprio</strong>.
+                </p>
+                <div class="part-rule" aria-hidden="true"></div>
+              </div>
+
+              <section class="doc-sec" id="e1">
+                <h3 class="doc-h">
+                  <span class="n">2.1</span>O que a extensão faz
+                </h3>
+                <p>
+                  A extensão existe para acabar com a segunda digitação. Ela recebe
+                  da aplicação <strong>w2rconnect.app</strong> os dados de cadastro
+                  que você seleciona e os usa para preencher os campos do formulário
+                  de destino do banco — hoje, o <strong>Caixa Aqui</strong>
+                  (caixaaqui.caixa.gov.br), que tem três etapas.
+                </p>
+                <p>
+                  A transferência
+                  <strong>só acontece quando você aciona</strong>, pelo painel
+                  lateral, pelo popup da extensão ou pela barra flutuante na página
+                  de destino.
+                </p>
+              </section>
+
+              <section class="doc-sec" id="e2">
+                <h3 class="doc-h">
+                  <span class="n">2.2</span>Quais dados a extensão manipula e onde
+                  ficam
+                </h3>
+                <p>
+                  Apenas os dados de cadastro que você escolhe transferir, o que
+                  pode incluir:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Identificação pessoal</strong>: nome, e-mail, data de
+                    nascimento, filiação, endereço e números de documentos (CPF, RG,
+                    CNH), inclusive do cônjuge quando aplicável.
+                  </li>
+                  <li>
+                    <strong>Dados financeiros</strong>: valores de renda e
+                    identificação da fonte pagadora (CNPJ ou CPF).
+                  </li>
+                </ul>
+                <p class="doc-sub">Onde esses dados ficam</p>
+                <ul>
+                  <li>
+                    <strong>Somente no seu dispositivo</strong>, no armazenamento
+                    local do navegador (<code>chrome.storage.local</code>), para
+                    manter o preenchimento consistente entre recarregamentos da
+                    página do formulário.
+                  </li>
+                  <li>
+                    Os dados <strong>expiram automaticamente em 1 hora</strong> e são
+                    apagados na inicialização seguinte da extensão.
+                  </li>
+                  <li>
+                    Você pode limpá-los manualmente a qualquer momento pela própria
+                    extensão.
+                  </li>
+                  <li>
+                    Ao registrar diagnósticos, a extensão
+                    <strong>mascara os valores sensíveis</strong> — CPF, CNH, RG,
+                    CEP, telefone e afins não aparecem em texto claro.
+                  </li>
+                </ul>
+              </section>
+
+              <section class="doc-sec" id="e3">
+                <h3 class="doc-h">
+                  <span class="n">2.3</span>O que a extensão não faz
+                </h3>
+                <ul>
+                  <li>
+                    <strong>Não envia</strong> dados para servidores da extensão nem
+                    para qualquer serviço externo. Os dados vão da aplicação de
+                    origem ao formulário de destino, dentro do seu próprio
+                    navegador.
+                  </li>
+                  <li>
+                    <strong>Não vende</strong> nem compartilha os dados com
+                    terceiros.
+                  </li>
+                  <li>
+                    <strong>Não usa</strong> os dados para finalidade diferente do
+                    preenchimento de formulários, nem para avaliar crédito ou
+                    capacidade de pagamento.
+                  </li>
+                  <li>
+                    <strong>Não coleta</strong> credenciais de login, histórico de
+                    navegação, localização ou atividade de navegação do usuário.
+                  </li>
+                </ul>
+              </section>
+
+              <section class="doc-sec" id="e4">
+                <h3 class="doc-h"><span class="n">2.4</span>Permissões e por quê</h3>
+                <ul>
+                  <li>
+                    <strong>Acesso a páginas web</strong>: a extensão precisa
+                    reconhecer a aplicação de origem (w2rconnect.app) e a página do
+                    formulário de destino. Ela só lê e preenche campos nas páginas
+                    de destino que sabe tratar; nas demais permanece inativa.
+                  </li>
+                  <li>
+                    <strong>activeTab, scripting e tabs</strong>: para preencher a
+                    aba correta do formulário quando você aciona a transferência.
+                  </li>
+                  <li>
+                    <strong>storage</strong>: para guardar os dados temporariamente
+                    no seu dispositivo, como descrito em 2.2.
+                  </li>
+                  <li>
+                    <strong>sidePanel</strong>: para exibir a aplicação de origem no
+                    painel lateral, ao lado do formulário.
+                  </li>
+                </ul>
+              </section>
+
+              <section class="doc-sec" id="e5">
+                <h3 class="doc-h">
+                  <span class="n">2.5</span>Controle do usuário
+                </h3>
+                <p>
+                  A transferência é sempre iniciada por você, e os dados armazenados
+                  podem ser limpos a qualquer momento pela própria extensão.
+                  Desinstalar a extensão apaga qualquer dado local remanescente.
+                </p>
+                <p>
+                  Como o preenchimento depende do formulário do banco, que pode
+                  mudar sem aviso,
+                  <strong>confira os campos preenchidos antes de enviar</strong>.
+                </p>
+              </section>
+            </section>
+
+            <section class="doc-sec" id="alteracoes">
+              <h2 class="doc-h">
+                <span class="n">→</span>Alterações desta política
+              </h2>
+              <p>
+                Esta política pode ser atualizada. A data no topo da página indica a
+                versão vigente. Mudanças relevantes são comunicadas por e-mail ou
+                dentro do sistema antes de entrarem em vigor.
+              </p>
+              <p>
+                Ela é regida pela <strong>Lei 13.709/2018 (LGPD)</strong> e pelas
+                demais leis brasileiras aplicáveis.
+              </p>
+            </section>
+
+          </div>
+        </div>
+
+        <header class="sec-head center part-head" data-reveal>
+          <h2 class="sec-title">
+            Dúvida sobre privacidade <em>ou pedido de dados?</em>
+          </h2>
+          <p class="sec-desc">
+            Manda pelo formulário de contato. É o canal para exercer os direitos
+            previstos na LGPD e falar com quem cuida do sistema.
+          </p>
+        </header>
+        <div class="faq-contact" data-reveal>
+          <a href="contato.html" class="btn btn-ghost"
+            ><span class="btn-flip"
+              ><span>Falar com a gente</span
+              ><span aria-hidden="true">Falar com a gente</span></span
+            ><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer footer-slim t-dark">
+      <div class="footer-glow" aria-hidden="true"></div>
+      <div class="footer-base">
+        <div class="footer-logo">
+          <img
+            src="assets/home.svg"
+            alt=""
+            width="449"
+            height="326"
+            loading="lazy"
+          />
+        </div>
+        <div class="footer-brand shine-text">W2R Connect</div>
+        <div class="footer-text">
+          Sistema de Gestão de Documentos para Correspondentes Bancários
+        </div>
+        <div class="footer-links">
+          <a href="/">Início</a><a href="termos-de-uso.html">Termos de uso</a
+          ><a href="contato.html">Contato</a>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

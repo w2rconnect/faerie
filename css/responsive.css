@@ -2,6 +2,16 @@
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .features-grid .card,
+  .features-grid .card:nth-child(-n + 2) {
+    grid-column: span 1;
+  }
+  .features-grid .features-more {
+    grid-column: span 2;
+  }
+  .features-grid .features-more ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (max-width: 1199px) {
   .nav-links {
@@ -68,12 +78,14 @@
   section {
     padding: 80px 5%;
   }
-  .footer {
-    padding: 88px 5% 36px;
+  .footer-cta {
+    padding: 80px 5% 56px;
   }
   .footer-base {
-    margin-top: 76px;
-    padding-top: 44px;
+    padding: 40px 5% 32px;
+  }
+  .circuit-cta {
+    display: none;
   }
   .hero {
     padding: 88px 0 0;
@@ -112,6 +124,14 @@
   .features-grid {
     grid-template-columns: 1fr;
   }
+  .features-grid .card,
+  .features-grid .card:nth-child(-n + 2),
+  .features-grid .features-more {
+    grid-column: span 1;
+  }
+  .features-grid .features-more ul {
+    grid-template-columns: 1fr;
+  }
   .ben {
     --ben-w: 90vw;
     --ben-gap: 14px;
@@ -129,22 +149,26 @@
   .proof-grid {
     grid-template-columns: 1fr;
   }
+  .faq-contact .btn {
+    width: 100%;
+  }
   .pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    max-width: 460px;
   }
   .plan {
+    grid-row: auto;
+    grid-template-rows: none;
+    align-content: start;
+    gap: 24px;
     padding: 32px 26px;
   }
   .plan-val {
-    font-size: 64px;
+    font-size: 60px;
   }
-  .cta-stats {
-    gap: 20px;
-    padding: 20px 24px;
-  }
-  .cta-stat-div {
-    display: none;
+  .cta-trust {
+    gap: 12px 20px;
   }
   .marquee-item {
     font-size: 14px;
@@ -152,7 +176,7 @@
   }
 }
 @media (max-width: 640px) {
-  nav {
+  #nav {
     height: 62px;
     padding: 0 5%;
   }
@@ -187,17 +211,8 @@
     font-size: 15px;
     padding: 14px;
   }
-  .promo-countdown {
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
-    text-align: center;
-    border-radius: 14px;
-    padding: 14px 22px;
-    margin-bottom: 40px;
-  }
-  .countdown-sep {
-    display: none;
+  .footer-links {
+    gap: 8px 22px;
   }
 }
 @media (max-width: 480px) {

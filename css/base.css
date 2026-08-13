@@ -12,22 +12,17 @@
   --ink-3: #121a2a;
   --paper: #f1efe9;
   --paper-2: #fbfaf7;
-  /* azul = ação/sistema · verde = confirmação/resultado (mesmo sistema do app) */
   --btn: #3560e0;
   --btn-ink: #ffffff;
   --brand-grad: linear-gradient(96deg, #5b8bff 0%, #2be38b 100%);
-  /* CTA primária: mesmo movimento azul→verde da marca, mas com as duas pontas
-     acima de 4.5:1 em texto branco. A --brand-grad é clara de propósito (traço
-     e texto sobre fundo escuro) e como fundo de botão reprova: 3,2:1 no azul e
-     1,7:1 no verde. Aqui: 5,4:1 e 4,8:1. */
   --btn-grad: linear-gradient(96deg, #3560e0 0%, #0d8355 100%);
-  /* Mesmas do app (w2rconnect.app carrega Lato + Open Sans). Mono fica com
-     JetBrains porque o app não tem opinião sobre o papel técnico. */
   --font-display: 'Lato', sans-serif;
   --font-body: 'Open Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-flip: cubic-bezier(0.76, 0, 0.24, 1);
+  --check-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.4 5.2l2.4 2.4L8.6 2.6' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
 }
 .t-dark {
   --bg: var(--ink);
@@ -36,7 +31,7 @@
   --card-2: var(--ink-3);
   --text: #f1f5fb;
   --text-2: #9aa8bf;
-  --muted: #64748e;
+  --muted: #75849c;
   --line: rgba(241, 245, 251, 0.08);
   --line-strong: rgba(241, 245, 251, 0.16);
   --accent: #2be38b;
@@ -46,6 +41,9 @@
   --action: #5b8bff;
   --action-soft: rgba(91, 139, 255, 0.1);
   --action-line: rgba(91, 139, 255, 0.3);
+  --danger: #ff7b7b;
+  --danger-soft: rgba(255, 123, 123, 0.1);
+  --danger-line: rgba(255, 123, 123, 0.34);
   --silver: #b8c4d9;
   background: var(--bg);
   color: var(--text);
@@ -67,6 +65,9 @@
   --action: #2f56c9;
   --action-soft: rgba(47, 86, 201, 0.08);
   --action-line: rgba(47, 86, 201, 0.32);
+  --danger: #b3261e;
+  --danger-soft: rgba(179, 38, 30, 0.07);
+  --danger-line: rgba(179, 38, 30, 0.3);
   --silver: #565f6e;
   background: var(--bg);
   color: var(--text);
@@ -107,10 +108,6 @@ img {
   color: #07130c;
 }
 
-/* Varredura metálica no nome da marca — o logo é prateado, e prata é o que
-   a marca usa para falar de si mesma. A parada base é sólida, então sem
-   suporte a background-clip (ou com reduced-motion) o texto fica prata
-   legível em vez de invisível. */
 .shine-text {
   color: var(--silver);
 }

@@ -1,8 +1,6 @@
-# Landing page estática — sem etapa de build
 FROM nginx:alpine
 COPY . /usr/share/nginx/html
 
-# Configuração nginx simples para Cloud Run
 RUN echo 'server { \
     listen 8080; \
     root /usr/share/nginx/html; \

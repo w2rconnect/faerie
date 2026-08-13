@@ -1,6 +1,6 @@
 # W2R Connect — Landing Page
 
-Landing de `w2rconnect.com.br`. **HTML/CSS/JS puro, sem build, sem framework.** Abre `index.html` direto no navegador. Deploy por Docker/Cloud Build.
+Landing de `w2rconnect.com`. **HTML/CSS/JS puro, sem build, sem framework.** Abre `index.html` direto no navegador. Deploy por Docker/Cloud Build.
 
 O produto é um CRM com IA para **correspondentes bancários** (financiamento imobiliário): lê matrículas, extrai R1/averbações/proprietários, gera contratos e envia dados aos sistemas dos bancos.
 
@@ -149,62 +149,15 @@ Checklist por rodada:
 
 ## 4. Skills — quando usar cada uma
 
-24 skills instaladas em `.claude/skills/`. **Carregar todas em toda tarefa desperdiça contexto e mistura direções de design conflitantes.** Roteie pelo *momento da decisão*, não pelo nome.
+A descrição de cada skill já chega no contexto. O que não chega é **quando** chamar. Roteie pelo momento da decisão, nunca carregando mais de uma direção de design na mesma tarefa.
 
-### Sempre ativas (não invocar manualmente)
+**Não invocar à mão:** `impeccable` roda como hook (`PostToolUse` rápido, `Stop` profundo) e os achados chegam sozinhos — conserte o que for real ou classifique como falso positivo **explicando o porquê**, e nunca silencie com ignore sem o usuário confirmar que é intencional. `ponytail` é modo persistente da sessão.
 
-| Skill | Como funciona |
-|---|---|
-| **impeccable** | Roda como hook: checagem rápida no `PostToolUse` e passe profundo no `Stop`. Achados chegam sozinhos. Trate cada um: conserte se for real, ou classifique como falso positivo **explicando o porquê**. Nunca silenciar com ignore sem o usuário confirmar que é intencional. `/impeccable audit` para varredura completa sob demanda. |
-| **ponytail** | Modo persistente da sessão. Resolve a pergunta "isso precisa existir?" antes de "como construo isso?". |
+**Ao construir algo novo, nesta ordem:** `ui-ux-pro-max` antes de escrever qualquer CSS → `design-taste-frontend` depois que a estrutura está decidida → `emil-design-eng` só depois que funciona → `animate` por último.
 
-### Antes de construir algo novo — nesta ordem
-
-**1. `ui-ux-pro-max` — decide o QUÊ.**
-Invoque **primeiro**, antes de escrever qualquer CSS. Layout, escala tipográfica, paleta, padrão de UX, estrutura de landing. É a base factual: contraste, tamanho de alvo de toque, hierarquia.
-→ *Gatilho: seção nova, componente novo, "que layout usar aqui".*
-
-**2. `design-taste-frontend` — decide o COMO NÃO PARECER TEMPLATE.**
-Direção autoral e anti-genérico. Entra depois que a estrutura está decidida, para dar personalidade.
-→ *Gatilho: "está genérico", "sem identidade", redesign de página inteira.*
-→ *(É a skill que o time chama de "taste" — vem de `Leonxlnx/taste-skill`, não da Anthropic. `design-taste-frontend-v1` é legado; não usar.)*
-
-**3. `emil-design-eng` — decide o REFINO.**
-Polimento de componente, os detalhes invisíveis que fazem parecer bem-feito. Só depois que a coisa existe e funciona.
-→ *Gatilho: "falta polimento", estados de hover/foco/loading, micro-decisões de componente.*
-
-**4. `animate` — decide o MOVIMENTO.**
-Constrói uma animação do zero, na ordem certa: deve animar? qual propósito? qual curva e duração? como interrompe? como sai?
-→ *Gatilho: adicionar movimento novo. **Não** invoque para ajustar animação que já existe.*
-
-### Ao mexer no que já existe
-
-| Situação | Skill |
-|---|---|
-| Redesenhar seção que já está no ar | `redesign-existing-projects` — audita antes de trocar |
-| Criticar o motion de um diff | `review-animations` |
-| Auditar o motion do repo inteiro | `improve-animations` |
-| Achar o que deveria animar e não anima | `find-animation-opportunities` |
-| Achar o que dá pra deletar | `ponytail-review` (diff) / `ponytail-audit` (repo) |
-| Descobrir o nome de um efeito | `animation-vocabulary` |
-
-### Referência visual
-
-| Situação | Skill |
-|---|---|
-| Usuário mandou print/mockup para reproduzir | `image-to-code` |
-| Precisa de comp antes de codar | `imagegen-frontend-web` |
-| Board de marca, sistema de logo | `brandkit` |
-
-### Não usar neste projeto
-
-`industrial-brutalist-ui`, `minimalist-ui`, `gpt-taste`, `stitch-design-taste` — impõem linguagens visuais que conflitam com a identidade já definida na seção 1. `apple-design`, `imagegen-frontend-mobile` — são para iOS/mobile nativo. `pick-ui-library` — não há biblioteca de componentes aqui, é CSS puro. `full-output-enforcement`, `design-taste-frontend-v1` — sem uso.
-
-### Como combinar sem conflito
-
-- **Uma skill de direção por tarefa.** `ui-ux-pro-max` + `design-taste-frontend` juntas é o teto; três direções de design ao mesmo tempo produzem colcha de retalhos.
-- **Direção antes de motion, sempre.** Animar uma estrutura que ainda vai mudar é retrabalho.
-- **`impeccable` não substitui julgamento.** É um detector determinístico: pega contraste, propriedade animada errada, fonte saturada. Não sabe se a seção comunica a coisa certa.
+- **Uma skill de direção por tarefa.** `ui-ux-pro-max` + `design-taste-frontend` é o teto; três produzem colcha de retalhos.
+- **Direção antes de motion, sempre.** Animar estrutura que ainda vai mudar é retrabalho.
+- **`impeccable` não substitui julgamento.** Pega contraste, propriedade animada errada, fonte saturada. Não sabe se a seção comunica a coisa certa.
 - **Skill nenhuma substitui abrir o navegador.** Seção 3 vale para todas.
 
 ---

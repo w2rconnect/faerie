@@ -1,15 +1,38 @@
 .footer {
-  padding: 120px 4% 40px;
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   text-align: center;
+}
+.footer-glow {
+  position: absolute;
+  left: -10%;
+  bottom: 8%;
+  width: min(720px, 72vw);
+  aspect-ratio: 1;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(43, 227, 139, 0.1) 0%,
+    rgba(53, 96, 224, 0.07) 44%,
+    transparent 70%
+  );
 }
 .footer-cta {
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+  flex: 1;
+  display: grid;
+  align-content: center;
+  padding: clamp(40px, 5vh, 96px) 4% clamp(32px, 4vh, 72px);
 }
 .footer-base {
-  border-top: 1px solid var(--line);
-  margin-top: 110px;
-  padding-top: 56px;
+  position: relative;
+  z-index: 1;
+  padding: clamp(36px, 5vh, 60px) 4% clamp(28px, 4vh, 44px);
 }
 .footer-logo img {
   height: 92px;
@@ -25,7 +48,6 @@
 }
 .footer-text {
   font-size: 13px;
-  /* --muted da 4.01:1 aqui e reprova em 13px */
   color: var(--text-2);
 }
 .footer-links {
@@ -36,6 +58,9 @@
   flex-wrap: wrap;
 }
 .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: 13px;
   color: var(--muted);
   text-decoration: none;

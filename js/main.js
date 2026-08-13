@@ -33,21 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var navLock = false;
   var navPeek = false;
   var navDown = false;
-  var navSuppress = null;
-  var jumping = false;
-  var jumpTimer = 0;
-  var jumpEnd = null;
-  function startJump() {
-    jumping = true;
-    clearTimeout(jumpTimer);
-    jumpTimer = setTimeout(endJump, 1400);
-  }
-  function endJump() {
-    clearTimeout(jumpTimer);
-    if (!jumping) return;
-    jumping = false;
-    if (jumpEnd) jumpEnd();
-  }
+  var navHide = false;
   function measureNav() {
     if (nav) navH = nav.offsetHeight || 72;
   }
@@ -55,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('resize', measureNav);
   function applyNav() {
     if (!nav) return;
-    if (navSuppress && navSuppress()) {
-      nav.classList.toggle('nav-hidden', !navPeek);
+    if (navHide) {
+      nav.classList.add('nav-hidden');
       return;
     }
     if (navPeek || navLock) {
@@ -118,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
       ev,
       function () {
         navLock = false;
-        endJump();
       },
       { passive: true }
     );
@@ -145,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var hash = a.getAttribute('href');
       if (hash.length > 1) {
         e.preventDefault();
-        startJump();
         scrollToTarget(hash);
       }
     });
@@ -280,13 +264,24 @@ document.addEventListener('DOMContentLoaded', function () {
     );
   })();
 
-  function inViewport(el) {
-    var r = el.getBoundingClientRect();
-    return r.top < window.innerHeight && r.bottom > 0;
+  function aboveFold(el) {
+    return (
+      el.getBoundingClientRect().top + window.scrollY <
+      window.innerHeight
+    );
+  }
+  function revealTrigger(el, playAt) {
+    if (aboveFold(el)) return null;
+    return {
+      trigger: el,
+      start: 'top bottom',
+      end: 'clamp(' + playAt + ')',
+      toggleActions: 'none play none reverse',
+    };
   }
   function splitAndReveal(el, dur, stag) {
     gsap.set(el, { autoAlpha: 1 });
-    var introOnly = !!el.closest('.hero') || inViewport(el);
+    var st = el.closest('.hero') ? null : revealTrigger(el, 'top 85%');
     SplitText.create(el, {
       type: 'lines',
       mask: 'lines',
@@ -298,13 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
           duration: dur,
           stagger: stag,
           ease: 'power3.out',
-          scrollTrigger: introOnly
-            ? null
-            : {
-                trigger: el,
-                start: 'clamp(top 85%)',
-                toggleActions: 'play none none reverse',
-              },
+          scrollTrigger: st,
         });
       },
     });
@@ -325,30 +314,42 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function initBatchReveal() {
-    var items = document.querySelectorAll('[data-reveal]');
+    var items = Array.prototype.slice.call(
+      document.querySelectorAll('[data-reveal]')
+    );
     if (!items.length) return;
     gsap.set(items, { y: 36, autoAlpha: 0 });
-    ScrollTrigger.batch(items, {
-      start: 'top 88%',
-      onEnter: function (batch) {
-        gsap.to(batch, {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          stagger: 0.09,
-          ease: 'power3.out',
-          overwrite: true,
-        });
-      },
-      onLeaveBack: function (batch) {
-        gsap.to(batch, {
-          y: 36,
-          autoAlpha: 0,
-          duration: 0.4,
-          ease: 'power2.in',
-          overwrite: true,
-        });
-      },
+    function show(batch) {
+      gsap.to(batch, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.8,
+        stagger: 0.09,
+        ease: 'power3.out',
+        overwrite: true,
+        clearProps: 'transform',
+      });
+    }
+    function hide(batch) {
+      gsap.to(batch, {
+        y: 36,
+        autoAlpha: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+        overwrite: true,
+      });
+    }
+    var intro = items.filter(aboveFold);
+    var onScroll = items.filter(function (el) {
+      return !aboveFold(el);
+    });
+    if (intro.length) show(intro);
+    if (!onScroll.length) return;
+    ScrollTrigger.batch(onScroll, {
+      start: 'top bottom',
+      end: 'clamp(top 88%)',
+      onLeave: show,
+      onLeaveBack: hide,
     });
   }
 
@@ -502,11 +503,7 @@ document.addEventListener('DOMContentLoaded', function () {
           strokeDashoffset: 0,
           duration: 1.8,
           ease: 'power2.out',
-          scrollTrigger: {
-            trigger: svg,
-            start: 'top 92%',
-            toggleActions: 'play none none reverse',
-          },
+          scrollTrigger: revealTrigger(svg, 'top 92%'),
         });
       });
       gsap.from(svg.querySelectorAll('.node'), {
@@ -516,11 +513,7 @@ document.addEventListener('DOMContentLoaded', function () {
         stagger: 0.15,
         delay: 1.2,
         ease: 'back.out(2)',
-        scrollTrigger: {
-          trigger: svg,
-          start: 'top 92%',
-          toggleActions: 'play none none reverse',
-        },
+        scrollTrigger: revealTrigger(svg, 'top 92%'),
       });
     });
   }
@@ -558,146 +551,150 @@ document.addEventListener('DOMContentLoaded', function () {
         Math.min(100 - half, Math.max(half, readVar(stop, '--cy')))
       );
       cam.style.setProperty('--z', z);
-      var shot = parseInt(stop.getAttribute('data-shot'), 10) || 0;
       shots.forEach(function (img, i) {
-        img.classList.toggle('is-active', i === shot);
+        img.classList.toggle('is-active', i === index);
       });
       stops.forEach(function (s, i) {
         s.classList.toggle('is-current', i === index);
       });
-      var step = parseInt(stop.getAttribute('data-step'), 10);
-      if (!step) return;
       ticks.forEach(function (t, i) {
-        t.classList.toggle('is-active', i === step - 1);
+        t.classList.toggle('is-active', i === index);
       });
-      if (num) num.textContent = ('0' + step).slice(-2);
+      if (num) num.textContent = ('0' + (index + 1)).slice(-2);
     }
 
-    var stepping = docEl.classList.contains('js-cam');
-    var pending = -1;
-    var locked = false;
-    var lockTimer = 0;
+    activate(0);
+    if (!docEl.classList.contains('js-cam')) return;
 
-    jumpEnd = function () {
-      activate(nearestStop());
-    };
-
-    var spy = new IntersectionObserver(
-      function (entries) {
-        if (pending >= 0 || jumping) return;
-        var hit = -1;
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) hit = stops.indexOf(entry.target);
-        });
-        activate(hit < 0 ? nearestStop() : hit);
-      },
-      { rootMargin: '-50% 0px -50% 0px' }
-    );
-    stops.forEach(function (s) {
-      spy.observe(s);
+    var play = document.getElementById('stagePlay');
+    var exit = document.getElementById('stageExit');
+    var section = stage.closest('section');
+    var behind = [];
+    [document.body, section && section.parentNode].forEach(function (parent) {
+      if (!parent) return;
+      Array.prototype.forEach.call(parent.children, function (el) {
+        if (!el.contains(stage)) behind.push(el);
+      });
     });
+    var playing = false;
+    var acc = 0;
+    var accDir = 0;
+    var stepAt = 0;
 
-    function snapY(index) {
-      var r = stops[index].getBoundingClientRect();
-      return r.top + window.scrollY + r.height / 2 - window.innerHeight / 2;
+    function setPlaying(state) {
+      if (playing === state) return;
+      playing = state;
+      stage.classList.toggle('is-playing', state);
+      navHide = state;
+      applyNav();
+      behind.forEach(function (el) {
+        el.toggleAttribute('inert', state);
+      });
+      document.body.style.overflow = state ? 'hidden' : '';
+      if (lenis) state ? lenis.stop() : lenis.start();
+      activate(0);
+      var focusTo = state ? exit : play;
+      if (focusTo) focusTo.focus({ preventScroll: true });
     }
-    function nearestStop() {
-      var y = window.scrollY;
-      var best = 0;
-      var bd = Infinity;
-      for (var i = 0; i < stops.length; i++) {
-        var d = Math.abs(snapY(i) - y);
-        if (d < bd) {
-          bd = d;
-          best = i;
-        }
+    function step(dir) {
+      var next = current + dir;
+      if (next < 0 || next >= stops.length) return;
+      activate(next);
+    }
+
+    function center(done) {
+      var settled = false;
+      function finish() {
+        if (settled) return;
+        settled = true;
+        done();
       }
-      return best;
-    }
-    function goStop(index) {
-      pending = index;
-      locked = true;
-      activate(index);
-      scrollToTarget(
-        stops[index],
-        stops[index].offsetHeight / 2 - window.innerHeight / 2,
-        1.15
-      );
-      navLock = false;
-      clearTimeout(lockTimer);
-      lockTimer = setTimeout(function () {
-        locked = false;
-        pending = -1;
-      }, 1250);
-    }
-    function inZone() {
-      var y = window.scrollY;
-      return y > snapY(0) - 80 && y < snapY(stops.length - 1) + 80;
-    }
-    function stepTarget(dir) {
-      if (pending >= 0) return pending + dir;
-      var y = window.scrollY;
-      var i;
-      if (dir > 0) {
-        for (i = 0; i < stops.length; i++) if (snapY(i) > y + 8) return i;
-        return -1;
+      var top =
+        stage.getBoundingClientRect().top +
+        window.scrollY +
+        stage.offsetHeight / 2 -
+        window.innerHeight / 2;
+      if (!lenis) {
+        window.scrollTo({ top: top, behavior: 'smooth' });
+        setTimeout(finish, 900);
+        return;
       }
-      for (i = stops.length - 1; i >= 0; i--) if (snapY(i) < y - 8) return i;
-      return -1;
+      lenis.stop();
+      document.body.style.overflow = 'hidden';
+      lenis.scrollTo(top, {
+        duration: 1.05,
+        force: true,
+        lock: true,
+        onComplete: finish,
+      });
+      setTimeout(finish, 1500);
     }
-    function step(dir, strong) {
-      if (!stepping || !dir || !inZone()) return false;
-      var next = stepTarget(dir);
-      if (next < 0 || next >= stops.length) return false;
-      if (strong && !locked) goStop(next);
-      return true;
-    }
+
+    if (play)
+      play.addEventListener('click', function () {
+        if (playing) return;
+        navHide = true;
+        applyNav();
+        setTimeout(function () {
+          center(function () {
+            setPlaying(true);
+          });
+        }, 300);
+      });
+    stage.querySelectorAll('[data-stage-close]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setPlaying(false);
+      });
+    });
+    ticks.forEach(function (t) {
+      t.addEventListener('click', function () {
+        activate(parseInt(t.getAttribute('data-go'), 10) || 0);
+      });
+    });
 
     window.addEventListener(
       'wheel',
       function (e) {
-        if (e.ctrlKey || !e.deltaY) return;
+        if (!playing || e.ctrlKey || !e.deltaY) return;
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-        if (!step(e.deltaY > 0 ? 1 : -1, Math.abs(e.deltaY) >= 4)) return;
         e.preventDefault();
         e.stopPropagation();
+        var now = Date.now();
+        if (now - stepAt < 520) {
+          acc = 0;
+          return;
+        }
+        var dir = e.deltaY > 0 ? 1 : -1;
+        if (dir !== accDir) {
+          accDir = dir;
+          acc = 0;
+        }
+        acc +=
+          Math.abs(e.deltaY) *
+          (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? window.innerHeight : 1);
+        if (acc < 60) return;
+        acc = 0;
+        stepAt = now;
+        step(dir);
       },
       { capture: true, passive: false }
     );
 
     window.addEventListener('keydown', function (e) {
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      var t = e.target;
-      if (t && t.closest && t.closest('input, textarea, select, [contenteditable]'))
+      if (!playing || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === 'Escape') {
+        setPlaying(false);
         return;
-      var dir = 0;
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') dir = 1;
-      else if (e.key === 'ArrowUp' || e.key === 'PageUp') dir = -1;
-      if (step(dir, true)) e.preventDefault();
+      }
+      var dir = /^(ArrowDown|ArrowRight|PageDown)$/.test(e.key)
+        ? 1
+        : /^(ArrowUp|ArrowLeft|PageUp)$/.test(e.key)
+          ? -1
+          : 0;
+      if (!dir) return;
+      e.preventDefault();
+      step(dir);
     });
-
-    ticks.forEach(function (t) {
-      t.addEventListener('click', function () {
-        var index = parseInt(t.getAttribute('data-go'), 10) || 0;
-        if (stops[index]) goStop(index);
-      });
-    });
-    if (stepping) {
-      var zoneTop = 0;
-      var zoneEnd = 0;
-      var measureZone = function () {
-        zoneTop = snapY(0);
-        zoneEnd = snapY(stops.length - 1);
-      };
-      measureZone();
-      window.addEventListener('load', measureZone);
-      window.addEventListener('resize', measureZone);
-      navSuppress = function () {
-        var y = window.scrollY;
-        return y >= zoneTop && y <= zoneEnd;
-      };
-    }
-    activate(0);
   })();
 
   (function () {
@@ -898,85 +895,25 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
 
   (function () {
-    var strip = document.querySelector('.promo-countdown');
-    var timer = document.getElementById('promoTimer');
-    if (!strip || !timer) return;
-    var deadline = new Date(
-      strip.getAttribute('data-deadline')
-    ).getTime();
-    if (isNaN(deadline)) return;
-    function pad(n) {
-      return String(n).padStart(2, '0');
+    if (!location.hash || document.getElementById('preloader')) return;
+    var target = document.querySelector(location.hash);
+    if (!target) return;
+    function jump() {
+      measureNav();
+      var y = target.getBoundingClientRect().top + window.scrollY - navH;
+      if (lenis) lenis.scrollTo(y, { immediate: true });
+      else window.scrollTo(0, y);
+      lastY = y;
+      navDown = false;
+      applyNav();
     }
-    function tick() {
-      var left = deadline - Date.now();
-      if (left <= 0) {
-        strip.style.display = 'none';
-        return;
-      }
-      var d = Math.floor(left / 86400000);
-      var h = Math.floor(left / 3600000) % 24;
-      var m = Math.floor(left / 60000) % 60;
-      var s = Math.floor(left / 1000) % 60;
-      timer.textContent =
-        (d > 0 ? d + 'd ' : '') +
-        pad(h) +
-        'h ' +
-        pad(m) +
-        'm ' +
-        pad(s) +
-        's';
-      setTimeout(tick, 1000);
-    }
-    tick();
-  })();
-
-  (function () {
-    if (reduceMotion) return;
-    var items = [];
-    document.querySelectorAll('.js-counter').forEach(function (el) {
-      var m = el.textContent.trim().match(/^(-?)(\d+)(.*)$/);
-      if (m)
-        items.push({
-          el: el,
-          sign: m[1],
-          target: parseInt(m[2], 10),
-          suffix: m[3],
-        });
-    });
-    if (!items.length) return;
-    function render(item, value) {
-      item.el.textContent =
-        (value === 0 ? '0' : item.sign + value) + item.suffix;
-    }
-    var obs = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          var item = items.find(function (i) {
-            return i.el === entry.target;
-          });
-          if (!item) return;
-          if (!entry.isIntersecting) {
-            cancelAnimationFrame(item.raf);
-            render(item, 0);
-            return;
-          }
-          var start = performance.now();
-          var dur = 1000;
-          item.raf = requestAnimationFrame(function frame(now) {
-            var t = Math.min(1, (now - start) / dur);
-            var eased = 1 - Math.pow(1 - t, 3);
-            render(item, Math.round(item.target * eased));
-            if (t < 1) item.raf = requestAnimationFrame(frame);
-          });
-        });
-      },
-      { threshold: 0.5 }
-    );
-    items.forEach(function (i) {
-      render(i, 0);
-      obs.observe(i.el);
+    var ready =
+      document.fonts && document.fonts.ready
+        ? document.fonts.ready
+        : Promise.resolve();
+    ready.then(function () {
+      jump();
+      setTimeout(jump, 400);
     });
   })();
-
 });
