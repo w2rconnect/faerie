@@ -288,6 +288,10 @@
     block-size: auto;
   }
 }
+.faq-contact {
+  display: flex;
+  justify-content: center;
+}
 
 .cta-inner {
   width: 100%;

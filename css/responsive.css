@@ -147,6 +147,9 @@
   .proof-grid {
     grid-template-columns: 1fr;
   }
+  .faq-contact .btn {
+    width: 100%;
+  }
   .pricing-grid {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
