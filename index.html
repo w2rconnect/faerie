@@ -1161,61 +1161,53 @@
             cartão.
           </p>
         </header>
-        <div
-          class="promo-countdown"
-          data-deadline="2026-07-31T23:59:59-03:00"
-          data-gsap-ignore
-        >
-          <div class="countdown-label">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <circle cx="7" cy="7" r="6" stroke="#2BE38B" stroke-width="1.2" />
-              <path
-                d="M7 4v3l2 2"
-                stroke="#2BE38B"
-                stroke-width="1.2"
-                stroke-linecap="round"
-              /></svg
-            >Promoção de lançamento ativa
-          </div>
-          <div class="countdown-sep">·</div>
-          <div class="countdown-label">
-            termina em&nbsp;<strong id="promoTimer">—</strong>
-          </div>
-        </div>
         <div class="pricing-grid">
           <div class="card plan" data-reveal data-gsap-ignore>
-            <div class="plan-name-row">
-              <div><div class="plan-name">Pessoal</div></div>
+            <div class="plan-head">
+              <div class="plan-name-row">
+                <div class="plan-name">Pessoal</div>
+              </div>
+              <div class="plan-top-label">Para quem trabalha sozinho</div>
             </div>
-            <div class="plan-top-label">Para autônomos</div>
-            <div class="plan-from">de <s>R$ 129,90</s> por apenas</div>
-            <div class="plan-price-row">
-              <span class="plan-cur">R$</span><span class="plan-val">79</span
-              ><span class="plan-dec">,90</span>
+            <div class="plan-price">
+              <div class="plan-from">
+                de <s>R$ 79,90</s
+                ><span class="plan-off">−R$ 30,00</span>
+              </div>
+              <div class="plan-price-row">
+                <span class="plan-cur">R$</span><span class="plan-val">49</span
+                ><span class="plan-dec">,90</span>
+              </div>
+              <div class="plan-per">por mês · sem fidelidade</div>
             </div>
-            <div class="plan-per">/mês · sem fidelidade</div>
-            <div class="plan-divider"></div>
             <div class="plan-trial">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path
-                  d="M2 7l3.5 3.5L12 4"
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="6.3"
                   stroke="currentColor"
-                  stroke-width="1.5"
+                  stroke-width="1.3"
+                />
+                <path
+                  d="M5.2 8.2l2 2L11 6.2"
+                  stroke="currentColor"
+                  stroke-width="1.4"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 /></svg
-              >7 dias grátis · sem cartão
+              >7 dias grátis · sem cartão de crédito
             </div>
-            <div class="plan-section-label">Incluído no plano</div>
-            <ul class="plan-list">
-              <li>1 usuário</li>
-              <li>Leitura de matrícula com IA</li>
-              <li>Geração de documentos e contratos</li>
-              <li>Extensão para sistemas bancários</li>
-              <li>Assistente IA por chat</li>
-              <li>Alertas de vencimento automáticos</li>
-              <li>Organização em nuvem</li>
-            </ul>
+            <div class="plan-features">
+              <div class="plan-section-label">Incluído no plano</div>
+              <ul class="plan-list">
+                <li>Análise de imóvel e renda com IA</li>
+                <li>Geração de documentos e contratos</li>
+                <li>Extensão para sistemas bancários</li>
+                <li>Assistente IA por chat</li>
+                <li>Organização em nuvem</li>
+              </ul>
+            </div>
             <a href="https://w2rconnect.app/register" class="btn btn-ghost"
               ><span class="btn-flip"
                 ><span>Começar grátis</span
@@ -1225,69 +1217,57 @@
             <div class="plan-note">Sem compromisso. Cancele quando quiser.</div>
           </div>
           <div class="card plan plan-featured" data-reveal data-gsap-ignore>
-            <div class="plan-popular-badge">
-              <span class="dot"></span>Mais escolhido pelos escritórios
+            <div class="plan-head">
+              <div class="plan-name-row">
+                <div class="plan-name">Empresarial</div>
+                <div class="plan-popular-badge">
+                  <span class="dot"></span>Mais escolhido
+                </div>
+              </div>
+              <div class="plan-top-label">Para escritórios com equipe</div>
             </div>
-            <div class="plan-name-row">
-              <div><div class="plan-name">Empresarial</div></div>
+            <div class="plan-price">
+              <div class="plan-from">
+                de <s>R$ 199,90</s
+                ><span class="plan-off">−R$ 80,00</span>
+              </div>
+              <div class="plan-price-row">
+                <span class="plan-cur">R$</span><span class="plan-val">119</span
+                ><span class="plan-dec">,90</span>
+              </div>
+              <div class="plan-per">por mês · sem fidelidade</div>
             </div>
-            <div class="plan-top-label" style="color: rgba(43, 227, 139, 0.7)">
-              Para escritórios com equipe
-            </div>
-            <div class="plan-from">de <s>R$ 199,90</s> por apenas</div>
-            <div class="plan-price-row">
-              <span class="plan-cur">R$</span><span class="plan-val">120</span
-              ><span class="plan-dec">,00</span>
-            </div>
-            <div class="plan-per">/mês · sem fidelidade</div>
-            <div class="plan-saving">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path
-                  d="M7 2l1.5 3.5L12 6l-2.5 2.5.5 3.5L7 10.5 4 12l.5-3.5L2 6l3.5-.5z"
-                  stroke="currentColor"
-                  stroke-width="1.2"
-                /></svg
-              >Você economiza R$ 79,90/mês no lançamento
-            </div>
-            <div class="plan-divider"></div>
             <div class="plan-trial">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path
-                  d="M2 7l3.5 3.5L12 4"
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="6.3"
                   stroke="currentColor"
-                  stroke-width="1.5"
+                  stroke-width="1.3"
+                />
+                <path
+                  d="M5.2 8.2l2 2L11 6.2"
+                  stroke="currentColor"
+                  stroke-width="1.4"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 /></svg
-              >7 dias grátis · sem cartão · acesso total
+              >7 dias grátis · sem cartão de crédito
             </div>
-            <div class="plan-section-label">Exclusivo neste plano</div>
-            <ul class="plan-list">
-              <li class="plan-li-highlight">
-                Master + 3 colaboradores inclusos
-                <span class="excl-tag">Exclusivo</span>
-              </li>
-              <li class="plan-li-highlight">
-                Distribuição de processos na equipe
-                <span class="excl-tag">Exclusivo</span>
-              </li>
-              <li class="plan-li-highlight">
-                Licenças adicionais disponíveis
-                <span class="excl-tag">Exclusivo</span>
-              </li>
-            </ul>
-            <div class="plan-section-label">Tudo do plano Pessoal, mais</div>
-            <ul class="plan-list">
-              <li>Leitura de matrícula com IA</li>
-              <li>Geração de documentos e contratos</li>
-              <li>Extensão para sistemas bancários</li>
-              <li>Assistente IA por chat</li>
-              <li>Alertas de vencimento automáticos</li>
-            </ul>
+            <div class="plan-features">
+              <div class="plan-section-label">Tudo do Pessoal, mais</div>
+              <ul class="plan-list">
+                <li>Master + 3 colaboradores inclusos</li>
+                <li>Distribuição de processos na equipe</li>
+                <li>Acesso por nível para cada colaborador</li>
+                <li>Licenças adicionais sob demanda</li>
+              </ul>
+            </div>
             <a href="https://w2rconnect.app/register" class="btn btn-primary"
               ><span class="btn-flip"
-                ><span>Começar grátis agora</span
-                ><span aria-hidden="true">Começar grátis agora</span></span
+                ><span>Começar grátis</span
+                ><span aria-hidden="true">Começar grátis</span></span
               ><svg width="17" height="17" viewBox="0 0 18 18" fill="none">
                 <path
                   d="M3 9h12M10 4l5 5-5 5"
@@ -1305,7 +1285,7 @@
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
               <path
                 d="M3 9l4 4 8-8"
-                stroke="#2BE38B"
+                stroke="currentColor"
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -1317,24 +1297,12 @@
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
               <path
                 d="M3 9l4 4 8-8"
-                stroke="#2BE38B"
+                stroke="currentColor"
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               /></svg
             >Pagamento via cartão (Stripe)
-          </div>
-          <div class="compare-sep"></div>
-          <div class="compare-item">
-            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M3 9l4 4 8-8"
-                stroke="#2BE38B"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            >Suporte incluso nos dois planos
           </div>
         </div>
       </div>

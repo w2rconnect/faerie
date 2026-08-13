@@ -21,6 +21,8 @@
   --font-mono: 'JetBrains Mono', monospace;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-flip: cubic-bezier(0.76, 0, 0.24, 1);
+  --check-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.4 5.2l2.4 2.4L8.6 2.6' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
 }
 .t-dark {
   --bg: var(--ink);
@@ -29,7 +31,7 @@
   --card-2: var(--ink-3);
   --text: #f1f5fb;
   --text-2: #9aa8bf;
-  --muted: #64748e;
+  --muted: #75849c;
   --line: rgba(241, 245, 251, 0.08);
   --line-strong: rgba(241, 245, 251, 0.16);
   --accent: #2be38b;

@@ -963,40 +963,6 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
 
   (function () {
-    var strip = document.querySelector('.promo-countdown');
-    var timer = document.getElementById('promoTimer');
-    if (!strip || !timer) return;
-    var deadline = new Date(
-      strip.getAttribute('data-deadline')
-    ).getTime();
-    if (isNaN(deadline)) return;
-    function pad(n) {
-      return String(n).padStart(2, '0');
-    }
-    function tick() {
-      var left = deadline - Date.now();
-      if (left <= 0) {
-        strip.style.display = 'none';
-        return;
-      }
-      var d = Math.floor(left / 86400000);
-      var h = Math.floor(left / 3600000) % 24;
-      var m = Math.floor(left / 60000) % 60;
-      var s = Math.floor(left / 1000) % 60;
-      timer.textContent =
-        (d > 0 ? d + 'd ' : '') +
-        pad(h) +
-        'h ' +
-        pad(m) +
-        'm ' +
-        pad(s) +
-        's';
-      setTimeout(tick, 1000);
-    }
-    tick();
-  })();
-
-  (function () {
     if (reduceMotion) return;
     var items = [];
     document.querySelectorAll('.js-counter').forEach(function (el) {
